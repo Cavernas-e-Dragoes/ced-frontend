@@ -3,10 +3,10 @@
 <section class="column">
   <div class="card-login column">
     <span>Bem vindo aventureiro!</span>
-    <form class="card-inside">
+    <form (submit)="onSubmit($event)" class="card-inside">
         <input type="text" (input)="onLoginInput($event)" name="login" placeholder="Digite seu Login">
         <input type="password" (input)="onPasswordInput($event)" name="password" placeholder="Digite sua senha">
-        <button (click)="catchJWT()">Entrar</button>
+        <button (click)="singIn()">Entrar</button>
         <!-- <div class="icones">
             <span><i class="fab fa-facebook-square fa-2x"></i></span>
             <span><i class="fab fa-google-plus-square fa-2x"></i></span>

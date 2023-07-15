@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { Token } from '@angular/compiler';
 
 @Component({
   selector: 'app-login',
@@ -24,37 +25,31 @@ export class LoginComponent {
     this.password = (event.target as HTMLInputElement).value;
   }
 
-  catchJWT(): void {
-    const loginUser = {
+  singIn(): void {
+    const credentials = {
       login: this.login,
       password: this.password
     };
 
-    this.authService.validUser(loginUser)
+    this.authService.login(credentials)
       .subscribe(
         response => {
+          
           sessionStorage.setItem("logged", "on");
-          sessionStorage.setItem("token", response);
-          this.session(response);
+          sessionStorage.setItem("token", response.token);
+          sessionStorage.setItem("name", response.user.name);
+          sessionStorage.setItem("email", response.user.email);
+          sessionStorage.setItem("login", response.user.login);
+
+          this.route.navigateByUrl('/characters'); 
+
         },
         error => {
           console.log(error);
         }
       );
   }
-
-  session(token: string): void {
-    this.authService.login(token)
-      .subscribe(
-        response => {
-          sessionStorage.setItem("name", response.name);
-          sessionStorage.setItem("email", response.email);
-          sessionStorage.setItem("login", response.login);
-          this.route.navigateByUrl('/characters'); 
-        },
-        error => {
-          console.log(error);
-        }
-      );
+  onSubmit(event: Event) {
+    event.preventDefault();
   }
 }
