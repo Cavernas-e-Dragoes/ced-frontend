@@ -1,0 +1,120 @@
+nav{
+    justify-content: space-between;
+    height: 90px;
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.13) 3px 3px 10px 10px;
+    z-index: 500;
+    position: fixed;
+    background-color: rgb(32, 32, 32);
+}
+.row{
+    gap: 0px;
+}
+.checkbtn{
+    cursor: pointer;
+    display: none;
+}
+#check{
+    display: none;
+}
+nav img{
+    cursor: pointer;
+    width: 250px;
+}
+ul{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 100%;
+    list-style: none;
+    margin: auto 30px;
+}
+li{
+    color: rgb(173, 148, 2);
+    text-transform: capitalize;
+    font-size: 20px;
+    border-bottom: 1px solid transparent;
+    margin: auto 10px;
+    font-weight: 500;
+}
+li:hover{
+   color: rgb(168,159,111);
+   cursor: pointer;
+   border-bottom: 1px solid rgb(168,159,111);
+}
+@media screen and (max-width:680px) {
+    .checkbtn{
+        position: absolute;
+        display: flex;
+        color: rgb(168,159,111);
+        font-size: 30px;
+        left: 3vw;
+        z-index: 2;
+    }
+    nav{
+        justify-content: space-between;
+        flex-direction: row;
+        margin: 0px;
+        align-items: center;
+        position: relative;
+        width: inherit;
+        box-shadow: none;
+        background-color: rgb(46,46,46);
+        height: 100px;
+        margin-top: 0;
+    }
+    nav img{
+        position: relative;
+        z-index: 1;
+        width: 100px;
+        margin-left: 11vw;
+   }
+    nav ul{ 
+        position: relative;
+        flex-direction: column;
+        width: 100%;
+        -webkit-transition: all .3s;
+        transition: all .3s;
+        top: 99px;
+        margin-left: -1000px;
+        margin-bottom: 50px;
+        opacity: 0;
+        justify-content: flex-end;
+    }
+    nav ul li{
+        display: flex;
+        padding: 16px 0;
+        
+        font-size: 25px;
+        margin: 10px;
+        width: 250px;
+        text-align: left;
+        justify-content: flex-end;
+        padding-left: 17px;
+
+    }
+    nav ul li:first-of-type{
+        margin-top: 50px;
+    }
+    #check:checked ~ .checkbtn #rotate{
+        transform: rotate(90deg);
+        -webkit-transform: rotate(90deg);
+        transition: all .3s;
+        -webkit-transition: all .3s;
+    }
+    #check:checked ~ ul{
+        transition: all .3s;
+        -webkit-transition: all .3s;
+        display: flex;
+        background-color: rgb(46, 46, 46);
+        margin-left: 0px;
+        height: auto;
+        opacity: 1;
+        position: absolute;
+        box-shadow: rgba(0, 0, 0, 0.6) 0px 525px 114px 278px;
+    }
+    
+    
+    
+}

@@ -1,0 +1,90 @@
+section{
+    width: 100%;
+    background-color: rgb(48, 48, 48);
+    height: 99vh;
+}
+.card-login{
+    display: flex;
+    justify-content: space-between;
+    border-radius: 5px;
+    height: 420px;
+    width: 370px;
+    background-color: rgba(32, 32, 32, 0.5);
+    padding: 30px 0;
+    box-shadow: 3px 3px 15px 5px rgba(0, 0, 0, 0.322);
+}
+.card-inside{
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    width: 80%;
+}
+
+span{
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: rgb(221, 200, 105);
+    margin-bottom: 2rem;
+}
+
+input{
+    height: 52px;
+    padding-left: 1rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    border: none;
+    background-color: rgb(255, 255, 255, 0.7);
+}
+input:hover{
+    background-color: rgba(255, 255, 255, 0.884);
+}
+textarea:focus, input:focus {
+    box-shadow: 0 0 0 0;
+    outline: 0;
+}
+
+button{
+    border-radius: 5px;
+    font-size: 17px;
+    height: 52px;
+}
+
+.icones{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 0.5rem;    
+}
+
+.fa-facebook-square {
+    color: rgb(221, 200, 105);
+    margin-right: 1rem;
+}
+
+.fa-google-plus-square {
+    color: rgb(221, 200, 105);
+    margin-right: 1rem;
+}
+
+a{
+    color: rgb(221, 200, 105);
+    font-size: 0.8rem;
+    text-align: center;
+    cursor: pointer;
+}
+a:hover{
+    text-shadow: 0px 0px 3px rgb(221, 200, 105);
+}
+
+.fa-facebook-square:hover {
+    cursor: pointer;
+    color: #fff;
+    transition: .5s;
+    }
+
+.fa-google-plus-square:hover {
+    cursor: pointer;
+    color: #fff;
+    transition: .5s;
+    }
