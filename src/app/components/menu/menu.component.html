@@ -12,9 +12,21 @@
         <li routerLink="/talentos">Talentos</li>
         
     </ul>
-    <ul>
-        <li routerLink="/login">Login</li>
-        <li routerLink="/register">Cadastrar</li>
-    </ul>
+    
+
+    <div class="container-button" *ngIf="logged; then thenBlock else elseBlock"></div>
+    <ng-template #thenBlock>
+        <ul>    
+            <li routerLink="/">ola, {{getName}}!</li>
+            <li routerLink="/characters">characters</li>
+            <li (click)="logOut()">Sair</li>
+        </ul>    
+    </ng-template>
+    <ng-template #elseBlock>
+        <ul>
+            <li routerLink="/login">Login</li>
+            <li routerLink="/register">Cadastrar</li>
+        </ul>
+    </ng-template>
     
 </nav>
