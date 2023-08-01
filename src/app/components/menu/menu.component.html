@@ -1,29 +1,25 @@
 <nav class="row">
     <input type="checkbox" id="check">
     <label for="check" class="checkbtn"><i class="fa fa-bars" aria-hidden="true" id="rotate"></i></label>
-    <img routerLink="/home" src="" alt="">
-    <ul>
-        <li routerLink="/home">Home</li>
-        <li routerLink="/raças">Raças</li>
-        <li routerLink="/clases">Clases</li>
-        <li routerLink="/antecedentes">Antecedentes</li>
-        <li routerLink="/magias">Magias</li>
-        <li routerLink="/equipamentos">ta diferente aqui!!</li>
-        <li routerLink="/talentos">mudando de novo pela 10 vez</li>
-        
+    <img id="logo" routerLink="/home" src="../../../assets/images/logolowqualityblack.jpg" alt="">
+    <ul class="web">
+        <li routerLink="/home">Home</li> 
+        <li routerLink="/characters">Personagens</li> 
     </ul>
     
 
     <div class="container-button" *ngIf="logged; then thenBlock else elseBlock"></div>
     <ng-template #thenBlock>
         <ul>    
-            <li routerLink="/">ola, {{getName}}!</li>
-            <li routerLink="/characters">characters mudou ja de noovo e de novo</li>
+            <li routerLink="/">olá, {{getName}}!</li>
+            <li routerLink="/characters">Ver personagens</li>
             <li (click)="logOut()">Sair</li>
         </ul>    
     </ng-template>
     <ng-template #elseBlock>
         <ul>
+            <li class="mobile" routerLink="/home">Home</li>
+            <li class="mobile" routerLink="/characters">Personagens</li>
             <li routerLink="/login">Login</li>
             <li routerLink="/register">Cadastrar</li>
         </ul>

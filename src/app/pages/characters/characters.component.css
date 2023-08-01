@@ -1,14 +1,26 @@
-.mainbody{
+.characters-container{
 	margin: 0;
 	padding: 0;
 	min-height: 100vh;
-    font-family: 'inter', sans-serif;
     text-decoration: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background: #353535;
 }
-
+.add{
+    margin-bottom: 100px;
+}
+.add button{
+    border-radius: 3px;
+    width: 300px;
+    height: 60px;
+    background-color: rgb(22, 22, 22);
+    color: #ffeba7;
+    font-size: 19px;
+    font-weight: 300;
+}
+.add button:hover{
+    color: rgb(22, 22, 22);
+    background-color: #ffeba7;
+}
 .container{
     width: 1000px;
     position: relative;
@@ -16,25 +28,15 @@
     flex-wrap: wrap;
     justify-content: space-between;
 }
-
-@media only screen and (max-width: 1000px){
-    .container{
-        width: 300px;
-    }
-}
-
 .container .card{
     position: relative;
     cursor: pointer;
 }
-
 .container .card .face{
     width: 300px;
     height: 200px;
     transition: 0.5s;
 }
-
-
 .container .card .face.face1{
     position: relative;
     background-color: rgb(22, 22, 22);
@@ -45,44 +47,45 @@
     transform: translateY(100px);
     border-radius: 3px;
 }
-
 .container .card:hover .face.face1{
     background-color: #ffeaa7ad;
     transform: translateY(0);
     
 }
-
 .container .card .face.face1 .content{
     opacity: 1;
     transition: 0.5s;
 
 }
-
 .container .card:hover .face.face1 .content{
     opacity: 1;
 }
-
 .container .card:hover .face.face1 .content img{
     max-width: 100px;
 
 }
-
-.container .card:hover .face.face1 .content h3{
+.container .card .face.face1 .content h3, .container .card .face.face1 .content h4{
+    padding: 0.7rem;
+    color: #ffeba7;
+    font-size: 24px;
+    text-align: left;
+    font-weight: 200;
+    text-align: center;
+}
+.container .card:hover .face.face1 .content h3, .container .card:hover .face.face1 .content h4{
     margin: 10px 0 0;
     padding: 0.7rem;
     color: rgb(22, 22, 22);
-    text-align: left;
+    text-align: center;
     font-size: 1.5em;
 }
-.container .card .face.face1 .content h3{
-    padding: 0.7rem;
-    color: #ffeba7;
-    font-size: 1.3em;
-    text-align: left;
-    font-weight: 200;
+.container .card .face.face1 .content h4{
+    color: #a18f50;
+    font-size: 18px;
 }
-
-
+.container .card:hover .face.face1 .content h4{
+    font-size: 18px;
+}
 .container .card .face.face2{
     border-radius: 3px;
     position: relative;
@@ -99,9 +102,24 @@
 .container .card:hover .face.face2{
     transform: translateY(0);
 }
-
 .container .card .face.face2 .content p{
     margin: 0;
-    padding: 0;
+    padding: 10px;
     color: #ffeba7;
+}
+.container .card .face.face2 button{
+    background-color: #ffeba7;
+    color: rgb(22, 22, 22);
+    margin-top: 30px;
+    padding: 15px;
+    border-radius: 3px;
+}
+@media only screen and (max-width: 680px){
+    .container{
+        width: 300px;
+    }
+    .add{
+        margin-bottom: 50px;
+        margin-top: 100px;
+    }
 }

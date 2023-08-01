@@ -1,7 +1,10 @@
-section{
+.login-container{
+    background-image: url(../../../assets/images/background-login.jpg);
+    background-size: cover;
     width: 100%;
     background-color: rgb(48, 48, 48);
     height: 99vh;
+    background-position: 30%;
 }
 .card-login{
     display: flex;
@@ -12,6 +15,10 @@ section{
     background-color: rgba(32, 32, 32, 0.5);
     padding: 30px 0;
     box-shadow: 3px 3px 15px 5px rgba(0, 0, 0, 0.322);
+}
+.card-login:hover{
+    box-shadow: 3px 3px 15px 5px rgba(252, 232, 121, 0.322);
+
 }
 .card-inside{
     display: flex;
@@ -76,15 +83,16 @@ a{
 a:hover{
     text-shadow: 0px 0px 3px rgb(221, 200, 105);
 }
-
-.fa-facebook-square:hover {
-    cursor: pointer;
-    color: #fff;
-    transition: .5s;
-    }
-
 .fa-google-plus-square:hover {
     cursor: pointer;
     color: #fff;
     transition: .5s;
+}
+@media screen and (max-width:680px){
+    .login-container{
+        background-position: 74%
     }
+    .card-login{
+        width: 85vw;
+    }
+}

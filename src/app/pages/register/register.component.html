@@ -1,5 +1,5 @@
 <app-menu></app-menu>
-<section class="column">
+<section class="register-container column">
     <div class="card-form column">
       <p>Crie sua conta!</p>
       <form (submit)="onSubmit($event)" class="card-inside column">
@@ -8,9 +8,8 @@
         <input type="email" #emailInput name="email" placeholder="Digite um e-mail">
         <input type="text" #loginInput name="login" placeholder="Crie um login">
         <input type="password" #passwordInput name="password" placeholder="Digite sua senha">
-        <button (click)="save(nameInput.value, emailInput.value, loginInput.value, passwordInput.value)">cadastro</button>
+        <button (click)="save(nameInput.value, emailInput.value, loginInput.value, passwordInput.value)">Cadastrar</button>
       </form>
     </div>
-      
 </section>
 <app-footer></app-footer>

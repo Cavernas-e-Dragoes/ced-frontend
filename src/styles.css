@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lumanosimo&display=swap');
 
+@font-face{
+    font-family: 'Copperplate Gothic';
+    src: local('Copperplate-Gothic-Bold-Regular.ttf'), url('../src/assets/fonts/Copperplate-Gothic-Bold-Regular.ttf');
+}
 *{
     list-style: none;
     outline: 0;
@@ -8,7 +13,10 @@
     scroll-behavior: smooth;
     box-sizing: border-box;
     transition: .5s;
-    font-family:  'Nunito', sans-serif;
+    font-family: Trebuchet MS, serif;
+}
+h1, h2{
+    font-family: 'Copperplate Gothic', serif;
 }
 .column{
     display: flex;
@@ -29,7 +37,7 @@
     justify-content: center;
 }
 .mobile{
-    display: none;
+    display: none !important;
 }
 button{
     border: none;
@@ -48,13 +56,13 @@ button:active{
         flex-direction: column;
     }
     .web{
-        display: none;
+        display: none !important;
     }
     .mobile{
-        display: flex;
+        display: flex !important;
     }
     h1, h2, p{
-        width: 80vw !important;
+        width: 80vw;
         text-align: center;
     }
     

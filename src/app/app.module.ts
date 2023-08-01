@@ -12,6 +12,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { CharactersComponent } from './pages/characters/characters.component';
+import { CharacterSheetComponent } from './pages/character-sheet/character-sheet.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { CharactersComponent } from './pages/characters/characters.component';
     FooterComponent,
     RegisterComponent,
     CharactersComponent,
+    CharacterSheetComponent,
 
   ],
   imports: [

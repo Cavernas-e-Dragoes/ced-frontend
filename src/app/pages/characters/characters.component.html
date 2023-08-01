@@ -1,23 +1,49 @@
 <app-menu></app-menu>
-<div class="mainbody">
-            <div class="container"  ngValue="character">
-               <div  class="card">
-                    <a ><div class="face face1">
-                        <div class="content">
-                            
-                            <h3>character.name</h3>
+<div class="characters-container column">
+    <div class="add">
+        <button>Criar Personagem</button>
+    </div>
+    <div class="container web"  ngValue="character">
+        <div *ngFor="let character of chars" class="card">
+             <a (click)="showCharacter(character.id)"><div class="face face1">
+                 <div class="content">
+                     
+                     <h3>{{character.name}}</h3>
+                     <h4>Nível: {{character.level}}</h4>
 
-                        </div>
-                    </div>
-                    <div class="face face2">
-                        <div class="content" >
-                            <p> Raça: character.raceName</p>
-                            <p> CLasse: character.className</p>
-                            
-                        </div>
-                    </div></a>
-                </div>          
+                 </div>
+             </div>
+             <div class="face face2">
+                 <div class="content" >
+                     <p> Raça: {{character.raceName}}</p>
+                     <p> CLasse: {{character.className}}</p>
+                     
+                 </div>
+             </div></a>
+         </div>          
+    </div>
 
-            </div>
+    <div class="container mobile"  ngValue="character">
+        <div *ngFor="let character of chars" class="card">
+             <div class="face face1">
+                 <div class="content">
+                     
+                     <h3>{{character.name}}</h3>
+                     <h4>Nível: {{character.level}}</h4>
+
+                 </div>
+             </div>
+             <div class="face face2 column">
+                 <div class="content column" >
+                     <p> Raça: {{character.raceName}}</p>
+                     <p> CLasse: {{character.className}}</p>
+                     
+                 </div>
+                 <a (click)="showCharacter(character.id)"><button>Abrir Personagem</button></a>
+             </div>
+         </div>          
+
+     </div>
+     
 </div>
 <app-footer></app-footer>
