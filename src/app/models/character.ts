@@ -2,12 +2,11 @@ import { Equipment } from "./equipment";
 import { Magic } from "./magic";
 
 export class Character {
-  id: number;
+  id!: number;
+  playerName: string;
   name: string;
   race: string;
-  raceName: string;
   charClass: string;
-  className: string;
   equipments: Equipment[];
   magics: Magic[];
   level: number;
@@ -19,6 +18,8 @@ export class Character {
   armorClass: number;
   inspiration: number;
   passiveWisdom: number;
+
+  nextLevel: number;
 
   //attributes
   strength: number;
@@ -66,11 +67,10 @@ export class Character {
 
   constructor(
     id: number,
+    playerName: string,
     name: string,
     race: string,
-    raceName: string,
     charClass: string,
-    className: string,
     level: number,
     alignment: string,
     hitPoints: number,
@@ -85,15 +85,16 @@ export class Character {
     constitution: number,
     intelligence: number,
     wisdom: number,
-    charisma: number
+    charisma: number,
+    nextLevel: number,
   ) {
     this.id = id;
+    this.playerName = playerName;
     this.name = name;
     this.race = race;
-    this.raceName = raceName;
     this.charClass = charClass;
-    this.className = className;
     this.level = level;
+    this.nextLevel = nextLevel;
     this.alignment = alignment;
     this.hitPoints = hitPoints;
     this.experiencePoints = experiencePoints;

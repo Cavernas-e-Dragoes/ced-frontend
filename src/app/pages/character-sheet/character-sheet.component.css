@@ -1,10 +1,64 @@
-section{
-    margin-top: 90px;
-    background: rgb(54, 54, 54);
-}
 *{
-   
     color: aliceblue;
     font-weight: 400;
     text-align: center;
+}
+section{
+    padding-top: 100px;
+    background: rgb(54, 54, 54);
+}
+main{
+    border: 1px solid #222;
+    background: rgb(75, 75, 75);
+    width: 60vw;
+    margin: 100px auto;
+    border-radius: 5%;
+    box-shadow: 3px 3px 10px 4px #222;
+    padding: 2%;
+}
+.basic{    
+    clip-path: polygon(0 0, 2% 34%, 2% 64%, 0 100%, 19% 95%, 37% 94%, 60% 93%, 80% 95%, 100% 100%, 98% 69%, 98% 35%, 100% 0, 80% 5%, 59% 8%, 39% 8%, 19% 5%);
+    border: 6px solid rgb(0, 0, 0);
+    width: 100%;
+    justify-content: space-between;
+    padding:  20px;
+}
+.name{
+    padding: 10px;
+    align-items: flex-start;
+    width: 200px;   
+    height: 80px; 
+    clip-path: polygon(1% 1%, 2% 34%, 2% 64%, 0 100%, 19% 95%, 37% 94%, 60% 93%, 80% 95%, 100% 100%, 98% 69%, 98% 35%, 99% 1%, 80% 5%, 59% 8%, 39% 8%, 19% 5%);
+    border: 5px solid #222;
+}
+.name h3{
+    font-size: 16px;
+}
+
+.infobase{
+    width: 70%;
+    justify-content: space-evenly;
+}
+.info-01, .info-02, .info-03{
+    clip-path: polygon(1% 1%, 2% 34%, 2% 64%, 0 100%, 19% 95%, 37% 94%, 60% 93%, 80% 95%, 100% 100%, 98% 69%, 98% 35%, 99% 1%, 80% 5%, 59% 8%, 39% 8%, 19% 5%);
+    border: 5px solid #222;
+}
+.atribute{
+    clip-path: polygon(1% 1%, 2% 34%, 2% 64%, 0 100%, 19% 95%, 37% 94%, 60% 93%, 80% 95%, 100% 100%, 98% 69%, 98% 35%, 99% 1%, 80% 5%, 59% 8%, 39% 8%, 19% 5%);
+    border: 5px solid rgb(0, 0, 0);
+    width: 117px;
+    height: 117px;
+    margin: 20px auto;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.atribute h3{
+    letter-spacing: -1;
+}
+.atribute h2{
+    font-size: 30px;
+}
+.atribute h5{
+    font-size: 20px;
 }

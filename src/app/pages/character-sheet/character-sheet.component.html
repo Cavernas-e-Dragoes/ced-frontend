@@ -1,35 +1,35 @@
 <app-menu></app-menu>
 
-<section>
+<section class="column" *ngIf="personagem">
     <main class="column">
         <div class="row basic">
             <div class="name column">
-                <h1>Nome aqui</h1>
+                <h1>{{personagem.name}}</h1>
                 <h3>Nome do Personagem</h3>
             </div>
             <div class="infobase row">
-                <div class="column">
-                    <h4>classe e nivel aqui</h4>
+                <div class="column info-01">
+                    <h4>{{personagem.charClass}} {{personagem.level}}</h4>
                     <h3>Classe e Nível</h3>
-                    <h4>raça aqui</h4>
+                    <h4>{{personagem.race}}</h4>
                     <h3>Raça</h3>
                 </div>
-                <div class="column">
+                <div class="column info-02">
                     <h4>antecedente aqui</h4>
                     <h3>Antecedente</h3>
-                    <h4>alinhamento aqui</h4>
+                    <h4>{{personagem.alignment}}</h4>
                     <h3>Alinhamento</h3>
                 </div>
-                <div class="column">
-                    <h4>nome do jogador aqui</h4>
+                <div class="column info-03">
+                    <h4>{{personagem.playerName}}</h4>
                     <h3>Nome do jogador</h3>
                     <div class="row xp-level">
                         <div class="column xp">
-                            <h4>experiencia aqui</h4>
+                            <h4>{{personagem.experiencePoints}}</h4>
                             <h3>Experiencia</h3>
                         </div>
                         <div class="column lvl">
-                            <h4>Próximo Nível aqui</h4>
+                            <h4>{{personagem.nextLevel}}</h4>
                             <h3>Próximo Nível</h3>
                         </div>
                     </div>
@@ -40,35 +40,35 @@
             <div class="left-sheet column">
                 <div class="row">
                     <div class="column pt-1">
-                        <div class="atribute">
+                        <div class="atribute column">
                             <h3>Força</h3>
-                            <h2>+4</h2>
-                            <h5>18</h5>
+                            <h2>+{{personagem.strengthModifier}}</h2>
+                            <h5>{{personagem.strength}}</h5>
                         </div>
-                        <div class="atribute">
+                        <div class="atribute column">
                             <h3>Destreza</h3>
-                            <h2>+4</h2>
-                            <h5>18</h5>
+                            <h2>+{{personagem.dexterityModifier}}</h2>
+                            <h5>{{personagem.dexterity}}</h5>
                         </div>
-                        <div class="atribute">
+                        <div class="atribute column">
                             <h3>Constituição</h3>
-                            <h2>+4</h2>
-                            <h5>18</h5>
+                            <h2>+{{personagem.constitutionModifier}}</h2>
+                            <h5>{{personagem.constitution}}</h5>
                         </div>
-                        <div class="atribute">
+                        <div class="atribute column">
                             <h3>Inteligência</h3>
-                            <h2>+4</h2>
-                            <h5>18</h5>
+                            <h2>+{{personagem.intelligenceModifier}}</h2>
+                            <h5>{{personagem.intelligence}}</h5>
                         </div>
-                        <div class="atribute">
+                        <div class="atribute column">
                             <h3>Sabedoria</h3>
-                            <h2>+4</h2>
-                            <h5>18</h5>
+                            <h2>+{{personagem.wisdomModifier}}</h2>
+                            <h5>{{personagem.wisdom}}</h5>
                         </div>
-                        <div class="atribute">
+                        <div class="atribute column">
                             <h3>Carisma</h3>
-                            <h2>+4</h2>
-                            <h5>18</h5>
+                            <h2>+{{personagem.charismaModifier}}</h2>
+                            <h5>{{personagem.charisma}}</h5>
                         </div>
                     </div>
                     <div class="column pt-2">

@@ -41,9 +41,9 @@ export class CharactersComponent implements OnInit{
 
   }
   private listCharactersMock(): void {
-    const character1 = new characterCard('Aragorn', 'Human', 'Ranger', 12);
-    const character2 = new characterCard('Gandalf', 'Wizard', 'Wizard', 9);
-    const character3 = new characterCard('Legolas', 'Elf', 'Archer', 10);
+    const character1 = new characterCard(1, 'Aragorn', 'Human', 'Ranger', 12);
+    const character2 = new characterCard(2, 'Gandalf', 'Wizard', 'Wizard', 9);
+    const character3 = new characterCard(3, 'Legolas', 'Elf', 'Archer', 10);
 
 
           this.chars.push(character1);
