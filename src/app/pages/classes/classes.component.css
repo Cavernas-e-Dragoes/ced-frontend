@@ -1,14 +1,12 @@
 
-section{
-    min-height: 95vh;
-}
+
 .classes-container {
     display: grid;
     grid-template-columns: repeat(6, 100px);
     grid-gap: 20px;
     height: 50vh;
 }
-.magia-item {
+.item {
     width: 100px;
     height: 100px;
     background-color: #f4f4f4;

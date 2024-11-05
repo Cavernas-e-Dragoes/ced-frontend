@@ -8,7 +8,7 @@ import { RaceDetail } from '../models/race-detail';
   providedIn: 'root'
 })
 export class RaceService {
-  private apiUrl = 'https://ced.discloud.app/api/races';
+  private apiUrl = 'https://ced.discloud.app/api/racas';
 
   constructor(private http: HttpClient) { }
 
