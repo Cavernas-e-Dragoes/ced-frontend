@@ -1,0 +1,19 @@
+<app-header></app-header>
+
+<section class="column">
+  <div *ngIf="loading">Carregando raças...</div>
+  <div *ngIf="error">{{ error }}</div>
+
+  <div class="races-container" *ngIf="!loading && !error">
+    <div 
+      *ngFor="let race of races.results" 
+      class="item" 
+      (click)="goToDetail(race.index)"
+    >
+      <h3>{{ race.name }}</h3>
+      <p>{{ race.index }}</p>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

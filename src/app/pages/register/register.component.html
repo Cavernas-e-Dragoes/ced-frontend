@@ -1,0 +1,18 @@
+<app-header></app-header>
+<section>
+  <div class="register-container column">
+    <div class="card-form column">
+    <p>Crie sua conta!</p>
+    <form class="column" [formGroup]="registerForm" (ngSubmit)="onRegister()">
+      <input type="text" formControlName="name" placeholder="Digite seu nome">
+      <input type="email" formControlName="email" placeholder="Digite um e-mail">
+      <input type="text" formControlName="login" placeholder="Crie um login">
+      <input type="password" formControlName="password" placeholder="Digite sua senha">
+      <button type="submit">Cadastrar</button>
+    </form>
+    <a routerLink="/login">Já tem uma conta? Entre aqui!</a>
+  </div>
+  </div>
+  
+</section>
+<app-footer></app-footer>

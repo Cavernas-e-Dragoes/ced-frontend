@@ -1,0 +1,51 @@
+<app-header></app-header>
+
+<section class="class-detail-section">
+  <div *ngIf="loading">Carregando...</div>
+  <div *ngIf="error">{{ error }}</div>
+  
+  <div *ngIf="!loading && !error">
+    <h1>{{ classDetail.name }}</h1>
+    <p><strong>Dado de Vida:</strong> d{{ classDetail.hitDie }}</p>
+
+    <h2>Proficiencies</h2>
+    <ul>
+      <li *ngFor="let prof of classDetail.proficiencies">
+        {{ prof.name }}
+      </li>
+    </ul>
+
+    <h2>Saving Throws</h2>
+    <ul>
+      <li *ngFor="let save of classDetail.savingThrows">
+        {{ save.name }}
+      </li>
+    </ul>
+
+    <h2>Starting Equipment</h2>
+    <ul>
+      <li *ngFor="let equipment of classDetail.startingEquipment">
+        {{ equipment.quantity }}x {{ equipment.equipment.name }}
+      </li>
+    </ul>
+
+    <h2>Starting Equipment Options</h2>
+    <div *ngFor="let option of classDetail.startingEquipmentOptions">
+      <p>{{ option.desc }}</p>
+      <ul>
+        <li *ngFor="let item of option.from.options">
+          <ng-container *ngIf="item.item">
+            {{ item.item.name }}
+          </ng-container>
+          <ng-container *ngIf="item.choice">
+            {{ item.choice.desc }}
+          </ng-container>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Adicione mais seções conforme necessário -->
+  </div>
+</section>
+
+<app-footer></app-footer>

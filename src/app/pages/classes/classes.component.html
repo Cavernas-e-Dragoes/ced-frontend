@@ -1,0 +1,19 @@
+<app-header></app-header>
+
+<section class="column">
+  <div *ngIf="loading">Carregando classes...</div>
+  <div *ngIf="error">{{ error }}</div>
+
+  <div class="classes-container" *ngIf="!loading && !error">
+    <div 
+      *ngFor="let class of classes.results" 
+      class="item" 
+      (click)="goToDetail(class.index)"
+    >
+      <h3>{{ class.name }}</h3>
+      <p>{{ class.index }}</p>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

@@ -1,0 +1,79 @@
+.register-container{
+    background-size: cover;
+    width: 100%;
+    background:rgb(53, 44, 44);
+    height: 100%;
+    background-position: 30%;
+}
+
+.card-form{
+    display: flex;
+    justify-content: space-between;
+    border-radius: 20% 1%;
+    width: 370px;
+    background-color: var(--form-background-color);
+    padding: 50px 30px;
+    box-shadow: var(--form-box-shadow);
+    align-items: center;
+}
+.card-form:hover{
+    box-shadow: 0px 0px 15px 5px rgba(255, 114, 114, 0.144);
+}
+.card-inside{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+p{
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: rgb(255, 255, 255);
+    margin-bottom: 2rem;
+}
+
+input{
+    width: 280px;
+    padding: 1rem;
+    border-radius: 0.2rem;
+    margin-bottom: 1rem;
+    border: 0 !important;
+    background-color: rgb(255, 255, 255, 0.7);
+    height: 52px;
+}
+input:hover{
+    background-color: rgba(255, 255, 255, 0.884);
+}
+textarea:focus, input:focus, button:focus {
+    box-shadow: 0 0 0 0;
+    outline: 0;
+}
+
+button{
+    border-radius: 5px;
+    font-size: 17px;
+    height: 52px;
+    width: 280px;
+}
+.card-inside span{
+
+    color: rgb(221, 200, 105);
+}
+a{
+    margin-top: 30px;
+    color: rgb(255, 255, 255);
+    font-size: 0.8rem;
+    text-align: center;
+    cursor: pointer;
+}
+a:hover{
+    text-shadow: 0px 0px 3px rgb(255, 0, 0);
+}
+@media screen and (max-width:680px){
+    .register-container{
+        background-position: 74%
+    }
+    .card-form{
+        width: 85vw;
+    }
+}

@@ -1,0 +1,100 @@
+.login-container{
+    /* background-image: url(../../../assets/images/background-login.jpg); */
+    background-size: cover;
+    width: 100%;
+    background:rgb(53, 44, 44);
+    height: 100%;
+    background-position: 30%;
+}
+.card-login{
+    display: flex;
+    justify-content: space-between;
+    border-radius: 20% 1%;
+    height: 420px;
+    width: 370px;
+    background-color: var(--form-background-color);
+    padding: 30px 0;
+    box-shadow: var(--form-box-shadow);
+}
+.card-login:hover{
+    box-shadow: 0px 0px 15px 5px rgba(255, 114, 114, 0.144);
+
+}
+.card-inside{
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    width: 80%;
+}
+
+span{
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: rgb(255, 255, 255);
+    margin-bottom: 2rem;
+}
+
+input{
+    height: 52px;
+    padding-left: 1rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    border: none;
+    background-color: rgb(255, 255, 255, 0.7);
+}
+input:hover{
+    background-color: rgba(255, 255, 255, 0.884);
+}
+textarea:focus, input:focus {
+    box-shadow: 0 0 0 0;
+    outline: 0;
+}
+
+button{
+    border-radius: 5px;
+    font-size: 17px;
+    height: 52px;
+    background: rgb(161, 135, 62);
+    color: #fff;
+}
+
+.icones{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 0.5rem;    
+}
+
+.fa-facebook-square {
+    color: rgb(221, 200, 105);
+    margin-right: 1rem;
+}
+
+.fa-google-plus-square {
+    color: rgb(221, 200, 105);
+    margin-right: 1rem;
+}
+
+a{
+    color: rgb(255, 255, 255);
+    font-size: 0.8rem;
+    text-align: center;
+    cursor: pointer;
+}
+a:hover{
+    text-shadow: 0px 0px 3px rgb(255, 0, 0);
+}
+.fa-google-plus-square:hover {
+    cursor: pointer;
+    color: #fff;
+    transition: .5s;
+}
+@media screen and (max-width:680px){
+    .login-container{
+        background-position: 74%
+    }
+    .card-login{
+        width: 85vw;
+    }
+}
