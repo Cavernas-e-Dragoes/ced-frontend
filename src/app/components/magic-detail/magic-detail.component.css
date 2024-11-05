@@ -1,0 +1,37 @@
+.detalhe-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.detalhe-titulo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.detalhe-info {
+    font-size: 16px;
+    color: #555;
+    margin: 5px 0;
+}
+
+.detalhe-info strong {
+    color: #333;
+}
+
+.desc-list {
+    margin: 10px 0;
+    padding-left: 20px;
+    list-style-type: disc;
+}
+
+.desc-list li {
+    margin-bottom: 5px;
+}

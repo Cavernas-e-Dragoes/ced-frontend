@@ -1,1 +1,14 @@
-<p>magias works!</p>
+<app-header></app-header>
+<section>
+    <div class="column magics-container">
+        <div *ngIf="loading">Carregando...</div>
+        <div *ngIf="error">{{ error }}</div>
+
+        <div class="magics-container" *ngIf="!loading && !error">
+            <div *ngFor="let magia of magias.results"  class="item" (click)="goToDetail(magia.index)">
+              <h3>{{ magia.name }}</h3>  
+            </div>
+        </div>
+    </div>
+</section>
+<app-footer></app-footer>

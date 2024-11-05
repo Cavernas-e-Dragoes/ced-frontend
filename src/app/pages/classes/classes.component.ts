@@ -31,7 +31,7 @@ export class ClassesComponent implements OnInit {
             
               goToDetail(index: string): void {
                 this.router.navigate(['/classes', index]);
-              }
+              }   
 
 
 

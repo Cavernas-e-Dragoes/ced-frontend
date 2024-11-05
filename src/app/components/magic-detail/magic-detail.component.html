@@ -1,0 +1,25 @@
+<app-header></app-header>
+
+<section class="magic-detail-section">
+  <div *ngIf="loading">Carregando...</div>
+  <div *ngIf="error">{{ error }}</div>
+
+  <div class="detalhe-container" *ngIf="magicDetail">
+    <h2 class="detalhe-titulo">{{ magicDetail.name }}</h2>
+    <p class="detalhe-info"><strong>Nível:</strong> {{ magicDetail.level }}</p>
+    <p class="detalhe-info"><strong>Escola:</strong> {{ magicDetail.school.name }}</p>
+    <p class="detalhe-info"><strong>Descrição:</strong></p>
+    <ul class="desc-list">
+      <li *ngFor="let desc of magicDetail.desc">{{ desc }}</li>
+    </ul>
+    <p class="detalhe-info"><strong>Alcance:</strong> {{ magicDetail.range }}</p>
+    <p class="detalhe-info"><strong>Duração:</strong> {{ magicDetail.duration }}</p>
+    <p class="detalhe-info"><strong>Componentes:</strong> {{ magicDetail.components.join(', ') }}</p>
+    <p class="detalhe-info" *ngIf="magicDetail.concentration"><strong>Concentração:</strong> Sim</p>
+    <p class="detalhe-info" *ngIf="magicDetail.ritual"><strong>Ritual:</strong> Sim</p>
+  </div>
+
+</section>
+
+
+<app-footer></app-footer>

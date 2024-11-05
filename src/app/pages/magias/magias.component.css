@@ -1,0 +1,28 @@
+.magics-container {
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
+    /* 4 colunas de 100px cada */
+    grid-gap: 20px;
+    /* Espaço de 20px entre os itens */
+    height: 50vh;
+}
+.item {
+    width: 100px;
+    height: 100px;
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    cursor: pointer;
+
+}
+.item:hover{
+    box-shadow: var(--glow-box-shadow)
+}
+section{
+    min-height: 95vh;
+    padding: 10vh 10vw;
+}

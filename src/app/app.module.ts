@@ -15,6 +15,7 @@ import { ClassDetailComponent } from './components/class-detail/class-detail.com
 import { RaceDetailComponent } from './components/race-detail/race-detail.component';
 import { RacesComponent } from './pages/races/races.component';
 import { MagiasComponent } from './pages/magias/magias.component';
+import { MagicDetailComponent } from './components/magic-detail/magic-detail.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,8 @@ import { MagiasComponent } from './pages/magias/magias.component';
     RaceDetailComponent,
     RacesComponent,
     MagiasComponent,
+    MagicDetailComponent,
+    
   ],
   imports: [
     BrowserModule,
