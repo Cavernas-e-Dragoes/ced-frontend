@@ -1,10 +1,8 @@
 .magics-container {
     display: grid;
-    grid-template-columns: repeat(4, 100px);
-    /* 4 colunas de 100px cada */
+    grid-template-columns: repeat(6, 100px);
     grid-gap: 20px;
-    /* Espaço de 20px entre os itens */
-    height: 50vh;
+    
 }
 .item {
     width: 100px;
@@ -26,3 +24,18 @@ section{
     min-height: 95vh;
     padding: 10vh 10vw;
 }
+
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    display: inline-block;
+    text-align: center;
+  }
+  
+  button img {
+    width: 30px;
+    height: 30px;
+    margin-bottom: 5px;
+  }

@@ -11,6 +11,7 @@ import { RacesComponent } from './pages/races/races.component';
 import { RaceDetailComponent } from './components/race-detail/race-detail.component';
 import { MagiasComponent } from './pages/magias/magias.component';
 import { MagicDetailComponent } from './components/magic-detail/magic-detail.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 
 const routes: Routes = [
@@ -19,7 +20,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent  },
   { path: 'header', component: HeaderComponent  },
   { path: 'register', component: RegisterComponent  },
-  { path: 'footer', component: FooterComponent  },
+  { path: 'footer', component: LoadingComponent  },
 
   { path: 'classes', component: ClassesComponent  },
   { path: 'classes/:index', component: ClassDetailComponent },

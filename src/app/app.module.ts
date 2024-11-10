@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http'
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +17,7 @@ import { RaceDetailComponent } from './components/race-detail/race-detail.compon
 import { RacesComponent } from './pages/races/races.component';
 import { MagiasComponent } from './pages/magias/magias.component';
 import { MagicDetailComponent } from './components/magic-detail/magic-detail.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -31,13 +33,15 @@ import { MagicDetailComponent } from './components/magic-detail/magic-detail.com
     RacesComponent,
     MagiasComponent,
     MagicDetailComponent,
+    LoadingComponent,
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

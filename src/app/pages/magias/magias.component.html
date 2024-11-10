@@ -1,5 +1,6 @@
-<app-header></app-header>
+<!--<app-header></app-header>
 <section>
+    
     <div class="column magics-container">
         <div *ngIf="loading">Carregando...</div>
         <div *ngIf="error">{{ error }}</div>
@@ -9,6 +10,45 @@
               <h3>{{ magia.name }}</h3>  
             </div>
         </div>
+    </div>
+</section>
+<app-footer></app-footer>
+-->
+
+<app-header></app-header>
+<section>
+    <form>
+        <label for="level">Nível:</label>
+        <select id="level" [(ngModel)]="filters.level" name="level" (ngModelChange)="applyFilters()">
+            <option value="">Todos</option>
+            <option *ngFor="let level of levels" [value]="level">{{ level }}</option>
+        </select>
+
+        <label for="school">Escola:</label>
+        <select id="school" [(ngModel)]="filters.school" name="school" (ngModelChange)="applyFilters()">
+            <option value="">Todas</option>
+            <option *ngFor="let school of schools" [value]="school">{{ school }}</option>
+        </select>
+
+        <label for="class">Classe:</label>
+        <select id="class" [(ngModel)]="filters.class" name="class" (ngModelChange)="applyFilters()">
+            <option value="">Todas</option>
+            <option *ngFor="let class of classes" [value]="class">{{ class }}</option>
+        </select>
+    </form>
+
+    <div *ngIf="loading">Carregando...</div>
+    <div *ngIf="error">{{ error }}</div>
+
+    <div *ngIf="!loading && !error">
+        <div class="magics-container" *ngIf="magias.results.length > 0; else noResults">
+            <div *ngFor="let magia of magias.results" class="item" (click)="goToDetail(magia.index)">
+                <h3>{{ magia.name }}</h3>
+            </div>
+        </div>
+        <ng-template #noResults>
+            <p>Nenhuma magia encontrada com os filtros aplicados.</p>
+        </ng-template>
     </div>
 </section>
 <app-footer></app-footer>
