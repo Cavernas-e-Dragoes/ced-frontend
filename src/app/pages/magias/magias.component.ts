@@ -29,6 +29,8 @@ export class MagiasComponent implements OnInit {
   currentPage: number = 0;
   pageSize: number = 10; // Exibe 10 resultados por página, mas você pode ajustar esse valor
 
+  Math = Math;
+  
   constructor(private magicService: MagicService,
               private router: Router) { }
 
@@ -54,27 +56,13 @@ export class MagiasComponent implements OnInit {
   applyFilters(): void {
     this.loading = true;
   
-    // Passa a lista de níveis selecionados
+    // Níveis selecionados
     const levels = this.filters.level.length > 0 ? this.filters.level : undefined;
     const { school, class: className } = this.filters;
   
-    // Verifica se algum filtro foi preenchido
-    if (!levels && !school && !className) {
-      // Se nenhum filtro foi aplicado, pega todas as magias
-      this.magicService.getMagics().subscribe({
-        next: (data) => {
-          this.magias = data;
-          this.error = ''; // Limpa qualquer mensagem de erro
-          this.loading = false;
-        },
-        error: (err) => {
-          this.error = 'Erro ao carregar as magias.';
-          this.loading = false;
-        }
-      });
-    } else {
-      // Se algum filtro foi preenchido, aplica o filtro
-      this.magicService.getFilteredMagics(levels, school, className).subscribe({
+    this.magicService
+      .getFilteredMagics(levels, school, className, this.currentPage, this.pageSize)
+      .subscribe({
         next: (data) => {
           if (data.count === 0) {
             this.magias = { count: 0, results: [] };
@@ -85,12 +73,23 @@ export class MagiasComponent implements OnInit {
           }
           this.loading = false;
         },
-        error: (err) => {
+        error: () => {
           this.error = 'Erro ao carregar as magias com os filtros aplicados.';
           this.loading = false;
-        }
+        },
       });
+  }
+  
+  changePage(newPage: number): void {
+    if (newPage >= 0 && newPage < Math.ceil(this.magias.count / this.pageSize)) {
+      this.currentPage = newPage;
+      this.applyFilters(); // Atualiza os dados ao mudar de página
     }
+  }
+  
+  resetPagination(): void {
+    this.currentPage = 0; // Reseta para a primeira página ao aplicar novos filtros
+    this.applyFilters();
   }
   
   toggleFilter(filterType: keyof typeof this.filters, value: string | number): void {

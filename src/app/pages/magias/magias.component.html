@@ -34,7 +34,6 @@
 
     <div *ngIf="loading">Carregando...</div>
     <div *ngIf="error">{{ error }}</div>
-
     <div *ngIf="!loading && !error">
         <div class="magics-container" *ngIf="magias.results.length > 0; else noResults">
             <div *ngFor="let magia of magias.results" class="item" (click)="goToDetail(magia.index)">
@@ -44,6 +43,15 @@
         <ng-template #noResults>
             <p>Nenhuma magia encontrada com os filtros aplicados.</p>
         </ng-template>
+    
+        <!-- Controles de paginação -->
+        <div class="pagination">
+            <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 0">Anterior</button>
+            <span>Página {{ currentPage + 1 }} de {{ Math.ceil(magias.count / pageSize) }}</span>
+            <button (click)="changePage(currentPage + 1)" [disabled]="currentPage >= Math.ceil(magias.count / pageSize) - 1">
+                Próxima
+            </button>
+        </div>
     </div>
 </section>
 <app-footer></app-footer>
