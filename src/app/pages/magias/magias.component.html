@@ -1,46 +1,49 @@
 <app-header></app-header>
 <section>
-  <form>
-    <div class="filter-group">
-      <label for="level">Nível:</label>
-      <div class="icons">
-        <div *ngFor="let level of levels" class="icon" (click)="applyFilter('level', level)">
-            <i class="fa fa-star" [ngClass]="{ 'selected': filters.level === level.toString() }"></i>
+    <form>
+        <div class="filter-group">
+            <label for="level">Nível:</label>
+            <div *ngFor="let level of levels" class="filter-item">
+              <i class="fa fa-star" 
+                 [ngClass]="{ 'selected': filters.level.includes(level) }" 
+                 (click)="toggleFilter('level', level)"></i>
+              <label>{{ level }}</label>
+            </div>
+          </div>
+
+        <div class="filter-group">
+            <label for="school">Escola:</label>
+    <div *ngFor="let school of schools" class="filter-item">
+      <i class="fa fa-bookmark" 
+         [ngClass]="{ 'selected': filters.school === school }" 
+         (click)="toggleFilter('school', school)"></i>
+         <label>{{ school }}</label>
+    </div>
         </div>
-      </div>
-    </div>
 
-    <div class="filter-group">
-      <label for="school">Escola:</label>
-      <div class="icons">
-        <div *ngFor="let school of schools" class="icon" (click)="applyFilter('school', school)">
-          <i class="fa" [ngClass]="{ 'selected': filters.school === school }">{{ school.charAt(0) }}</i>
+        <div class="filter-group">
+            <label for="class">Classe:</label>
+            <div *ngFor="let class of classes" class="filter-item">
+              <i class="fa fa-user" 
+                 [ngClass]="{ 'selected': filters.class === class }" 
+                 (click)="toggleFilter('class', class)"></i>
+                 <label>{{ class }}</label>
+            </div>
         </div>
-      </div>
-    </div>
+    </form>
 
-    <div class="filter-group">
-      <label for="class">Classe:</label>
-      <div class="icons">
-        <div *ngFor="let className of classes" class="icon" (click)="applyFilter('class', className)">
-          <i class="fa" [ngClass]="{ 'selected': filters.class === className }">{{ className.charAt(0) }}</i>
+    <div *ngIf="loading">Carregando...</div>
+    <div *ngIf="error">{{ error }}</div>
+
+    <div *ngIf="!loading && !error">
+        <div class="magics-container" *ngIf="magias.results.length > 0; else noResults">
+            <div *ngFor="let magia of magias.results" class="item" (click)="goToDetail(magia.index)">
+                <h3>{{ magia.name }}</h3>
+            </div>
         </div>
-      </div>
+        <ng-template #noResults>
+            <p>Nenhuma magia encontrada com os filtros aplicados.</p>
+        </ng-template>
     </div>
-  </form>
-
-  <div *ngIf="loading">Carregando...</div>
-  <div *ngIf="error">{{ error }}</div>
-
-  <div *ngIf="!loading && !error">
-    <div class="magics-container" *ngIf="magias.results.length > 0; else noResults">
-      <div *ngFor="let magia of magias.results" class="item" (click)="goToDetail(magia.index)">
-        <h3>{{ magia.name }}</h3>
-      </div>
-    </div>
-    <ng-template #noResults>
-      <p>Nenhuma magia encontrada com os filtros aplicados.</p>
-    </ng-template>
-  </div>
 </section>
 <app-footer></app-footer>

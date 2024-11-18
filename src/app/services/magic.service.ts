@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Magic } from '../models/magic';
 import { MagicDetail } from '../models/magic-detail';
@@ -8,7 +8,7 @@ import { MagicDetail } from '../models/magic-detail';
   providedIn: 'root'
 })
 export class MagicService {
-  private apiUrl = 'https://ced.discloud.app/api/magias/';
+  private apiUrl = 'https://ced.discloud.app/api/magias';
 
   constructor(private http: HttpClient) { }
 
@@ -17,25 +17,26 @@ export class MagicService {
   }
 
   getMagicDetail(index: string): Observable<MagicDetail> {
-    return this.http.get<MagicDetail>(`${this.apiUrl}${index}`);
+    return this.http.get<MagicDetail>(`${this.apiUrl}/${index}`);
   }
 
-  getFilteredMagics(level?: number, school?: string, className?: string): Observable<{ count: number, results: Magic[] }> {
-    let params: any = {};
-
-    if (level) params.level = level;
-    if (school) params.schoolName = school;
-    if (className) params.className = className;
-
-     // Se os parâmetros estiverem vazios, faz a requisição sem filtros para retornar todas as magias
-    if (Object.keys(params).length === 0) {
-        return this.http.get<{ count: number, results: Magic[] }>(`${this.apiUrl}`);
+  getFilteredMagics(levels?: number[], school?: string, className?: string, page: number = 0, size: number = 10): Observable<{ count: number, results: Magic[] }> {
+    let params = new HttpParams();
+  
+    // Adiciona múltiplos valores para 'level'
+    if (levels && levels.length > 0) {
+      levels.forEach(level => {
+        params = params.append('level', level.toString());
+      });
     }
-
-    // Se houver parâmetros, faz a requisição com filtros
-    return this.http.get<{ count: number, results: Magic[] }>(`${this.apiUrl}search`, { params });
-}
-
+  
+    // Adiciona escola, classe, página e tamanho
+    if (school) params = params.set('schoolName', school);
+    if (className) params = params.set('className', className);
+    params = params.set('page', page.toString()).set('size', size.toString());
+  
+    return this.http.get<{ count: number, results: Magic[] }>(`${this.apiUrl}/search`, { params });
+  }
 
 
 }

@@ -16,7 +16,7 @@ export class MagiasComponent implements OnInit {
 
   // Filtros
   filters = {
-    level: '',
+    level: [] as number[],  // Agora é um array de números
     school: '',
     class: ''
   };
@@ -25,6 +25,9 @@ export class MagiasComponent implements OnInit {
   levels: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   schools: string[] = ['Evocação', 'Conjuração', 'Necromancia', 'Transmutação', 'Adivinhação', 'Encantamento', 'Ilusão', 'Abjuração'];
   classes: string[] = ['Mago', 'Feiticeiro', 'Druida', 'Clérigo', 'Paladino', 'Patrulheiro', 'Bardo', 'Bruxo'];
+
+  currentPage: number = 0;
+  pageSize: number = 10; // Exibe 10 resultados por página, mas você pode ajustar esse valor
 
   constructor(private magicService: MagicService,
               private router: Router) { }
@@ -48,19 +51,15 @@ export class MagiasComponent implements OnInit {
   }
 
   // Método para aplicar o filtro ao clicar em um ícone
-  applyFilter(filterType: keyof typeof this.filters, value: string | number): void {
-    this.filters[filterType] = value.toString(); 
-    this.applyFilters();
-  }
-
-  // Aplica os filtros
   applyFilters(): void {
     this.loading = true;
-
-    const level = this.filters.level ? parseInt(this.filters.level as string, 10) : undefined;
+  
+    // Passa a lista de níveis selecionados
+    const levels = this.filters.level.length > 0 ? this.filters.level : undefined;
     const { school, class: className } = this.filters;
-
-    if (!level && !school && !className) {
+  
+    // Verifica se algum filtro foi preenchido
+    if (!levels && !school && !className) {
       // Se nenhum filtro foi aplicado, pega todas as magias
       this.magicService.getMagics().subscribe({
         next: (data) => {
@@ -75,7 +74,7 @@ export class MagiasComponent implements OnInit {
       });
     } else {
       // Se algum filtro foi preenchido, aplica o filtro
-      this.magicService.getFilteredMagics(level, school, className).subscribe({
+      this.magicService.getFilteredMagics(levels, school, className).subscribe({
         next: (data) => {
           if (data.count === 0) {
             this.magias = { count: 0, results: [] };
@@ -93,7 +92,21 @@ export class MagiasComponent implements OnInit {
       });
     }
   }
-
+  
+  toggleFilter(filterType: keyof typeof this.filters, value: string | number): void {
+    if (filterType === 'level') {
+      const level = value as number;
+      if (this.filters.level.includes(level)) {
+        this.filters.level = this.filters.level.filter(l => l !== level);
+      } else {
+        this.filters.level.push(level);
+      }
+    } else {
+      this.filters[filterType] = this.filters[filterType] === value.toString() ? '' : value.toString();
+    }
+    this.applyFilters();
+  }
+  
   goToDetail(index: string): void {
     this.router.navigate(['/magias', index]);
   }

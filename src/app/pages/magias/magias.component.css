@@ -1,3 +1,7 @@
+form{
+  display: flex;
+  margin: 50px;
+}
 .filter-group {
     margin-bottom: 20px;
   }
