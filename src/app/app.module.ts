@@ -18,6 +18,13 @@ import { RacesComponent } from './pages/races/races.component';
 import { MagiasComponent } from './pages/magias/magias.component';
 import { MagicDetailComponent } from './components/magic-detail/magic-detail.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { EquipamentosCategoriasComponent } from './pages/equipamentos/equipamentos-categorias/equipamentos-categorias.component';
+import { AtaqueComponent } from './pages/equipamentos/ataque/ataque.component';
+import { DefesaComponent } from './pages/equipamentos/defesa/defesa.component';
+import { UtilitariosComponent } from './pages/equipamentos/utilitarios/utilitarios.component';
+import { KitsComponent } from './pages/equipamentos/kits/kits.component';
+import { MontariaComponent } from './pages/equipamentos/montaria/montaria.component';
+import { MagicosComponent } from './pages/equipamentos/magicos/magicos.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +41,15 @@ import { LoadingComponent } from './components/loading/loading.component';
     MagiasComponent,
     MagicDetailComponent,
     LoadingComponent,
+    EquipamentosCategoriasComponent,
+    AtaqueComponent,
+    DefesaComponent,
+    UtilitariosComponent,
+    KitsComponent,
+    MontariaComponent,
+    MagicosComponent,
+    
+    
     
   ],
   imports: [

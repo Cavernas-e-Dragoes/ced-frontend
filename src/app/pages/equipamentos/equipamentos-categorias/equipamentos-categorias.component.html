@@ -1,0 +1,14 @@
+<app-header></app-header>
+<section class="column">
+  <div class="categorias">
+    <h2>Categorias de Equipamentos</h2>
+    <ul class="cat-container">
+      <li *ngFor="let categoria of categorias">
+        <div class="item" [routerLink]="categoria.link"><h3>
+          {{ categoria.nome }}
+        </h3></div>
+      </li>
+    </ul>
+  </div>
+</section>
+<app-footer></app-footer>

@@ -12,6 +12,13 @@ import { RaceDetailComponent } from './components/race-detail/race-detail.compon
 import { MagiasComponent } from './pages/magias/magias.component';
 import { MagicDetailComponent } from './components/magic-detail/magic-detail.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { EquipamentosCategoriasComponent } from './pages/equipamentos/equipamentos-categorias/equipamentos-categorias.component';
+import { AtaqueComponent } from './pages/equipamentos/ataque/ataque.component';
+import { DefesaComponent } from './pages/equipamentos/defesa/defesa.component';
+import { KitsComponent } from './pages/equipamentos/kits/kits.component';
+import { MagicosComponent } from './pages/equipamentos/magicos/magicos.component';
+import { MontariaComponent } from './pages/equipamentos/montaria/montaria.component';
+import { UtilitariosComponent } from './pages/equipamentos/utilitarios/utilitarios.component';
 
 
 const routes: Routes = [
@@ -20,7 +27,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent  },
   { path: 'header', component: HeaderComponent  },
   { path: 'register', component: RegisterComponent  },
-  { path: 'footer', component: LoadingComponent  },
+  { path: 'footer', component: FooterComponent  },
 
   { path: 'classes', component: ClassesComponent  },
   { path: 'classes/:index', component: ClassDetailComponent },
@@ -31,10 +38,22 @@ const routes: Routes = [
   { path: 'magias', component: MagiasComponent },
   { path: 'magias/:index', component: MagicDetailComponent },
 
-  { path: '', redirectTo: '/classes', pathMatch: 'full' },
-  { path: '**', redirectTo: '/classes' }
+  { path: 'equipamentos-categorias', component: EquipamentosCategoriasComponent },
+  { path: 'ataque', component: AtaqueComponent },
+  { path: 'defesa', component: DefesaComponent },
+  { path: 'kits', component: KitsComponent },
+  { path: 'magicos', component: MagicosComponent },
+  { path: 'montaria', component: MontariaComponent },
+  { path: 'utilitarios', component: UtilitariosComponent },
 
- // { path: '', redirectTo: 'home', pathMatch: 'full' }
+
+
+
+
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '**', redirectTo: '/home' }
+
+
 ];
 
 @NgModule({

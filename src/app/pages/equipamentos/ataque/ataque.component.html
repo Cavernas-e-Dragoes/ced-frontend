@@ -1,0 +1,40 @@
+<app-header></app-header>
+
+<section class="column">
+    <h1>Equipamentos de Ataque</h1>
+    <div class="cat-container">
+       <!-- Botões de Subcategorias -->
+       <div class="subcategorias">
+        <button *ngFor="let subcategoria of subcategorias" (click)="carregarEquipamentos(subcategoria.endpoint)">
+          {{ subcategoria.nome }}
+        </button>
+      </div>
+      
+      <div class="equipamentos">
+        <button *ngFor="let equipamento of equipamentos" 
+        (click)="carregarDetalhesItem(equipamento.url)">
+  {{ equipamento.name }}
+</button>
+      </div>
+      
+      <!-- Popup -->
+      <div *ngIf="exibirPopup" class="popup">
+        <div class="popup-content">
+          <h3>{{ itemDetalhes?.name }}</h3>
+          <p *ngIf="itemDetalhes">
+            <strong>Custo:</strong> 
+            {{ itemDetalhes.cost.quantity }} {{ itemDetalhes.cost.unit }}
+          </p>
+          <p><strong>Peso:</strong> {{ itemDetalhes?.weight }} kg</p>
+          <p><strong>Descrição:</strong></p>
+          <ul>
+            <li *ngFor="let desc of itemDetalhes?.desc">{{ desc }}</li>
+          </ul>
+          <button (click)="fecharPopup()">Fechar</button>
+        </div>
+      </div>
+    </div>
+
+</section>
+
+<app-footer></app-footer>
