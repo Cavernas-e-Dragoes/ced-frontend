@@ -21,10 +21,9 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { EquipamentosCategoriasComponent } from './pages/equipamentos/equipamentos-categorias/equipamentos-categorias.component';
 import { AtaqueComponent } from './pages/equipamentos/ataque/ataque.component';
 import { DefesaComponent } from './pages/equipamentos/defesa/defesa.component';
-import { UtilitariosComponent } from './pages/equipamentos/utilitarios/utilitarios.component';
-import { KitsComponent } from './pages/equipamentos/kits/kits.component';
-import { MontariaComponent } from './pages/equipamentos/montaria/montaria.component';
-import { MagicosComponent } from './pages/equipamentos/magicos/magicos.component';
+import { FerramentasComponent } from './pages/equipamentos/ferramentas/ferramentas.component';
+import { MontariasEVeiculosComponent } from './pages/equipamentos/montarias-e-veiculos/montarias-e-veiculos.component';
+import { ItensMagicosComponent } from './pages/equipamentos/itens-magicos/itens-magicos.component';
 
 @NgModule({
   declarations: [
@@ -44,10 +43,9 @@ import { MagicosComponent } from './pages/equipamentos/magicos/magicos.component
     EquipamentosCategoriasComponent,
     AtaqueComponent,
     DefesaComponent,
-    UtilitariosComponent,
-    KitsComponent,
-    MontariaComponent,
-    MagicosComponent,
+    FerramentasComponent,
+    MontariasEVeiculosComponent,
+    ItensMagicosComponent,
     
     
     

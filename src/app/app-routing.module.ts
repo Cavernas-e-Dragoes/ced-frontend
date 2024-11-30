@@ -15,10 +15,12 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { EquipamentosCategoriasComponent } from './pages/equipamentos/equipamentos-categorias/equipamentos-categorias.component';
 import { AtaqueComponent } from './pages/equipamentos/ataque/ataque.component';
 import { DefesaComponent } from './pages/equipamentos/defesa/defesa.component';
-import { KitsComponent } from './pages/equipamentos/kits/kits.component';
-import { MagicosComponent } from './pages/equipamentos/magicos/magicos.component';
-import { MontariaComponent } from './pages/equipamentos/montaria/montaria.component';
-import { UtilitariosComponent } from './pages/equipamentos/utilitarios/utilitarios.component';
+import { ItensMagicosComponent } from './pages/equipamentos/itens-magicos/itens-magicos.component';
+import { MontariasEVeiculosComponent } from './pages/equipamentos/montarias-e-veiculos/montarias-e-veiculos.component';
+import { FerramentasComponent } from './pages/equipamentos/ferramentas/ferramentas.component';
+
+
+
 
 
 const routes: Routes = [
@@ -41,10 +43,11 @@ const routes: Routes = [
   { path: 'equipamentos-categorias', component: EquipamentosCategoriasComponent },
   { path: 'ataque', component: AtaqueComponent },
   { path: 'defesa', component: DefesaComponent },
-  { path: 'kits', component: KitsComponent },
-  { path: 'magicos', component: MagicosComponent },
-  { path: 'montaria', component: MontariaComponent },
-  { path: 'utilitarios', component: UtilitariosComponent },
+  { path: 'itens-magicos', component: ItensMagicosComponent },
+  { path: 'montarias-e-veiculos', component: MontariasEVeiculosComponent },
+  { path: 'ferramentas', component: FerramentasComponent },
+ 
+
 
 
 
