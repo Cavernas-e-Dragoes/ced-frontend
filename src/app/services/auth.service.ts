@@ -20,8 +20,8 @@ interface LoginUser {
 })
 export class AuthService {
 
-  private apiUrl = 'https://ced.discloud.app/v1/api/user/create';
-  private loginUrl = 'https://ced.discloud.app/login';
+  private apiUrl = 'https://characters.discloud.app/v1/api/user/create';
+  private loginUrl = 'https://characters.discloud.app/login';
 
   constructor(private http: HttpClient) {}
 
