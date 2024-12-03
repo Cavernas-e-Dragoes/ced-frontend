@@ -35,7 +35,8 @@ jobs:
         git fetch origin
         git switch --orphan deploy
         git reset --hard
-        cp -r dist/* .
+        cp -r dist/cavernasedragoes/* .
         git add .
         git commit -m "Deploy to deploy branch"
         git push --force origin deploy
+
