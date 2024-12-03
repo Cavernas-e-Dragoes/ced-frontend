@@ -1,0 +1,38 @@
+name: Build and Deploy Angular
+
+on:
+  push:
+    branches:
+      - main  # Trigger quando houver push na branch main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build Angular application
+      run: npm run build --prod
+
+    - name: Deploy to deploy branch
+      run: |
+        git config --global user.name "GitHub Actions"
+        git config --global user.email "actions@github.com"
+        git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+        git fetch
+        git switch --orphan deploy
+        git reset --hard
+        cp -r dist/* .
+        git add .
+        git commit -m "Deploy to deploy branch"
+        git push --force origin deploy
