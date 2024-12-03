@@ -35,8 +35,10 @@ jobs:
         git fetch origin
         git switch --orphan deploy
         git reset --hard
+        echo ".gitignore" > .gitignore
+        echo "node_modules/" >> .gitignore
+        echo "dist/" >> .gitignore
         cp -r dist/cavernasedragoes/* .
         git add .
         git commit -m "Deploy to deploy branch"
         git push --force origin deploy
-
