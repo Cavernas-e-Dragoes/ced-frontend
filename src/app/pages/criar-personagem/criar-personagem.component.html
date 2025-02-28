@@ -1,0 +1,72 @@
+<app-header></app-header>
+<section>
+    <div class="criacao-personagem">
+        <!-- Livro para transição entre páginas -->
+        <div class="livro">
+            <!-- Escolha de Raça -->
+            <div *ngIf="etapa === 1" @virarPagina class="pagina etapa">
+                <h2>Escolha sua Raça</h2>
+                <div class="opcoes">
+                    <div *ngFor="let raca of racas" (click)="selecionarRaca(raca.nome)" class="opcao">
+                        <img [src]="raca.img" [alt]="raca.nome">
+                        <p>{{ raca.nome }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Escolha de Classe -->
+            <div *ngIf="etapa === 2" @virarPagina class="pagina etapa">
+                <button (click)="voltarEtapa()" class="btn-voltar">← Voltar</button>
+                <h2>Escolha sua Classe</h2>
+                <div class="opcoes">
+                    <div *ngFor="let classe of classes" (click)="selecionarClasse(classe.nome)" class="opcao">
+                        <img [src]="classe.img" [alt]="classe.nome">
+                        <p>{{ classe.nome }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Escolha de Atributos -->
+            <div *ngIf="etapa === 3" @virarPagina class="pagina etapa">
+                <button (click)="voltarEtapa()" class="btn-voltar">← Voltar</button>
+                <h2>Defina seus Atributos</h2>
+                <div class="opcoes">
+                    <button (click)="rolarAtributos()">Rolar Atributos 🎲</button>
+                    <button (click)="usarDistribuicaoPontos()">Distribuir Manualmente</button>
+                </div>
+
+                <div *ngIf="metodoAtributos === 'rolagem'">
+                    <div *ngFor="let atributo of atributoNomes" class="atributo">
+                        <span>{{ atributo }}: {{ personagem.atributos[atributo] }}</span>
+                    </div>
+                </div>
+
+                <div *ngIf="metodoAtributos === 'manual'">
+                    <div *ngFor="let atributo of atributoNomes" class="atributo">
+                        <label>{{ atributo }}:</label>
+                        <input type="number" [(ngModel)]="personagem.atributos[atributo]" min="1" max="15">
+                    </div>
+                </div>
+                <button (click)="avancarEtapa()" class="btn-continuar">Continuar →</button>
+            </div>
+
+            <!-- Resumo do Personagem -->
+            <div *ngIf="etapa === 4" @virarPagina class="pagina etapa">
+                <button (click)="voltarEtapa()" class="btn-voltar">← Voltar</button>
+                <h2>Resumo do Personagem</h2>
+                <div class="resumo">
+                    <p><strong>Raça:</strong> {{ personagem.raca }}</p>
+                    <p><strong>Classe:</strong> {{ personagem.classe }}</p>
+                    <p><strong>Atributos:</strong></p>
+                    <ul>
+                        <li *ngFor="let atributo of atributoNomes">
+                            {{ atributo }}: {{ personagem.atributos[atributo] }}
+                        </li>
+                    </ul>
+                </div>
+                <button (click)="finalizarCriacao()" class="btn-finalizar">Finalizar Criação</button>
+            </div>
+        </div>
+    </div>
+</section>
+<app-footer></app-footer>

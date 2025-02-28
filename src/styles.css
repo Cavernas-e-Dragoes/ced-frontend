@@ -19,6 +19,7 @@ section{
     min-height: 95vh;
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-direction: column;
     background: rgba(58, 29, 24, 0.74); 
 }
@@ -28,6 +29,7 @@ section{
     align-items: center;
     justify-content: center;
 }
+
 .row{
     display: flex;
     flex-direction: row;

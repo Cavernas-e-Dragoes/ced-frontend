@@ -1,0 +1,81 @@
+/** Estilo Base das Etapas **/
+.criacao-personagem {
+    border: 2px solid #5B2C04;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.507);
+    width: 70vw;
+    height: 80vh;
+    margin: auto;
+    font-family: 'IM Fell English', serif;
+    color: #4A2C2A;
+    text-align: center;
+    border-radius: 10px;
+    background: rgba(255, 239, 198, 0.95);
+    position: relative;
+    overflow: hidden;
+}
+
+h2 {
+    font-size: 24px;
+    color: #5B2C04;
+    margin: 15px;
+}
+
+.opcoes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    align-items: center;
+}
+
+.opcao {
+    background: rgba(255, 239, 198, 0.95);
+    border: 1px solid #5B2C04;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 200px;
+    font-size: 16px;
+}
+
+.opcao:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+}
+
+.btn-voltar, .btn-continuar, .btn-finalizar {
+    background: #5B2C04;
+    color: #FFD700;
+    padding: 10px 20px;
+    border: 1px solid #FFD700;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-voltar:hover, .btn-continuar:hover, .btn-finalizar:hover {
+    background: #8B4513;
+    transform: scale(1.05);
+}
+
+.livro {
+    perspective: 1200px;
+    width: 70vw;
+    height: 80vh;
+    margin: auto;
+    position: relative;
+}
+
+.pagina {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: rgba(255, 239, 198, 0.95);
+    border: 2px solid #5B2C04;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transform-origin: left center; /* Agora vira pelo lado direito */
+    backface-visibility: hidden;
+}

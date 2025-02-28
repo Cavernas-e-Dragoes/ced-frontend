@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http'
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,6 +26,8 @@ import { DefesaComponent } from './pages/equipamentos/defesa/defesa.component';
 import { FerramentasComponent } from './pages/equipamentos/ferramentas/ferramentas.component';
 import { MontariasEVeiculosComponent } from './pages/equipamentos/montarias-e-veiculos/montarias-e-veiculos.component';
 import { ItensMagicosComponent } from './pages/equipamentos/itens-magicos/itens-magicos.component';
+import { SaguaoDoAventureiroComponent } from './pages/saguao-do-aventureiro/saguao-do-aventureiro.component';
+import { CriarPersonagemComponent } from './pages/criar-personagem/criar-personagem.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +50,8 @@ import { ItensMagicosComponent } from './pages/equipamentos/itens-magicos/itens-
     FerramentasComponent,
     MontariasEVeiculosComponent,
     ItensMagicosComponent,
+    SaguaoDoAventureiroComponent,
+    CriarPersonagemComponent,
     
     
     
@@ -56,6 +62,7 @@ import { ItensMagicosComponent } from './pages/equipamentos/itens-magicos/itens-
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

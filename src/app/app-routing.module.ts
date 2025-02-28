@@ -18,6 +18,9 @@ import { DefesaComponent } from './pages/equipamentos/defesa/defesa.component';
 import { ItensMagicosComponent } from './pages/equipamentos/itens-magicos/itens-magicos.component';
 import { MontariasEVeiculosComponent } from './pages/equipamentos/montarias-e-veiculos/montarias-e-veiculos.component';
 import { FerramentasComponent } from './pages/equipamentos/ferramentas/ferramentas.component';
+import { SaguaoDoAventureiroComponent } from './pages/saguao-do-aventureiro/saguao-do-aventureiro.component';
+import { CriarPersonagemComponent } from './pages/criar-personagem/criar-personagem.component';
+import { authGuard } from './guards/auth.guard';
 
 
 
@@ -47,7 +50,8 @@ const routes: Routes = [
   { path: 'montarias-e-veiculos', component: MontariasEVeiculosComponent },
   { path: 'ferramentas', component: FerramentasComponent },
  
-
+  { path: 'saguao-do-aventureiro', component: SaguaoDoAventureiroComponent, canActivate: [authGuard]  },
+  { path: 'criar-personagem', component: CriarPersonagemComponent  },
 
 
 

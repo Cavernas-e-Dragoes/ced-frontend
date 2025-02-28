@@ -12,11 +12,19 @@
         <li class="link" routerLink="/magias">Magias</li>
         <li class="link" routerLink="/equipamentos-categorias">Equipamentos</li>
         <li class="link" routerLink="/rules">Regras</li>
-        <li class="link"  routerLink="/login">Entre</li>
-    </ul>
 
-    <!-- <ul class="row">
-        <li class="link">Entre</li>
-        <li class="link">Cadastre</li>
-    </ul> -->
+        <!-- Exibe "Entre" apenas se o usuário NÃO estiver autenticado -->
+        <li class="link" *ngIf="!isAuthenticated" routerLink="/login">Entre</li>
+
+        <!-- Exibe o Saguão apenas se o usuário ESTIVER autenticado -->
+        <li class="link" *ngIf="isAuthenticated" routerLink="/saguao-do-aventureiro">
+          Saguão do Aventureiro
+        </li>
+
+        <!-- Exibe o nome do usuário e botão de logout -->
+        <li *ngIf="isAuthenticated" class="link">
+          <span>Bem-vindo, {{ userName }}!</span>
+          <button (click)="logout()">Sair</button>
+        </li>
+    </ul>
 </nav>
