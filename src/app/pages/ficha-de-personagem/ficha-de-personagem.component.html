@@ -16,7 +16,7 @@
     <div class="ficha-header">
       <h1>{{ personagem.name }}</h1>
       <div class="ficha-basic-info">
-        <span class="race-class">{{ personagem.race?.name || 'Raça Desconhecida' }} {{ personagem.class?.name || 'Classe Desconhecida' }}</span>
+        <span class="race-class">{{ personagem.race.name || 'Raça Desconhecida' }} {{ personagem.class.name || 'Classe Desconhecida' }}</span>
         <span class="level">Nível {{ personagem.level || 1 }}</span>
       </div>
     </div>
@@ -32,8 +32,8 @@
         <h2>Informações Básicas</h2>
         <div class="info-content">
           <p><strong>Nome:</strong> {{ personagem.name }}</p>
-          <p><strong>Raça:</strong> {{ personagem.race?.name || 'Raça Desconhecida' }}</p>
-          <p><strong>Classe:</strong> {{ personagem.class?.name || 'Classe Desconhecida' }}</p>
+          <p><strong>Raça:</strong> {{ personagem.race.name || 'Raça Desconhecida' }}</p>
+          <p><strong>Classe:</strong> {{ personagem.class.name || 'Classe Desconhecida' }}</p>
           <p><strong>Nível:</strong> {{ personagem.level || 1 }}</p>
           <p><strong>Antecedente:</strong> {{ personagem.background || 'Não definido' }}</p>
           <p><strong>Alinhamento:</strong> {{ personagem.alignment || 'Não definido' }}</p>
@@ -69,7 +69,7 @@
           <div class="combat-stat">
             <div class="stat-name">Pontos de Vida</div>
             <div class="stat-value">
-              {{ personagem.hitPoints?.current || 0 }} / {{ personagem.hitPoints?.maximum || 0 }}
+              {{ personagem.hitPoints.current || 0 }} / {{ personagem.hitPoints.maximum || 0 }}
             </div>
           </div>
         </div>

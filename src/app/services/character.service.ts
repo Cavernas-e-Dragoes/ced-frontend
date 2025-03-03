@@ -108,62 +108,37 @@ export class CharacterService {
       tap(response => console.log('Personagens recebidos da API:', response)),
       map(characters => {
         return characters.map(apiChar => {
-          console.log('Processando personagem:', apiChar);
-          
-          // Extração JSON.stringify + slice para garantir string
+          // Processamento simplificado e direto
           let raceName = 'Desconhecida';
           let className = 'Desconhecida';
           
+          // Obter nome da raça
           if (apiChar.race) {
-            // Converter para string seja qual for o tipo
-            const raceStr = JSON.stringify(apiChar.race);
-            console.log('Race JSON:', raceStr);
-            
             if (typeof apiChar.race === 'string') {
-              raceName = apiChar.race;
-            } else if (typeof apiChar.race === 'object' && apiChar.race.name) {
-              raceName = apiChar.race.name;
+              raceName = this.formatEnumValue(apiChar.race);
+            } else if (typeof apiChar.race === 'object') {
+              raceName = apiChar.race.name || (apiChar.race.index ? this.formatEnumValue(apiChar.race.index) : 'Desconhecida');
             }
           }
           
+          // Obter nome da classe
           if (apiChar.charClass) {
-            // Converter para string seja qual for o tipo
-            const classStr = JSON.stringify(apiChar.charClass);
-            console.log('Class JSON:', classStr);
-            
             if (typeof apiChar.charClass === 'string') {
-              className = apiChar.charClass;
-            } else if (typeof apiChar.charClass === 'object' && apiChar.charClass.name) {
-              className = apiChar.charClass.name;
+              className = this.formatEnumValue(apiChar.charClass);
+            } else if (typeof apiChar.charClass === 'object') {
+              className = apiChar.charClass.name || (apiChar.charClass.index ? this.formatEnumValue(apiChar.charClass.index) : 'Desconhecida');
             }
           }
-
-          // Formatar os valores
-          if (raceName !== 'Desconhecida') {
-            raceName = raceName.toLowerCase().replace(/\b\w/g, (c: string) => c.toUpperCase());
-          }
           
-          if (className !== 'Desconhecida') {
-            className = className.toLowerCase().replace(/\b\w/g, (c: string) => c.toUpperCase());
-          }
-          
-          console.log('Valores extraídos - Raça:', raceName, '/ Classe:', className);
-          
-          const resultado = {
+          return {
             id: apiChar.id,
             name: apiChar.name || 'Sem nome',
             race: raceName,
             class: className,
             level: apiChar.level || 1
           };
-          
-          console.log('Resultado final do item:', resultado);
-          console.log('Race tipo:', typeof resultado.race);
-          console.log('Class tipo:', typeof resultado.class);
-          return resultado;
         });
       }),
-      tap(listaFinal => console.log('Lista completa processada:', listaFinal)),
       catchError(error => {
         console.error('Erro ao obter personagens:', error);
         return throwError(() => error);
