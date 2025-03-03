@@ -1,0 +1,142 @@
+<app-header></app-header>
+
+<section class="ficha-container">
+  <!-- Loading spinner -->
+  <div *ngIf="isLoading" class="loading-overlay">
+    <app-loading></app-loading>
+  </div>
+
+  <!-- Mensagem de erro -->
+  <div *ngIf="isError" class="error-message">
+    <p>{{ errorMessage }}</p>
+    <button (click)="isError = false">Fechar</button>
+  </div>
+
+  <div *ngIf="personagem && !isLoading" class="ficha-content">
+    <div class="ficha-header">
+      <h1>{{ personagem.name }}</h1>
+      <div class="ficha-basic-info">
+        <span class="race-class">{{ personagem.race?.name || 'Raça Desconhecida' }} {{ personagem.class?.name || 'Classe Desconhecida' }}</span>
+        <span class="level">Nível {{ personagem.level || 1 }}</span>
+      </div>
+    </div>
+
+    <div class="ficha-actions">
+      <button class="btn-voltar" (click)="voltarParaLista()">← Voltar para Lista</button>
+      <button class="btn-editar" (click)="editarPersonagem()">Editar Personagem</button>
+    </div>
+
+    <div class="ficha-grid">
+      <!-- Informações básicas -->
+      <div class="ficha-card info-card">
+        <h2>Informações Básicas</h2>
+        <div class="info-content">
+          <p><strong>Nome:</strong> {{ personagem.name }}</p>
+          <p><strong>Raça:</strong> {{ personagem.race?.name || 'Raça Desconhecida' }}</p>
+          <p><strong>Classe:</strong> {{ personagem.class?.name || 'Classe Desconhecida' }}</p>
+          <p><strong>Nível:</strong> {{ personagem.level || 1 }}</p>
+          <p><strong>Antecedente:</strong> {{ personagem.background || 'Não definido' }}</p>
+          <p><strong>Alinhamento:</strong> {{ personagem.alignment || 'Não definido' }}</p>
+        </div>
+      </div>
+
+      <!-- Atributos -->
+      <div class="ficha-card attributes-card">
+        <h2>Atributos</h2>
+        <div class="attributes-grid">
+          <div class="attribute" *ngFor="let atributo of atributoNomes">
+            <div class="attribute-name">{{ nomesAtributosPortugues[atributo] }}</div>
+            <div class="attribute-value">{{ getAttributeValue(atributo) }}</div>
+            <div class="attribute-modifier">
+              {{ characterService.calculateAttributeModifier(getAttributeValue(atributo)) >= 0 ? '+' : '' }}{{ characterService.calculateAttributeModifier(getAttributeValue(atributo)) }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Combate -->
+      <div class="ficha-card combat-card">
+        <h2>Combate</h2>
+        <div class="combat-stats">
+          <div class="combat-stat">
+            <div class="stat-name">Classe de Armadura</div>
+            <div class="stat-value">{{ personagem.armorClass || 10 }}</div>
+          </div>
+          <div class="combat-stat">
+            <div class="stat-name">Iniciativa</div>
+            <div class="stat-value">{{ (personagem.initiative || 0) >= 0 ? '+' : '' }}{{ personagem.initiative || 0 }}</div>
+          </div>
+          <div class="combat-stat">
+            <div class="stat-name">Pontos de Vida</div>
+            <div class="stat-value">
+              {{ personagem.hitPoints?.current || 0 }} / {{ personagem.hitPoints?.maximum || 0 }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Proficiências -->
+      <div class="ficha-card proficiencies-card" *ngIf="personagem.proficiencies && temItens(personagem.proficiencies.savingThrows)">
+        <h2>Proficiências</h2>
+        <div class="proficiencies-content">
+          <div *ngIf="temItens(personagem.proficiencies.savingThrows)">
+            <h3>Salvaguardas</h3>
+            <ul>
+              <li *ngFor="let save of personagem.proficiencies.savingThrows">{{ save }}</li>
+            </ul>
+          </div>
+          <div *ngIf="temItens(personagem.proficiencies.skills)">
+            <h3>Perícias</h3>
+            <ul>
+              <li *ngFor="let skill of personagem.proficiencies.skills">{{ skill }}</li>
+            </ul>
+          </div>
+          <div *ngIf="temItens(personagem.proficiencies.languages)">
+            <h3>Idiomas</h3>
+            <ul>
+              <li *ngFor="let language of personagem.proficiencies.languages">{{ language }}</li>
+            </ul>
+          </div>
+          <div *ngIf="temItens(personagem.proficiencies.weapons)">
+            <h3>Armas</h3>
+            <ul>
+              <li *ngFor="let weapon of personagem.proficiencies.weapons">{{ weapon }}</li>
+            </ul>
+          </div>
+          <div *ngIf="temItens(personagem.proficiencies.armors)">
+            <h3>Armaduras</h3>
+            <ul>
+              <li *ngFor="let armor of personagem.proficiencies.armors">{{ armor }}</li>
+            </ul>
+          </div>
+          <div *ngIf="temItens(personagem.proficiencies.tools)">
+            <h3>Ferramentas</h3>
+            <ul>
+              <li *ngFor="let tool of personagem.proficiencies.tools">{{ tool }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Equipamentos -->
+      <div class="ficha-card equipment-card" *ngIf="temItens(personagem.equipment)">
+        <h2>Equipamento</h2>
+        <ul class="equipment-list">
+          <li *ngFor="let item of personagem.equipment">
+            {{ item.name }} {{ item.quantity > 1 ? '(' + item.quantity + ')' : '' }}
+          </li>
+        </ul>
+      </div>
+
+      <!-- Magias -->
+      <div class="ficha-card spells-card" *ngIf="temItens(personagem.spells)">
+        <h2>Magias</h2>
+        <ul class="spells-list">
+          <li *ngFor="let spell of personagem.spells">{{ spell.name }} (Nível {{ spell.level }})</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

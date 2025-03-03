@@ -20,7 +20,10 @@ import { MontariasEVeiculosComponent } from './pages/equipamentos/montarias-e-ve
 import { FerramentasComponent } from './pages/equipamentos/ferramentas/ferramentas.component';
 import { SaguaoDoAventureiroComponent } from './pages/saguao-do-aventureiro/saguao-do-aventureiro.component';
 import { CriarPersonagemComponent } from './pages/criar-personagem/criar-personagem.component';
+import { PersonagensListaComponent } from './pages/personagens-lista/personagens-lista.component';
 import { authGuard } from './guards/auth.guard';
+import { PerfilComponent } from './pages/perfil/perfil.component';
+import { FichaDePersonagemComponent } from './pages/ficha-de-personagem/ficha-de-personagem.component';
 
 
 
@@ -51,12 +54,14 @@ const routes: Routes = [
   { path: 'ferramentas', component: FerramentasComponent },
  
   { path: 'saguao-do-aventureiro', component: SaguaoDoAventureiroComponent, canActivate: [authGuard]  },
-  { path: 'criar-personagem', component: CriarPersonagemComponent  },
-
-
-
-
-
+  { path: 'criar-personagem', component: CriarPersonagemComponent, canActivate: [authGuard]  },
+  { path: 'perfil', component: PerfilComponent, canActivate: [authGuard]  },
+  
+  // Rotas de personagens
+  { path: 'personagens', component: PersonagensListaComponent, canActivate: [authGuard] },
+  { path: 'personagens/:id', component: FichaDePersonagemComponent, canActivate: [authGuard] },
+  { path: 'personagens/editar/:id', component: CriarPersonagemComponent, canActivate: [authGuard] },
+  
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', redirectTo: '/home' }
 

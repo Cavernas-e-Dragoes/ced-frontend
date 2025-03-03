@@ -1,0 +1,71 @@
+<!-- Versão normal do componente (página separada) -->
+<div *ngIf="!isSaguaoMode">
+  <app-header></app-header>
+  <section class="personagens-container">
+    <div class="personagens-header">
+      <h1>Meus Personagens</h1>
+      <button class="btn-criar" (click)="criarNovoPersonagem()">Criar Novo Personagem</button>
+    </div>
+
+    <!-- Loading spinner -->
+    <div *ngIf="isLoading" class="loading-overlay">
+      <app-loading></app-loading>
+    </div>
+
+    <!-- Mensagem de erro -->
+    <div *ngIf="isError" class="error-message">
+      <p>{{ errorMessage }}</p>
+      <button (click)="isError = false">Fechar</button>
+    </div>
+
+    <div *ngIf="personagens.length === 0 && !isLoading" class="sem-personagens">
+      <p>Você ainda não possui personagens.</p>
+      <button class="btn-criar" (click)="criarNovoPersonagem()">Criar Seu Primeiro Personagem</button>
+    </div>
+
+    <div class="personagens-grid" *ngIf="personagens.length > 0">
+      <div class="personagem-card" *ngFor="let personagem of personagens">
+        <div class="personagem-header">
+          <h2>{{ personagem.name }}</h2>
+          <span class="level">Nível {{ personagem.level }}</span>
+        </div>
+        <div class="personagem-info">
+          <p><strong>Raça:</strong> {{ personagem.race }}</p>
+          <p><strong>Classe:</strong> {{ personagem.class }}</p>
+        </div>
+        <div class="personagem-actions">
+          <button class="btn-ver" (click)="verDetalhes(personagem.id)">Ver Detalhes</button>
+          <button class="btn-editar" (click)="editarPersonagem(personagem.id)">Editar</button>
+          <button class="btn-excluir" (click)="excluirPersonagem(personagem.id)">Excluir</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <app-footer></app-footer>
+</div>
+
+<!-- Versão simplificada para o saguão do aventureiro -->
+<div *ngIf="isSaguaoMode" class="saguao-lista">
+  <!-- Loading spinner -->
+  <div *ngIf="isLoading" class="loading-overlay">
+    <app-loading></app-loading>
+  </div>
+
+  <!-- Mensagem de erro -->
+  <div *ngIf="isError" class="error-message">
+    <p>{{ errorMessage }}</p>
+    <button (click)="isError = false">Fechar</button>
+  </div>
+
+  <h2>Meus Personagens</h2>
+  
+  <div *ngIf="personagens.length === 0 && !isLoading" class="sem-personagens-saguao">
+    <p>Você ainda não possui personagens.</p>
+  </div>
+
+  <ul class="personagens-saguao-lista">
+    <li *ngFor="let personagem of personagens" (click)="verDetalhes(personagem.id)">
+      <strong>{{ personagem.name }}</strong> - {{ personagem.race }} {{ personagem.class }} (Nível {{ personagem.level }})
+    </li>
+  </ul>
+</div> 

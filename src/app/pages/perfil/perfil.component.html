@@ -1,0 +1,21 @@
+<app-header></app-header>
+<section>
+    <div class="perfil-container">
+        <h2>Perfil</h2>
+        <p><strong>Nome:</strong> {{ userName }}</p>
+        <p><strong>E-mail:</strong> {{ userEmail }}</p>
+
+        <div *ngIf="!emailVerified" class="alert">
+            <p>{{ verificationMessage }}</p>
+        </div>
+
+        <div *ngIf="!emailVerified" class="alert alerta-verificacao">
+            <button (click)="reenviarEmailVerificacao()" class="btn-reenviar">Reenviar E-mail de Verificação</button>
+          </div>
+
+        <button (click)="logout()">Sair</button>
+    </div>
+
+
+</section>
+<app-footer></app-footer>

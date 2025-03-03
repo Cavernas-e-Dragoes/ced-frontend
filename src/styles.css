@@ -6,7 +6,7 @@
     scroll-behavior: smooth;
     box-sizing: border-box;
     transition: .5s;
-    font-family: Trebuchet MS, serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
 :root{
     --form-background-color: rgba(37, 27, 27, 0.5);
@@ -21,7 +21,18 @@ section{
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background: rgba(58, 29, 24, 0.74); 
+    background:
+      conic-gradient(at 62.5% 12.5%, #0f0f0f 25%, #0000 0) calc(10px/-8) calc(10px/2),
+      conic-gradient(at 62.5% 12.5%, #0f0f0f 25%, #0000 0) calc(-3*10px/8) calc(10px/4),
+      conic-gradient(at 87.5% 62.5%, #0f0f0f 25%, #0000 0) calc(3*10px/8) calc(10px/4),
+      conic-gradient(at 87.5% 62.5%, #0f0f0f 25%, #0000 0) calc(10px/-8) 0,
+      conic-gradient(at 25% 12.5%, #0f0f0f 25%, #0000 0) 0 calc(10px/-4),
+      conic-gradient(at 25% 12.5%, #0f0f0f 25%, #0000 0) calc(10px/-4) 0,
+      conic-gradient(at 87.5% 87.5%, #0f0f0f 25%, #0000 0) calc(10px/8) 0
+      #2d2d2d;
+background-size: 10px 10px;
+
+
 }
 .column{
     display: flex;

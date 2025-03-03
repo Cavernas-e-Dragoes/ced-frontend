@@ -1,0 +1,71 @@
+.alert {
+    background-color: #ffcccc;
+    color: #990000;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.perfil-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 30px 20px;
+    width: 500px;
+    max-width: 500px;
+    height: 50vh;
+    background:
+      radial-gradient(35.36% 35.36% at 100% 25%,#0000 66%,#ffeda6 68% 70%,#0000 72%) 15px 15px/calc(2*15px) calc(2*15px),
+      radial-gradient(35.36% 35.36% at 0    75%,#0000 66%,#ffeda6 68% 70%,#0000 72%) 15px 15px/calc(2*15px) calc(2*15px),
+      radial-gradient(35.36% 35.36% at 100% 25%,#0000 66%,#ffeda6 68% 70%,#0000 72%) 0 0/calc(2*15px) calc(2*15px),
+      radial-gradient(35.36% 35.36% at 0    75%,#0000 66%,#ffeda6 68% 70%,#0000 72%) 0 0/calc(2*15px) calc(2*15px),
+      repeating-conic-gradient(#f0d783 0 25%,#0000 0 50%) 0 0/calc(2*15px) calc(2*15px),
+      radial-gradient(#0000 66%,#ffeda6 68% 70%,#0000 72%) 0 calc(15px/2)/15px 15px
+      #f0d783;
+    border-radius: 15px;
+    /* Bordas arredondadas */
+    font-family: 'Papyrus', cursive;
+    /* Fonte que lembra algo medieval */
+    color: #2b2b2b;
+}
+.perfil-container:hover{
+    box-shadow: 0px 0px 10px 10px rgba(255, 245, 156, 0.3);
+
+}
+
+.alerta-verificacao {
+    background-color: #ffebcd;
+    border: 1px solid #d2691e;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 15px;
+    text-align: center;
+  }
+  .btn-reenviar {
+    background-color: #d2691e;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn-reenviar:hover {
+    background-color: #8b4513;
+  }
+
+h2 {
+    color: black;
+}
+
+button {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #3a0000;
+    color: #ffffff;
+    font-size: 1.1rem;
+    width: 100px;
+    align-self: center;
+
+}

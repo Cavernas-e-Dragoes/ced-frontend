@@ -1,26 +1,26 @@
 <app-header></app-header>
 
 <section>
+    <h1 class="page-title">Saguão do Aventureiro</h1>
+    <p class="page-subtitle">Escolha uma opção para começar sua aventura</p>
+    
     <div class="row">
-
-        <div class="left list">
-            <ul>
-                <li>personagem 1</li>
-                <li>personagem 2</li>
-                <li>personagem 3</li>
-                <li>personagem 4</li>
-            </ul>
-        </div>
-
-        <div routerLink="/criar-personagem" class="right">
-            <div class="new column">
-                <i>+</i>
-                <h2 >Novo Personagem</h2>
+        <div routerLink="/personagens" class="option-card">
+            <div class="column">
+                <i class="icon-list">📜</i>
+                <h2>Meus Personagens</h2>
+                <p>Visualize e gerencie seus personagens existentes</p>
             </div>
         </div>
 
+        <div routerLink="/criar-personagem" class="option-card">
+            <div class="column">
+                <i class="icon-new">+</i>
+                <h2>Novo Personagem</h2>
+                <p>Crie um novo herói para suas aventuras</p>
+            </div>
+        </div>
     </div>
-
 </section>
 
 <app-footer></app-footer>

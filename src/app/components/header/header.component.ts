@@ -21,6 +21,8 @@ export class HeaderComponent implements OnInit{
   updateAuthStatus() {
     this.isAuthenticated = this.authService.isAuthenticated();
     this.userName = this.authService.getUserName();
+    console.log('[Header] Nome do usuário atualizado:', this.userName);
+    console.log('[Header] Valor no localStorage:', localStorage.getItem('user_name'));
   }
 
   logout() {

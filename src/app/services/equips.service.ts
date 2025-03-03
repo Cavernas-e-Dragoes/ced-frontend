@@ -10,7 +10,7 @@ import { Equip } from '../models/equip';
 })
 export class EquipsService {
   // Base URL da API
-  private baseUrl = 'https://ced.discloud.app/api';
+  private baseUrl = 'https://drs.discloud.app/api';
 
   constructor(private http: HttpClient) { }
 

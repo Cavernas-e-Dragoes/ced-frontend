@@ -9,7 +9,7 @@ import { ClassDetail } from '../models/class-detail'; // Nova interface
   providedIn: 'root'
 })
 export class ClassService {
-  private apiUrl = 'https://ced.discloud.app/api/classes';
+  private apiUrl = 'https://drs.discloud.app/api/classes';
 
   constructor(private http: HttpClient) { }
 

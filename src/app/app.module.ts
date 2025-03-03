@@ -28,6 +28,9 @@ import { MontariasEVeiculosComponent } from './pages/equipamentos/montarias-e-ve
 import { ItensMagicosComponent } from './pages/equipamentos/itens-magicos/itens-magicos.component';
 import { SaguaoDoAventureiroComponent } from './pages/saguao-do-aventureiro/saguao-do-aventureiro.component';
 import { CriarPersonagemComponent } from './pages/criar-personagem/criar-personagem.component';
+import { PerfilComponent } from './pages/perfil/perfil.component';
+import { PersonagensListaComponent } from './pages/personagens-lista/personagens-lista.component';
+import { FichaDePersonagemComponent } from './pages/ficha-de-personagem/ficha-de-personagem.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +55,9 @@ import { CriarPersonagemComponent } from './pages/criar-personagem/criar-persona
     ItensMagicosComponent,
     SaguaoDoAventureiroComponent,
     CriarPersonagemComponent,
+    PerfilComponent,
+    PersonagensListaComponent,
+    FichaDePersonagemComponent,
     
     
     

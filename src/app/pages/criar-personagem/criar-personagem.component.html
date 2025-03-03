@@ -1,15 +1,27 @@
 <app-header></app-header>
 <section>
     <div class="criacao-personagem">
+        <!-- Loading spinner -->
+        <div *ngIf="isLoading" class="loading-overlay">
+            <app-loading></app-loading>
+        </div>
+
+        <!-- Mensagem de erro -->
+        <div *ngIf="isError" class="error-message">
+            <p>{{ errorMessage }}</p>
+            <button (click)="isError = false">Fechar</button>
+        </div>
+
         <!-- Livro para transição entre páginas -->
         <div class="livro">
             <!-- Escolha de Raça -->
             <div *ngIf="etapa === 1" @virarPagina class="pagina etapa">
                 <h2>Escolha sua Raça</h2>
                 <div class="opcoes">
-                    <div *ngFor="let raca of racas" (click)="selecionarRaca(raca.nome)" class="opcao">
-                        <img [src]="raca.img" [alt]="raca.nome">
-                        <p>{{ raca.nome }}</p>
+                    <div *ngFor="let raca of racas" (click)="selecionarRaca(raca)" class="opcao">
+                        <img [src]="raca.img" [alt]="raca.name" *ngIf="raca.img">
+                        <div class="opcao-avatar" *ngIf="!raca.img">{{ raca.name.charAt(0) }}</div>
+                        <p>{{ raca.name }}</p>
                     </div>
                 </div>
             </div>
@@ -19,9 +31,10 @@
                 <button (click)="voltarEtapa()" class="btn-voltar">← Voltar</button>
                 <h2>Escolha sua Classe</h2>
                 <div class="opcoes">
-                    <div *ngFor="let classe of classes" (click)="selecionarClasse(classe.nome)" class="opcao">
-                        <img [src]="classe.img" [alt]="classe.nome">
-                        <p>{{ classe.nome }}</p>
+                    <div *ngFor="let classe of classes" (click)="selecionarClasse(classe)" class="opcao">
+                        <img [src]="classe.img" [alt]="classe.name" *ngIf="classe.img">
+                        <div class="opcao-avatar" *ngIf="!classe.img">{{ classe.name.charAt(0) }}</div>
+                        <p>{{ classe.name }}</p>
                     </div>
                 </div>
             </div>
@@ -31,38 +44,83 @@
                 <button (click)="voltarEtapa()" class="btn-voltar">← Voltar</button>
                 <h2>Defina seus Atributos</h2>
                 <div class="opcoes">
-                    <button (click)="rolarAtributos()">Rolar Atributos 🎲</button>
-                    <button (click)="usarDistribuicaoPontos()">Distribuir Manualmente</button>
+                    <button (click)="rolarAtributos()" class="btn-method">Rolar Atributos 🎲</button>
+                    <button (click)="usarDistribuicaoPontos()" class="btn-method">Distribuir Manualmente</button>
                 </div>
 
-                <div *ngIf="metodoAtributos === 'rolagem'">
+                <div *ngIf="metodoAtributos === 'rolagem'" class="attribute-container">
                     <div *ngFor="let atributo of atributoNomes" class="atributo">
-                        <span>{{ atributo }}: {{ personagem.atributos[atributo] }}</span>
+                        <span>{{ nomesAtributosPortugues[atributo] }}: {{ personagem.attributes[atributo] }}</span>
+                        <span class="modifier">({{ characterService.calculateAttributeModifier(personagem.attributes[atributo]) >= 0 ? '+' : '' }}{{ characterService.calculateAttributeModifier(personagem.attributes[atributo]) }})</span>
+                    </div>
+                    <button (click)="rolarAtributos()" class="btn-roll-again">Rolar Novamente</button>
+                </div>
+
+                <div *ngIf="metodoAtributos === 'manual'" class="attribute-container">
+                    <div *ngFor="let atributo of atributoNomes" class="atributo">
+                        <label>{{ nomesAtributosPortugues[atributo] }}:</label>
+                        <input type="number" [(ngModel)]="personagem.attributes[atributo]" min="3" max="18">
+                        <span class="modifier">({{ characterService.calculateAttributeModifier(personagem.attributes[atributo]) >= 0 ? '+' : '' }}{{ characterService.calculateAttributeModifier(personagem.attributes[atributo]) }})</span>
                     </div>
                 </div>
+                <button (click)="avancarEtapa()" class="btn-continuar">Continuar →</button>
+            </div>
 
-                <div *ngIf="metodoAtributos === 'manual'">
-                    <div *ngFor="let atributo of atributoNomes" class="atributo">
-                        <label>{{ atributo }}:</label>
-                        <input type="number" [(ngModel)]="personagem.atributos[atributo]" min="1" max="15">
+            <!-- Informações Adicionais -->
+            <div *ngIf="etapa === 4" @virarPagina class="pagina etapa">
+                <button (click)="voltarEtapa()" class="btn-voltar">← Voltar</button>
+                <h2>Informações do Personagem</h2>
+                <div class="info-form">
+                    <div class="form-group">
+                        <label for="name">Nome do Personagem:</label>
+                        <input type="text" id="name" [(ngModel)]="personagem.name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="background">Antecedente:</label>
+                        <input type="text" id="background" [(ngModel)]="personagem.background">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="alignment">Alinhamento:</label>
+                        <select id="alignment" [(ngModel)]="personagem.alignment">
+                            <option value="">Selecione...</option>
+                            <option value="Leal e Bom">Leal e Bom</option>
+                            <option value="Neutro e Bom">Neutro e Bom</option>
+                            <option value="Caótico e Bom">Caótico e Bom</option>
+                            <option value="Leal e Neutro">Leal e Neutro</option>
+                            <option value="Neutro">Neutro</option>
+                            <option value="Caótico e Neutro">Caótico e Neutro</option>
+                            <option value="Leal e Mau">Leal e Mau</option>
+                            <option value="Neutro e Mau">Neutro e Mau</option>
+                            <option value="Caótico e Mau">Caótico e Mau</option>
+                        </select>
                     </div>
                 </div>
                 <button (click)="avancarEtapa()" class="btn-continuar">Continuar →</button>
             </div>
 
             <!-- Resumo do Personagem -->
-            <div *ngIf="etapa === 4" @virarPagina class="pagina etapa">
+            <div *ngIf="etapa === 5" @virarPagina class="pagina etapa">
                 <button (click)="voltarEtapa()" class="btn-voltar">← Voltar</button>
                 <h2>Resumo do Personagem</h2>
                 <div class="resumo">
-                    <p><strong>Raça:</strong> {{ personagem.raca }}</p>
-                    <p><strong>Classe:</strong> {{ personagem.classe }}</p>
+                    <p><strong>Nome:</strong> {{ personagem.name || 'Não definido' }}</p>
+                    <p><strong>Raça:</strong> {{ personagem.race.name }}</p>
+                    <p><strong>Classe:</strong> {{ personagem.class.name }}</p>
+                    <p><strong>Nível:</strong> {{ personagem.level }}</p>
+                    <p><strong>Antecedente:</strong> {{ personagem.background || 'Não definido' }}</p>
+                    <p><strong>Alinhamento:</strong> {{ personagem.alignment || 'Não definido' }}</p>
                     <p><strong>Atributos:</strong></p>
-                    <ul>
+                    <ul class="attribute-list">
                         <li *ngFor="let atributo of atributoNomes">
-                            {{ atributo }}: {{ personagem.atributos[atributo] }}
+                            {{ nomesAtributosPortugues[atributo] }}: {{ personagem.attributes[atributo] }} 
+                            <span class="modifier">({{ characterService.calculateAttributeModifier(personagem.attributes[atributo]) >= 0 ? '+' : '' }}{{ characterService.calculateAttributeModifier(personagem.attributes[atributo]) }})</span>
                         </li>
                     </ul>
+                    <p><strong>Classe de Armadura:</strong> {{ personagem.armorClass }}</p>
+                    <p><strong>Iniciativa:</strong> {{ personagem.initiative >= 0 ? '+' : '' }}{{ personagem.initiative }}</p>
+                    <p><strong>Pontos de Vida:</strong> {{ personagem.hitPoints.maximum }}</p>
                 </div>
                 <button (click)="finalizarCriacao()" class="btn-finalizar">Finalizar Criação</button>
             </div>

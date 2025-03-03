@@ -8,7 +8,7 @@ import { MagicDetail } from '../models/magic-detail';
   providedIn: 'root'
 })
 export class MagicService {
-  private apiUrl = 'https://ced.discloud.app/api/magias';
+  private apiUrl = 'https://drs.discloud.app/api/magias';
 
   constructor(private http: HttpClient) { }
 

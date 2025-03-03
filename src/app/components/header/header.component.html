@@ -1,9 +1,9 @@
 <nav class="row">
     <input type="checkbox" id="check">
     <label for="check" class="menu-icon">
-      <div class="bar"></div>
-      <div class="bar"></div>
-      <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
     </label>
     <ul class="row">
         <li class="link" routerLink="/home">Home</li>
@@ -18,13 +18,13 @@
 
         <!-- Exibe o Saguão apenas se o usuário ESTIVER autenticado -->
         <li class="link" *ngIf="isAuthenticated" routerLink="/saguao-do-aventureiro">
-          Saguão do Aventureiro
+            Saguão do Aventureiro
         </li>
 
         <!-- Exibe o nome do usuário e botão de logout -->
-        <li *ngIf="isAuthenticated" class="link">
-          <span>Bem-vindo, {{ userName }}!</span>
-          <button (click)="logout()">Sair</button>
+        <li *ngIf="isAuthenticated" class="link" routerLink="/perfil">
+            <span>Bem-vindo, {{ userName }}!</span>
+            
         </li>
     </ul>
 </nav>

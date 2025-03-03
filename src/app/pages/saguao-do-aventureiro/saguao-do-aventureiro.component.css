@@ -1,21 +1,99 @@
-section{
+section {
     align-items: center;
     justify-content: center;
-}
-.new, li{
-    cursor: pointer;
-}
-.new:hover, li:hover{
-    transform: scale(1.1);
+    padding: 40px 20px;
+    text-align: center;
 }
 
-li, .new{
-    margin: 10px;
-    padding: 10px;
-    border: 1px solid black;
-    background-color: rgba(42, 50, 165, 0.192);
+.page-title {
+    color: rgb(68, 0, 0);
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
-.new{
-    width: 250px;
-    height: 100px;
+
+.page-subtitle {
+    color: rgb(68, 0, 0);
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    opacity: 0.8;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    gap: 30px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.option-card {
+    flex: 1;
+    min-width: 280px;
+    max-width: 400px;
+    height: 280px;
+    padding: 25px;
+    border: 2px solid rgb(68, 0, 0);
+    border-radius: 15px;
+    background-color: rgb(255, 201, 53);
+    color: rgb(68, 0, 0);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+}
+
+.option-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 10px 20px rgba(68, 0, 0, 0.25);
+    background-color: rgb(255, 215, 70);
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.icon-list, .icon-new {
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+    color: rgb(68, 0, 0);
+}
+
+.icon-new {
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+.option-card h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.option-card p {
+    font-size: 1.1rem;
+    text-align: center;
+    line-height: 1.4;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .row {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .option-card {
+        width: 100%;
+        max-width: 350px;
+    }
 }
