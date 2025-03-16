@@ -13,6 +13,7 @@
     --form-box-shadow: 3px 3px 15px 5px rgba(0, 0, 0, 0.322);
     --glow-box-shadow: 0px 0px 5px rgba(247, 252, 0, 0.596);
     --glow-text-shadow: 0px 0px 10px  rgb(255, 0, 0);
+    --container-padding: 20px;
 }
 section{
     margin-top: 5vh;
@@ -21,6 +22,7 @@ section{
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    padding: var(--container-padding);
     background:
       conic-gradient(at 62.5% 12.5%, #0f0f0f 25%, #0000 0) calc(10px/-8) calc(10px/2),
       conic-gradient(at 62.5% 12.5%, #0f0f0f 25%, #0000 0) calc(-3*10px/8) calc(10px/4),
@@ -30,8 +32,8 @@ section{
       conic-gradient(at 25% 12.5%, #0f0f0f 25%, #0000 0) calc(10px/-4) 0,
       conic-gradient(at 87.5% 87.5%, #0f0f0f 25%, #0000 0) calc(10px/8) 0
       #2d2d2d;
-background-size: 10px 10px;
-
+    background-size: 10px 10px;
+    overflow: hidden;
 
 }
 .column{
@@ -39,6 +41,7 @@ background-size: 10px 10px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 100%;
 }
 
 .row{
@@ -46,12 +49,14 @@ background-size: 10px 10px;
     flex-direction: row;
     align-items: center;
     justify-content: center;
+
 }
 .row-always{
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    width: 100%;
 }
 .link{
     cursor: pointer;
@@ -65,6 +70,9 @@ background-size: 10px 10px;
 }
 button{
     border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
 }
 button:hover{
     transform: scale(1.1);
@@ -75,7 +83,38 @@ button:active{
     transform: translateY(4px);
 }
 
-@media screen and (max-width:680px){
+/* Breakpoints responsivos */
+@media screen and (max-width: 1200px) {
+    :root {
+        --container-padding: 15px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    :root {
+        --container-padding: 12px;
+    }
+    
+    .row {
+        gap: 15px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    :root {
+        --container-padding: 10px;
+    }
+    
+    section {
+       
+    }
+    
+    .row {
+        gap: 10px;
+    }
+}
+
+@media screen and (max-width: 680px){
 	.row{
         flex-direction: column;
     }
@@ -86,8 +125,37 @@ button:active{
         display: flex !important;
     }
     h1, h2, p{
-        width: 80vw;
+        
         text-align: center;
     }
     
+    button {
+        width: 100%;
+        max-width: 300px;
+    }
+    section {
+       margin-top: 0vh;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    :root {
+        --container-padding: 8px;
+    }
+    
+    section {
+        margin-top: 0vh;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    p {
+        font-size: 0.9rem;
+    }
 }

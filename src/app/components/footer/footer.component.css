@@ -1,7 +1,59 @@
 footer{
     background: rgb(41, 33, 33); 
-    height: 5vh;
+    min-height: 5vh;
+    width: 100%;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
 }
 footer p{
     color: white;
+    font-size: 1rem;
+    text-align: center;
+    margin: 0;
+}
+
+/* Responsividade */
+@media screen and (max-width: 1200px) {
+    footer {
+        padding: 12px 15px;
+    }
+    
+    footer p {
+        font-size: 0.95rem;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    footer {
+        padding: 10px 12px;
+    }
+    
+    footer p {
+        font-size: 0.9rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    footer {
+        padding: 8px 10px;
+        min-height: 4vh;
+    }
+    
+    footer p {
+        font-size: 0.85rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    footer {
+        padding: 6px 8px;
+        min-height: 3vh;
+    }
+    
+    footer p {
+        font-size: 0.8rem;
+    }
 }

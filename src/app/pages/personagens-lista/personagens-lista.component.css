@@ -13,12 +13,14 @@
   margin-bottom: 30px;
   padding-bottom: 15px;
   border-bottom: 2px solid #c8a165;
+  gap: 20px;
 }
 
 .personagens-header h1 {
   color: #5e3614;
   font-size: 2.2rem;
   font-family: 'Cinzel', serif;
+  margin: 0;
 }
 
 .btn-criar {
@@ -30,6 +32,7 @@
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
+  white-space: nowrap;
 }
 
 .btn-criar:hover {
@@ -148,6 +151,7 @@
   padding: 15px;
   background-color: #e9dfc9;
   border-top: 1px solid #d4c4a3;
+  gap: 10px;
 }
 
 .btn-ver, .btn-editar, .btn-excluir {
@@ -157,6 +161,7 @@
   cursor: pointer;
   font-size: 0.9rem;
   transition: all 0.2s ease;
+  flex: 1;
 }
 
 .btn-ver {
@@ -180,11 +185,49 @@
 }
 
 /* Responsividade */
+@media (max-width: 1200px) {
+  .personagens-container {
+    padding: 15px;
+  }
+  
+  .personagens-grid {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 992px) {
+  .personagens-container {
+    padding: 12px;
+  }
+  
+  .personagens-header h1 {
+    font-size: 2rem;
+  }
+  
+  .personagens-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 15px;
+  }
+}
+
 @media (max-width: 768px) {
+  .personagens-container {
+    margin: 20px auto;
+    padding: 10px;
+  }
+  
   .personagens-header {
     flex-direction: column;
     align-items: flex-start;
     gap: 15px;
+  }
+  
+  .personagens-header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .btn-criar {
+    width: 100%;
   }
   
   .personagens-grid {
@@ -199,6 +242,37 @@
   .btn-ver, .btn-editar, .btn-excluir {
     width: 100%;
     padding: 10px;
+  }
+  
+  .personagem-header h2 {
+    font-size: 1.2rem;
+  }
+  
+  .personagem-info p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .personagens-container {
+    margin: 10px auto;
+    padding: 8px;
+  }
+  
+  .personagens-header h1 {
+    font-size: 1.6rem;
+  }
+  
+  .sem-personagens {
+    padding: 30px 15px;
+  }
+  
+  .sem-personagens p {
+    font-size: 1.1rem;
+  }
+  
+  .personagem-card {
+    margin: 0 5px;
   }
 }
 
@@ -218,6 +292,7 @@
 .personagens-saguao-lista {
   list-style-type: none;
   padding: 0;
+  margin: 0;
 }
 
 .personagens-saguao-lista li {
@@ -229,6 +304,7 @@
   cursor: pointer;
   transition: all 0.3s ease;
   border: 1px solid rgb(68, 0, 0);
+  font-size: 1rem;
 }
 
 .personagens-saguao-lista li:hover {
@@ -242,9 +318,29 @@
   color: rgb(68, 0, 0);
 }
 
-/* Ajustes responsivos */
+/* Ajustes responsivos para o modo saguão */
 @media (max-width: 768px) {
   .saguao-lista {
     padding: 5px;
+  }
+  
+  .saguao-lista h2 {
+    font-size: 1.3rem;
+  }
+  
+  .personagens-saguao-lista li {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .saguao-lista h2 {
+    font-size: 1.2rem;
+  }
+  
+  .personagens-saguao-lista li {
+    font-size: 0.85rem;
+    padding: 6px;
   }
 } 

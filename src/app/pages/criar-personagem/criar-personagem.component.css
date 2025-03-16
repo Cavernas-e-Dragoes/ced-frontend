@@ -4,10 +4,11 @@
   flex-wrap: wrap;
   border: 2px solid #5B2C04;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.507);
-  width: 80vw;
-  height: 110vh;
+  width: 90vw;
+  max-width: 1200px;
+  min-height: 80vh;
   position: relative;
-  margin: 0 auto;
+  margin: 20px auto;
   padding: 20px;
   font-family: 'IM Fell English', serif;
   color: #4A2C2A;
@@ -35,6 +36,7 @@ h2 {
   justify-content: center;
   gap: 15px;
   align-items: center;
+  padding: 10px;
 }
 
 .opcao {
@@ -75,7 +77,8 @@ h2 {
 
 .livro {
   perspective: 1200px;
-  width: 70vw;
+  width: 100%;
+  max-width: 1000px;
   height: 80vh;
   margin: auto;
   position: relative;
@@ -104,7 +107,7 @@ h2 {
 section {
   width: 100%;
   min-height: 100vh;
-  padding: 40px 0;
+  padding: 20px 0;
   background-color: #f0e9d9;
   color: #3a3a3a;
 }
@@ -248,21 +251,17 @@ h2 {
 .btn-method {
   background-color: #7a5c3e;
   color: #f9f3e0;
+  padding: 10px 20px;
   border: none;
-  padding: 12px 24px;
-  margin: 0 10px;
   border-radius: 5px;
   cursor: pointer;
-  transition: all 0.3s ease;
   font-size: 1rem;
+  margin: 10px;
+  transition: all 0.3s ease;
 }
 
-.btn-method:hover,
-.btn-continuar:hover,
-.btn-finalizar:hover,
-.btn-voltar:hover,
-.btn-roll-again:hover {
-  opacity: 0.9;
+.btn-method:hover {
+  background-color: #5e3614;
   transform: translateY(-2px);
 }
 
@@ -270,144 +269,249 @@ h2 {
 .attribute-container {
   display: flex;
   flex-direction: column;
-  max-width: 400px;
-  margin: 30px auto;
-  background-color: #e9dfc9;
+  gap: 15px;
+  margin: 20px 0;
   padding: 20px;
+  background-color: #e9dfc9;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .atributo {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 15px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #d4c4a3;
+  padding: 10px;
+  background-color: #f9f3e0;
+  border-radius: 5px;
 }
 
 .atributo label {
   font-weight: bold;
   color: #5e3614;
-  width: 120px;
 }
 
 .atributo input[type="number"] {
   width: 60px;
-  padding: 8px;
+  padding: 5px;
   border: 1px solid #d4c4a3;
   border-radius: 4px;
   text-align: center;
-  font-size: 1rem;
 }
 
 .modifier {
-  padding: 4px 8px;
-  background-color: #5e3614;
-  color: #f9f3e0;
-  border-radius: 4px;
+  color: #7a5c3e;
   font-weight: bold;
-  min-width: 30px;
-  text-align: center;
 }
 
 .btn-roll-again {
-  align-self: center;
-  background-color: #7a5c3e;
+  background-color: #5e3614;
   color: #f9f3e0;
+  padding: 10px 20px;
   border: none;
-  padding: 8px 16px;
-  border-radius: 4px;
-  margin-top: 15px;
+  border-radius: 5px;
   cursor: pointer;
+  font-size: 1rem;
+  margin-top: 20px;
+  transition: all 0.3s ease;
 }
 
 /* Informações adicionais */
 .info-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   max-width: 500px;
   margin: 0 auto;
+  padding: 20px;
+  background-color: #e9dfc9;
+  border-radius: 8px;
 }
 
 .form-group {
-  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .form-group label {
-  display: block;
-  margin-bottom: 8px;
   font-weight: bold;
   color: #5e3614;
 }
 
 .form-group input,
 .form-group select {
-  width: 100%;
-  padding: 12px;
+  padding: 8px;
   border: 1px solid #d4c4a3;
   border-radius: 4px;
   font-size: 1rem;
-  background-color: #f9f3e0;
 }
 
-.form-group select {
-  cursor: pointer;
-}
-
-/* Resumo do personagem */
 .resumo {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+  text-align: left;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
   background-color: #e9dfc9;
   border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .resumo p {
-  margin-bottom: 10px;
-  font-size: 1.1rem;
+  margin: 10px 0;
+  color: #5e3614;
 }
 
 .attribute-list {
   list-style: none;
   padding: 0;
-  margin: 10px 0 20px;
+  margin: 10px 0;
 }
 
 .attribute-list li {
-  display: flex;
-  justify-content: space-between;
-  padding: 8px 10px;
-  margin-bottom: 5px;
-  background-color: #d4c4a3;
-  border-radius: 4px;
+  margin: 5px 0;
+  color: #5e3614;
 }
 
 /* Responsividade */
+@media (max-width: 1200px) {
+  .criacao-personagem {
+    width: 95vw;
+    padding: 15px;
+  }
+  
+  .livro {
+    height: 75vh;
+  }
+}
+
+@media (max-width: 992px) {
+  .criacao-personagem {
+    width: 98vw;
+    padding: 12px;
+  }
+  
+  h2 {
+    font-size: 1.8rem;
+  }
+  
+  .opcao {
+    width: 180px;
+  }
+  
+  .opcao img,
+  .opcao-avatar {
+    width: 70px;
+    height: 70px;
+    font-size: 1.8em;
+  }
+}
+
 @media (max-width: 768px) {
+  .criacao-personagem {
+    width: 100%;
+    margin: 10px auto;
+    padding: 10px;
+  }
+  
+  .livro {
+    height: 70vh;
+  }
+  
   .opcoes {
     gap: 10px;
   }
-
+  
   .opcao {
-    width: 120px;
-    padding: 10px;
+    width: 150px;
+    font-size: 14px;
   }
-
+  
   .opcao img,
   .opcao-avatar {
     width: 60px;
     height: 60px;
+    font-size: 1.6em;
   }
-
+  
   h2 {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
+    margin-bottom: 20px;
   }
-
+  
   .pagina {
     padding: 20px;
-    min-height: auto;
+    min-height: 400px;
+  }
+  
+  .btn-voltar {
+    position: relative;
+    top: 0;
+    left: 0;
+    margin-bottom: 20px;
+  }
+  
+  .btn-continuar,
+  .btn-finalizar {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .criacao-personagem {
+    margin: 5px auto;
+    padding: 8px;
+  }
+  
+  .livro {
+    height: 65vh;
+  }
+  
+  h2 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+  }
+  
+  .opcao {
+    width: 130px;
+    font-size: 12px;
+  }
+  
+  .opcao img,
+  .opcao-avatar {
+    width: 50px;
+    height: 50px;
+    font-size: 1.4em;
+  }
+  
+  .pagina {
+    padding: 15px;
+    min-height: 350px;
+  }
+  
+  .btn-method {
+    width: 100%;
+    margin: 5px 0;
+  }
+  
+  .attribute-container {
+    padding: 10px;
+  }
+  
+  .info-form {
+    padding: 10px;
+  }
+  
+  .form-group input,
+  .form-group select {
+    font-size: 0.9rem;
+  }
+  
+  .resumo {
+    padding: 10px;
+  }
+  
+  .resumo p,
+  .attribute-list li {
+    font-size: 0.9rem;
   }
 }

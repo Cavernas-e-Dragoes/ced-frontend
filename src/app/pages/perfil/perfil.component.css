@@ -6,6 +6,12 @@
     margin-top: 10px;
 }
 
+.alert:not(.alerta-verificacao) {
+    background-color: #ccffcc;
+    color: #006600;
+    border: 1px solid #006600;
+}
+
 .perfil-container {
     display: flex;
     flex-direction: column;

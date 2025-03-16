@@ -5,13 +5,13 @@
         <p><strong>Nome:</strong> {{ userName }}</p>
         <p><strong>E-mail:</strong> {{ userEmail }}</p>
 
-        <div *ngIf="!emailVerified" class="alert">
+        <div class="alert" [ngClass]="{'alerta-verificacao': !emailVerified}">
             <p>{{ verificationMessage }}</p>
         </div>
 
         <div *ngIf="!emailVerified" class="alert alerta-verificacao">
             <button (click)="reenviarEmailVerificacao()" class="btn-reenviar">Reenviar E-mail de Verificação</button>
-          </div>
+        </div>
 
         <button (click)="logout()">Sair</button>
     </div>
