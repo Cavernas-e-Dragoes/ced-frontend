@@ -1,0 +1,1 @@
+{"ast":null,"code":"export const environment = {\n  production: false,\n  apiUrl: 'https://characters.discloud.app/api'\n};","map":null,"metadata":{},"sourceType":"module","externalDependencies":[]}

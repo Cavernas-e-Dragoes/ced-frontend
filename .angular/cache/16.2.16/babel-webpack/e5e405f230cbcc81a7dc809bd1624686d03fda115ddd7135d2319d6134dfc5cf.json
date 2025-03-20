@@ -1,0 +1,1 @@
+{"ast":null,"code":"export const StorageKeys = {\n  AUTH_TOKEN: 'auth_token',\n  USER_NAME: 'user_name',\n  USER_EMAIL: 'user_email',\n  EMAIL_VERIFIED: 'email_verified',\n  VERIFICATION_MESSAGE: 'verification_message'\n};","map":null,"metadata":{},"sourceType":"module","externalDependencies":[]}
