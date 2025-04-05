@@ -25,4 +25,4 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: deploy
-          folder: dist # ou build, dependendo do framework
+          folder: dist/cavernasedragoes # ou build, dependendo do framework
