@@ -3,7 +3,7 @@ name: Deploy para KingHost
 on:
   push:
     branches:
-      - main
+      - main # ou a branch que tu quiser que dispare a automação
 
 jobs:
   build-and-deploy:
@@ -16,14 +16,11 @@ jobs:
       - name: 🧱 Instala dependências
         run: npm install
 
-      - name: 📦 Instala Angular CLI
-        run: npm install -g @angular/cli
-
-      - name: 🛠️ Roda o build com base href relativo
-        run: ng build --base-href ./
+      - name: 🛠️ Roda o build
+        run: npm run build # ou ng build --base-href ./ (Angular)
 
       - name: 📤 Faz deploy na branch deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: deploy
-          folder: dist
+          folder: dist # ou build, dependendo do framework
