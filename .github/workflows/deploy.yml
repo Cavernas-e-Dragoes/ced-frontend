@@ -16,6 +16,9 @@ jobs:
       - name: 🧱 Instala dependências
         run: npm install
 
+      - name: 📦 Instala Angular CLI
+        run: npm install -g @angular/cli
+
       - name: 🛠️ Roda o build com base href relativo
         run: ng build --base-href ./
 
