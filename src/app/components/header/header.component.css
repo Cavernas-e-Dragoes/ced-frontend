@@ -1,25 +1,108 @@
 nav{
     justify-content: space-around;
-    height: 60px;
+    height: 90px;
     width: 100%;
     z-index: 5;
     position: fixed;
-    background: rgb(41, 33, 33); 
+    background: rgb(34, 0, 0); 
     box-shadow: 2px 2px 5px black;
     margin-top: -5vh;
 }
 ul{
     height: 60px;
+	width: 60%;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	flex-wrap: nowrap;
 }
 li{
-    color: aliceblue;
-    padding: 1rem;
+    color: #ffe77f;
+    padding: .5rem;
+	font-size: 1.3rem;
 }
+.link-menu{
+    position: relative;
+    color: #ffe77f;
+}
+
+.link-menu::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #ffe77f;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.link-menu:hover::after {
+    transform: scaleX(1);
+}
+
 #check{
 	display: none;
 }
+#d20{
+    width: 70px;
+    height: 70px;
+    margin-right: 10px;
+    margin-left: 10px;
+    animation: rotate 3s linear infinite;
+}
+.logo{
+    width: 100px;
+    height: 70px;
+	margin-right: 30px;
+}
+.button{
+	background-color: #410003;
+	color: #ffe77f;
+	border-radius: 5px;
+	margin: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100px;
+	padding: .8rem 3rem;
+	height: 50px;
+	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.466);
+	text-align: center;
+}
+.button:hover{
+	background-color: #920209;
+}
+.button-border{
+	color: #ffe77f;
+	border-radius: 5px;
+	border:#ffe77f 1px dashed;
+	margin: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 180px;
+	height: 50px;
+	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.466);
+}
+.button-border:hover{
+	background-color: #ffe77f;
+	color: #410003;
+	transition: .3s;
+}
 
-@media screen and (max-width:680px) {
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media screen and (max-width:1024px) {
 	nav{
 		justify-content: space-between;
 		flex-direction: row-reverse;
@@ -44,7 +127,10 @@ li{
 		margin-bottom: 50px;
 		margin-left: -30px;
 		opacity: 0;
-        background: rgb(41, 33, 33); 
+        background: rgb(26, 0, 0); 
+	}
+	.logo-content{
+		margin: 0 auto;
 	}
 	  #check:checked ~ ul{
 		transition: all .3s;
@@ -54,7 +140,7 @@ li{
 		opacity: 1;
 		position: absolute;
 		z-index: 5555;
-		margin-top: -20px;
+		margin-top: 10px;
 		margin-right: -10px;
 		margin-left: 0;
 		width: 100vw;
@@ -69,7 +155,7 @@ li{
 	  }
 	  
 	  .bar {
-		background-color: #8a7a4f;
+		background-color: #ffe77f;
 		height: 3px;
 		width: 100%;
 		position: absolute;

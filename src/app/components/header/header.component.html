@@ -1,20 +1,27 @@
 <nav class="row">
+    <div class="logo-content row-always">
+        <img id="d20" src="../../../assets/images/d20y.png" alt="Logo" class="logo">
+        <img id="logo" src="../../../assets/images/logoy.png" alt="">
+    </div>
+
     <input type="checkbox" id="check">
     <label for="check" class="menu-icon">
         <div class="bar"></div>
         <div class="bar"></div>
         <div class="bar"></div>
     </label>
+
     <ul class="row">
-        <li class="link" routerLink="/home">Home</li>
-        <li class="link" routerLink="/classes">Classes</li>
-        <li class="link" routerLink="/races">Raças</li>
-        <li class="link" routerLink="/magias">Magias</li>
-        <li class="link" routerLink="/equipamentos-categorias">Equipamentos</li>
-        <li class="link" routerLink="/rules">Regras</li>
+        <li class="link link-menu" routerLink="/home">Home</li>
+        <li class="link link-menu" routerLink="/classes">Classes</li>
+        <li class="link link-menu" routerLink="/races">Raças</li>
+        <li class="link link-menu" routerLink="/magias">Magias</li>
+        <li class="link link-menu" routerLink="/equipamentos-categorias">Equipamentos</li>
+        <li class="link link-menu" routerLink="/rules">Regras</li>
 
         <!-- Exibe "Entre" apenas se o usuário NÃO estiver autenticado -->
-        <li class="link" *ngIf="!isAuthenticated" routerLink="/login">Entre</li>
+        <li class="link button" *ngIf="!isAuthenticated" routerLink="/login">Entre</li>
+        <li class="link button-border" *ngIf="!isAuthenticated" routerLink="/register">Registrar</li>
 
         <!-- Exibe o Saguão apenas se o usuário ESTIVER autenticado -->
         <li class="link" *ngIf="isAuthenticated" routerLink="/saguao-do-aventureiro">
@@ -24,7 +31,7 @@
         <!-- Exibe o nome do usuário e botão de logout -->
         <li *ngIf="isAuthenticated" class="link" routerLink="/perfil">
             <span>Bem-vindo, {{ userName }}!</span>
-            
+
         </li>
     </ul>
 </nav>
