@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap');
+
 *{
     list-style: none;
     outline: 0;
@@ -6,7 +8,7 @@
     scroll-behavior: smooth;
     box-sizing: border-box;
     transition: .5s;
-    font-family: 'Cinzel', serif;
+    font-family: "Cinzel", serif;
 }
 :root{
     --form-background-color: rgba(37, 27, 27, 0.5);
@@ -104,11 +106,6 @@ button:active{
     :root {
         --container-padding: 10px;
     }
-    
-    section {
-       
-    }
-    
     .row {
         gap: 10px;
     }
