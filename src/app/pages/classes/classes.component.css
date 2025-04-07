@@ -1,39 +1,127 @@
-
+.content-container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
 
 .classes-container {
     display: grid;
-    grid-template-columns: repeat(6, 100px);
-    grid-gap: 20px;
-    height: 50vh;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    width: 100%;
+    padding: 20px;
 }
-.item {
-    width: 100px;
-    height: 100px;
-    background-color: #f4f4f4;
-    border: 1px solid #ddd;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    flex-direction: column;
-    cursor: pointer;
 
+.item {
+    position: relative;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    text-align: center;
+    overflow: hidden;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
-.item:hover{
-    box-shadow: var(--glow-box-shadow)
+
+.item:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
 }
-@media screen and (max-width: 1200px) {
+
+.item h3 {
+    margin: 0;
+    font-size: 1.5em;
+    color: #ffd700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 1;
+}
+
+.item p {
+    margin: 10px 0 0;
+    font-size: 1.1em;
+    color: #ffa500;
+    position: relative;
+    z-index: 1;
+}
+
+/* Imagens de fundo para cada classe 
+.item[data-class="barbarian"]::before {
+    background-image: url('https://images.unsplash.com/photo-1614728894747-a83421789f10?q=80&w=1000&auto=format&fit=crop');
+}
+
+.item[data-class="bard"]::before {
+    background-image: url('https://images.unsplash.com/photo-1511379938547-c1f69419861d?q=80&w=1000&auto=format&fit=crop');
+}
+
+.item[data-class="cleric"]::before {
+    background-image: url('https://images.unsplash.com/photo-1519682337058-a94d9eff0e86?q=80&w=1000&auto=format&fit=crop');
+}
+
+.item[data-class="druid"]::before {
+    background-image: url('https://images.unsplash.com/photo-1519682337058-a94d9eff0e86?q=80&w=1000&auto=format&fit=crop');
+}
+
+.item[data-class="fighter"]::before {
+    background-image: url('https://images.unsplash.com/photo-1614728894747-a83421789f10?q=80&w=1000&auto=format&fit=crop');
+}
+
+.item[data-class="monk"]::before {
+    background-image: url('https://images.unsplash.com/photo-1519682337058-a94d9eff0e86?q=80&w=1000&auto=format&fit=crop');
+}
+
+.item[data-class="paladin"]::before {
+    background-image: url('https://images.unsplash.com/photo-1614728894747-a83421789f10?q=80&w=1000&auto=format&fit=crop');
+}
+
+.item[data-class="ranger"]::before {
+    background-image: url('https://images.unsplash.com/photo-1519682337058-a94d9eff0e86?q=80&w=1000&auto=format&fit=crop');
+}
+
+.item[data-class="rogue"]::before {
+    background-image: url('https://images.unsplash.com/photo-1614728894747-a83421789f10?q=80&w=1000&auto=format&fit=crop');
+}
+
+.item[data-class="sorcerer"]::before {
+    background-image: url('https://images.unsplash.com/photo-1519682337058-a94d9eff0e86?q=80&w=1000&auto=format&fit=crop');
+}
+
+.item[data-class="warlock"]::before {
+    background-image: url('https://images.unsplash.com/photo-1614728894747-a83421789f10?q=80&w=1000&auto=format&fit=crop');
+}
+
+.item[data-class="wizard"]::before {
+    background-image: url('https://images.unsplash.com/photo-1519682337058-a94d9eff0e86?q=80&w=1000&auto=format&fit=crop');
+}*/
+
+@media screen and (max-width: 768px) {
     .classes-container {
-        grid-template-columns: repeat(4, 100px);
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 15px;
+        padding: 15px;
     }
-}
-@media screen and (max-width: 640px) {
-    .classes-container {
-        grid-template-columns: repeat(3, 100px);
+
+    .item {
+        padding: 15px;
+        min-height: 150px;
     }
-}
-@media screen and (max-width: 480px) {
-    .classes-container {
-        grid-template-columns: repeat(2, 100px);
+
+    .item h3 {
+        font-size: 1.2em;
+    }
+
+    .item p {
+        font-size: 1em;
     }
 }
