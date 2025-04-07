@@ -14,8 +14,9 @@
     --form-background-color: rgba(37, 27, 27, 0.5);
     --form-box-shadow: 3px 3px 15px 5px rgba(0, 0, 0, 0.322);
     --glow-box-shadow: 0px 0px 5px rgba(247, 252, 0, 0.596);
-    --glow-text-shadow: 0px 0px 10px  rgb(255, 0, 0);
     --container-padding: 20px;
+    --pallet-yellow: #ffe77f;
+    --pallet-red: rgb(34, 0, 0);
 }
 section{
     margin-top: 5vh;
