@@ -13,6 +13,7 @@
     gap: 20px;
     width: 100%;
     padding: 20px;
+    margin-top: 5vh;
 }
 
 .item {
@@ -104,6 +105,7 @@
 .item[data-class="wizard"]::before {
     background-image: url('https://images.unsplash.com/photo-1519682337058-a94d9eff0e86?q=80&w=1000&auto=format&fit=crop');
 }*/
+
 
 @media screen and (max-width: 768px) {
     .classes-container {

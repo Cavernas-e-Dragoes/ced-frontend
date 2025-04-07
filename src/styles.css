@@ -87,8 +87,8 @@ button:active{
     :root {
         --container-padding: 15px;
     }
-    section{
-        margin-top: -5vh;
+    .background-section{
+       margin-top: -5vh !important;
     }
 }
 
@@ -100,6 +100,7 @@ button:active{
     .row {
         gap: 15px;
     }
+    
 }
 
 @media screen and (max-width: 768px) {

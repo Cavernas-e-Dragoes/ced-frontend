@@ -4,36 +4,97 @@
     /* 4 colunas de 100px cada */
     grid-gap: 20px;
     /* Espaço de 20px entre os itens */
-    height: 50vh;
+    
   }
-  
-  .item {
-    background-color: #f4f4f4;
-    border: 1px solid #ddd;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    flex-direction: column;
-    cursor: pointer;
-    transition: box-shadow 0.3s ease;
+  .background-races{
+    background: linear-gradient(to bottom, #001407, #010503) !important;
   }
-  
-  .item:hover {
-    box-shadow: var(--glow-box-shadow);
-  }
-  @media screen and (max-width: 1200px) {
-    .races-container {
-        grid-template-columns: repeat(4, 100px);
-    }
+  .light-1 {
+    background: radial-gradient(circle at center, #b3ff00, #ccceaf) !important;
 }
-@media screen and (max-width: 640px) {
-    .races-container {
-        grid-template-columns: repeat(3, 100px);
-    }
+.light-2 {
+  background: radial-gradient(circle at center, #b3ff00, #ccceaf) !important;
 }
-@media screen and (max-width: 480px) {
+.light-3 {
+  background: radial-gradient(circle at center, #b3ff00, #ccceaf) !important;
+}
+.light-4 {
+  background: radial-gradient(circle at center, #b3ff00, #ccceaf) !important;
+}
+.light-5 {
+  background: radial-gradient(circle at center, #b3ff00, #ccceaf) !important;
+}
+.light-6 {
+  background: radial-gradient(circle at center, #e7ff0e, #efff16) !important;
+}
+.races-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  width: 100%;
+  padding: 20px;
+  margin: 5vh 40px;
+}
+
+.item {
+  position: relative;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  text-align: center;
+  overflow: hidden;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.item:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+}
+
+.item h3 {
+  margin: 0;
+  font-size: 1.5em;
+  color: #ffd700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  position: relative;
+  z-index: 1;
+}
+
+.item p {
+  margin: 10px 0 0;
+  font-size: 1.1em;
+  color: #ffa500;
+  position: relative;
+  z-index: 1;
+}
+
+  
+  @media screen and (max-width: 768px) {
     .races-container {
-        grid-template-columns: repeat(2, 100px);
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .item {
+        padding: 15px;
+        min-height: 150px;
+    }
+
+    .item h3 {
+        font-size: 1.2em;
+    }
+
+    .item p {
+        font-size: 1em;
     }
 }
