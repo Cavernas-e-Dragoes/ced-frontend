@@ -1,0 +1,305 @@
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.6;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+}
+
+@keyframes pulse-slow {
+    0% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+    50% {
+        transform: scale(1.15);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+}
+
+@keyframes pulse-fast {
+    0% {
+        transform: scale(1);
+        opacity: 0.9;
+    }
+    50% {
+        transform: scale(1.25);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.9;
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate(1deg);
+    }
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+}
+
+.home-container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(to bottom, #1a0f0f, #2a1a1a);
+    margin-top: 5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.parallax-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.light-point {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(15px);
+    opacity: 0.8;
+    transition: transform 0.1s ease-out;
+    mix-blend-mode: screen;
+}
+
+.light-1 {
+    animation: pulse 3s infinite ease-in-out;
+}
+
+.light-2 {
+    animation: pulse-slow 4s infinite ease-in-out;
+}
+
+.light-3 {
+    animation: pulse-fast 2s infinite ease-in-out;
+}
+
+.light-4 {
+    animation: pulse 3.5s infinite ease-in-out;
+}
+
+.light-5 {
+    animation: pulse-slow 4.5s infinite ease-in-out;
+}
+
+.light-6 {
+    animation: pulse-fast 2.5s infinite ease-in-out;
+}
+
+.light-7 {
+    animation: pulse 3.2s infinite ease-in-out;
+}
+
+.light-8 {
+    animation: pulse-slow 4.2s infinite ease-in-out;
+}
+
+.light-1 {
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle at center, #ff6b00, #ff4500);
+    top: 15%;
+    left: 10%;
+    transform: translateY(0);
+}
+
+.light-2 {
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle at center, #ffd700, #ffa500);
+    top: 35%;
+    right: 15%;
+    transform: translateY(0);
+}
+
+.light-3 {
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle at center, #ff4500, #ff0000);
+    bottom: 25%;
+    left: 20%;
+    transform: translateY(0);
+}
+
+.light-4 {
+    width: 30px;
+    height: 30px;
+    background: radial-gradient(circle at center, #ffa500, #ff8c00);
+    top: 55%;
+    right: 25%;
+    transform: translateY(0);
+}
+
+.light-5 {
+    width: 50px;
+    height: 50px;
+    background: radial-gradient(circle at center, #ffd700, #ffb700);
+    bottom: 15%;
+    right: 10%;
+    transform: translateY(0);
+}
+
+.light-6 {
+    width: 35px;
+    height: 35px;
+    background: radial-gradient(circle at center, #ff8c00, #ff6b00);
+    top: 25%;
+    left: 30%;
+    transform: translateY(0);
+}
+
+.light-7 {
+    width: 45px;
+    height: 45px;
+    background: radial-gradient(circle at center, #ffb700, #ff9500);
+    top: 45%;
+    left: 40%;
+    transform: translateY(0);
+}
+
+.light-8 {
+    width: 25px;
+    height: 25px;
+    background: radial-gradient(circle at center, #ff9500, #ff7f00);
+    bottom: 35%;
+    right: 35%;
+    transform: translateY(0);
+}
+
+.parchment {
+    position: relative;
+    width: 65%;
+    padding: 40px;
+    border-radius: 50px 0px 50px 0px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    animation: float 10s ease-in-out infinite;
+    border: 1px solid #d4b483;
+    text-align: center;
+    z-index: 1;
+    margin: 0;
+    max-width: 800px;
+    overflow: hidden;
+
+    // Combinando todos os efeitos de fundo em uma única declaração
+    background: 
+        linear-gradient(135deg, #f4e4bc 0%, #e6d5a7 50%, #d4b483 100%),
+        repeating-linear-gradient(
+            45deg,
+            rgba(212, 180, 131, 0.1) 0px,
+            rgba(212, 180, 131, 0.1) 1px,
+            transparent 1px,
+            transparent 10px
+        ),
+        repeating-linear-gradient(
+            -45deg,
+            rgba(212, 180, 131, 0.1) 0px,
+            rgba(212, 180, 131, 0.1) 1px,
+            transparent 1px,
+            transparent 10px
+        ),
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(212, 180, 131, 0.3) 0%,
+            transparent 50%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(212, 180, 131, 0.3) 0%,
+            transparent 50%
+        );
+
+    // Efeito de borda envelhecida
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border: 1px solid rgba(212, 180, 131, 0.3);
+        border-radius: 50px 0px 50px 0px;
+        pointer-events: none;
+    }
+
+    // Efeito de sombra interna
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+            circle at 50% 50%,
+            transparent 0%,
+            rgba(0, 0, 0, 0.1) 100%
+        );
+        pointer-events: none;
+    }
+
+    // Sombra mais pronunciada
+    box-shadow: 
+        inset 0 0 50px rgba(0, 0, 0, 0.815),
+        0 0 20px rgb(0, 0, 0),
+        0 0 0 1px rgba(212, 180, 131, 0.2);
+
+    h1 {
+        color: #2c1810;
+        font-size: 2.5em;
+        margin-bottom: 20px;
+        font-family: 'Cinzel', serif;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        position: relative;
+        letter-spacing: 2px;
+        
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #d4b483, transparent);
+        }
+    }
+
+    p {
+        color: #3c2415;
+        font-size: 1.2em;
+        line-height: 1.6;
+        font-family: 'Crimson Text', serif;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        position: relative;
+        padding: 0 20px;
+        letter-spacing: 0.5px;
+    }
+} 
+@media screen and (max-width: 1024px) {
+    .home-container{
+        margin-top: -5vh;
+    }
+}
