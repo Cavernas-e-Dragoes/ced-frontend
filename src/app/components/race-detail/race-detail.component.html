@@ -1,66 +1,114 @@
 <app-header></app-header>
 
 <section class="race-detail-section">
-  <div *ngIf="loading">Carregando...</div>
-  <div *ngIf="error">{{ error }}</div>
+  <!-- Pontos de luz para o fundo -->
+  <div class="light-point light-1"></div>
+  <div class="light-point light-2"></div>
+  <div class="light-point light-3"></div>
+  <div class="light-point light-4"></div>
+  <div class="light-point light-5"></div>
+  <div class="light-point light-6"></div>
+  <div class="light-point light-7"></div>
+  <div class="light-point light-8"></div>
   
-  <div *ngIf="!loading && !error">
-    <h1>{{ raceDetail.name }}</h1>
-    <p><strong>Velocidade:</strong> {{ raceDetail.speed }} metros</p>
-    <p><strong>Tamanho:</strong> {{ raceDetail.size }} - {{ raceDetail.sizeDescription }}</p>
-    <p><strong>Alinhamento:</strong> {{ raceDetail.alignment }}</p>
-    <p><strong>Idade:</strong> {{ raceDetail.age }}</p>
+  <!-- Botão de voltar -->
+  <button class="btn-voltar" routerLink="/races">
+    <i class="fa fa-arrow-left"></i> Voltar
+  </button>
+  
+  <div *ngIf="loading" class="loading-indicator">Carregando...</div>
+  <div *ngIf="error" class="error-message">{{ error }}</div>
+  
+  <div class="race-container" *ngIf="!loading && !error">
+    <!-- Elementos decorativos com CSS puro -->
+    <div class="corner-decoration top-left"></div>
+    <div class="corner-decoration top-right"></div>
+    <div class="corner-decoration bottom-left"></div>
+    <div class="corner-decoration bottom-right"></div>
     
-    <h2>Bônus de Habilidade</h2>
-    <ul>
-      <li *ngFor="let bonus of raceDetail.abilityBonuses">
-        Bônus de {{ bonus.abilityScore?.name || 'Nenhum'}}, +{{ bonus.bonus }}
-      </li>
-    </ul>
+    <!-- Textura de pergaminho e rolagens laterais -->
+    <div class="parchment-texture"></div>
+    <div class="scrolls scroll-left"></div>
+    <div class="scrolls scroll-right"></div>
+    
+    <!-- Manchas de tinta decorativas -->
+    <div class="ink-spot ink-spot-1"></div>
+    <div class="ink-spot ink-spot-2"></div>
+    
+    <h1 class="race-title">{{ raceDetail.name }}</h1>
+    
+    <div class="race-section">
+      <div class="basic-info">
+        <p><strong>Velocidade:</strong> {{ raceDetail.speed }} metros</p>
+        <p><strong>Tamanho:</strong> {{ raceDetail.size }} - {{ raceDetail.sizeDescription }}</p>
+        <p><strong>Alinhamento:</strong> {{ raceDetail.alignment }}</p>
+        <p><strong>Idade:</strong> {{ raceDetail.age }}</p>
+      </div>
+    </div>
+    
+    <div class="race-section">
+      <h2>Bônus de Habilidade</h2>
+      <ul>
+        <li *ngFor="let bonus of raceDetail.abilityBonuses">
+          Bônus de {{ bonus.abilityScore?.name || 'Nenhum'}}, +{{ bonus.bonus }}
+        </li>
+      </ul>
+    </div>
 
-    <h2>Proficiências Iniciais</h2>
-    <ul>
-      <li *ngFor="let prof of raceDetail.startingProficiencies">
-        {{ prof.name }}
-      </li>
-    </ul>
+    <div class="race-section">
+      <h2>Proficiências Iniciais</h2>
+      <ul>
+        <li *ngFor="let prof of raceDetail.startingProficiencies">
+          {{ prof.name }}
+        </li>
+      </ul>
+      <p *ngIf="raceDetail.startingProficiencies.length === 0">
+        Nenhuma proficiência inicial específica para esta raça.
+      </p>
+    </div>
 
-    <h2>Opções de Proficiência Inicial</h2>
-    <p>{{ raceDetail.startingProficiencyOptions.desc }}</p>
-    <ul>
-      <li *ngFor="let option of raceDetail.startingProficiencyOptions.from.options">
-        <ng-container *ngIf="option.item">
-          {{ option.item.name }}
-        </ng-container>
-        <ng-container *ngIf="option.choice">
-          {{ option.choice.desc }}
-        </ng-container>
-      </li>
-    </ul>
+    <div class="race-section" *ngIf="raceDetail.startingProficiencyOptions">
+      <h2>Opções de Proficiência</h2>
+      <p>{{ raceDetail.startingProficiencyOptions.desc }}</p>
+      <ul>
+        <li *ngFor="let option of raceDetail.startingProficiencyOptions.from.options">
+          <ng-container *ngIf="option.item">
+            {{ option.item.name }}
+          </ng-container>
+          <ng-container *ngIf="option.choice">
+            {{ option.choice.desc }}
+          </ng-container>
+        </li>
+      </ul>
+    </div>
 
-    <h2>Idiomas</h2>
-    <p>{{ raceDetail.languageDesc }}</p>
-    <ul>
-      <li *ngFor="let lang of raceDetail.languages">
-        {{ lang.name }}
-      </li>
-    </ul>
+    <div class="race-section">
+      <h2>Idiomas</h2>
+      <p>{{ raceDetail.languageDesc }}</p>
+      <ul>
+        <li *ngFor="let lang of raceDetail.languages">
+          {{ lang.name }}
+        </li>
+      </ul>
+    </div>
 
-    <h2>Traços</h2>
-    <ul>
-      <li *ngFor="let trait of raceDetail.traits">
-        {{ trait.name }}
-      </li>
-    </ul>
+    <div class="race-section" *ngIf="raceDetail.traits && raceDetail.traits.length > 0">
+      <h2>Traços Raciais</h2>
+      <ul>
+        <li *ngFor="let trait of raceDetail.traits">
+          {{ trait.name }}
+        </li>
+      </ul>
+    </div>
 
-    <h2>Subraças</h2>
-    <ul>
-      <li *ngFor="let subrace of raceDetail.subraces">
-        {{ subrace.name }}
-      </li>
-    </ul>
-
-    <!-- Adicione mais seções conforme necessário -->
+    <div class="race-section" *ngIf="raceDetail.subraces && raceDetail.subraces.length > 0">
+      <h2>Subraças</h2>
+      <ul>
+        <li *ngFor="let subrace of raceDetail.subraces">
+          {{ subrace.name }}
+        </li>
+      </ul>
+    </div>
   </div>
 </section>
 

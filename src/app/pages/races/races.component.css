@@ -8,93 +8,251 @@
   }
   .background-races{
     background: linear-gradient(to bottom, #001407, #010503) !important;
+    position: relative;
+    min-height: calc(100vh - 10vh);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding: 50px 0;
+    margin-top: 5vh;
   }
   .light-1 {
+    width: 80px;
+    height: 80px;
     background: radial-gradient(circle at center, #b3ff00, #ccceaf) !important;
-}
-.light-2 {
-  background: radial-gradient(circle at center, #b3ff00, #ccceaf) !important;
-}
-.light-3 {
-  background: radial-gradient(circle at center, #b3ff00, #ccceaf) !important;
-}
-.light-4 {
-  background: radial-gradient(circle at center, #b3ff00, #ccceaf) !important;
-}
-.light-5 {
-  background: radial-gradient(circle at center, #b3ff00, #ccceaf) !important;
-}
-.light-6 {
-  background: radial-gradient(circle at center, #e7ff0e, #efff16) !important;
-}
-.races-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
-  width: 100%;
-  padding: 20px;
-  margin: 5vh 40px;
-}
-
-.item {
-  position: relative;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 8px;
-  padding: 20px;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #fff;
-  text-align: center;
-  overflow: hidden;
-  min-height: 200px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.item:hover {
-  transform: translateY(-5px);
-  background: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
-}
-
-.item h3 {
-  margin: 0;
-  font-size: 1.5em;
-  color: #ffd700;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  position: relative;
-  z-index: 1;
-}
-
-.item p {
-  margin: 10px 0 0;
-  font-size: 1.1em;
-  color: #ffa500;
-  position: relative;
-  z-index: 1;
-}
-
-  
+    animation: pulse 3s infinite ease-in-out;
+  }
+  .light-2 {
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle at center, #b3ff00, #ccceaf) !important;
+    animation: pulse-slow 4s infinite ease-in-out;
+  }
+  .light-3 {
+    width: 50px;
+    height: 50px;
+    background: radial-gradient(circle at center, #b3ff00, #ccceaf) !important;
+    animation: pulse-fast 2.5s infinite ease-in-out;
+  }
+  .light-4 {
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle at center, #b3ff00, #ccceaf) !important;
+    animation: pulse 3.2s infinite ease-in-out;
+  }
+  .light-5 {
+    width: 70px;
+    height: 70px;
+    background: radial-gradient(circle at center, #b3ff00, #ccceaf) !important;
+    animation: pulse-slow 3.8s infinite ease-in-out;
+  }
+  .light-6 {
+    width: 55px;
+    height: 55px;
+    background: radial-gradient(circle at center, #e7ff0e, #efff16) !important;
+    animation: pulse-fast 2.8s infinite ease-in-out;
+  }
+  .light-7 {
+    width: 45px;
+    height: 45px;
+    background: radial-gradient(circle at center, #b3ff00, #ccceaf) !important;
+    animation: pulse 3.5s infinite ease-in-out;
+  }
+  .light-8 {
+    width: 35px;
+    height: 35px;
+    background: radial-gradient(circle at center, #b3ff00, #ccceaf) !important;
+    animation: pulse-slow 4.2s infinite ease-in-out;
+  }
+  .races-container {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 25px;
+    width: 90%;
+    max-width: 1200px;
+    padding: 30px;
+    margin: 0 auto;
+    background: rgba(16, 43, 21, 0.7);
+    border-radius: 15px;
+    border: 1px solid rgba(142, 255, 120, 0.3);
+    box-shadow: 0 0 30px rgba(126, 255, 102, 0.2);
+    backdrop-filter: blur(5px);
+  }
+  .races-title {
+    grid-column: 1 / -1;
+    font-size: 2.8rem;
+    color: #e8ffbd;
+    text-shadow: 0 0 15px rgba(126, 255, 102, 0.7), 0 0 30px rgba(79, 156, 52, 0.5);
+    margin-bottom: 35px;
+    text-align: center;
+    font-weight: 900;
+    letter-spacing: 2px;
+    position: relative;
+    font-family: 'Cinzel', serif;
+    text-transform: uppercase;
+  }
+  .races-title::after {
+    content: "";
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 4px;
+    background: linear-gradient(to right, rgba(126, 255, 102, 0), rgba(183, 255, 124, 0.9), rgba(126, 255, 102, 0));
+    border-radius: 4px;
+  }
+  .item {
+    position: relative;
+    background: rgba(12, 41, 16, 0.9);
+    border-radius: 10px;
+    padding: 25px 20px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(142, 255, 120, 0.4);
+    color: #fff;
+    text-align: center;
+    overflow: hidden;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+  .item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(to right, #7dff00, #acff44, #7dff00);
+    opacity: 0.7;
+  }
+  .item:hover {
+    transform: translateY(-5px) scale(1.03);
+    background: rgba(32, 84, 40, 0.9);
+    box-shadow: 0 10px 25px rgba(126, 255, 102, 0.25), 0 0 20px rgba(126, 255, 102, 0.2);
+    border-color: rgba(142, 255, 120, 0.6);
+  }
+  .item:hover::before {
+    opacity: 1;
+    background: linear-gradient(to right, #7dff00, #ffffff, #7dff00);
+    box-shadow: 0 0 15px rgba(126, 255, 102, 0.5);
+  }
+  .item h3 {
+    margin: 0 0 15px 0;
+    font-size: 1.6rem;
+    color: #f0ffcc;
+    text-shadow: 0 0 10px rgba(79, 156, 52, 0.7);
+    position: relative;
+    z-index: 1;
+    font-weight: 800;
+    font-family: 'Cinzel', serif;
+  }
+  .item p {
+    margin: 0;
+    font-size: 1.05rem;
+    color: #c7ffa7;
+    position: relative;
+    z-index: 1;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+  .item-glow {
+    position: absolute;
+    width: 150%;
+    height: 30px;
+    background: rgba(126, 255, 102, 0.2);
+    top: 50%;
+    left: -25%;
+    transform: translateY(-50%) rotate(-45deg);
+    transition: all 0.5s ease;
+    opacity: 0;
+    filter: blur(10px);
+  }
+  .item:hover .item-glow {
+    opacity: 1;
+    transform: translateY(-50%) rotate(-45deg) translateX(10px);
+  }
+  .loading-indicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 300px;
+    color: #f0ffcc;
+    font-size: 1.8rem;
+    text-shadow: 0 0 15px rgba(126, 255, 102, 0.8);
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-family: 'Cinzel', serif;
+  }
+  .error-message {
+    color: #ff9999;
+    padding: 25px;
+    border: 2px solid rgba(255, 107, 107, 0.5);
+    border-radius: 8px;
+    background: rgba(94, 23, 23, 0.7);
+    text-align: center;
+    margin: 20px 0;
+    width: 80%;
+    max-width: 600px;
+    font-weight: 600;
+    font-size: 1.2rem;
+    letter-spacing: 0.5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+  @media screen and (max-width: 992px) {
+    .races-container {
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+      padding: 25px;
+    }
+  }
   @media screen and (max-width: 768px) {
     .races-container {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 15px;
-        padding: 15px;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 15px;
+      padding: 20px;
+      width: 95%;
     }
-
+    .races-title {
+      font-size: 2rem;
+    }
     .item {
-        padding: 15px;
-        min-height: 150px;
+      padding: 15px;
+      min-height: 150px;
     }
-
     .item h3 {
-        font-size: 1.2em;
+      font-size: 1.3rem;
+      margin-bottom: 10px;
     }
-
     .item p {
-        font-size: 1em;
+      font-size: 0.9rem;
     }
-}
+  }
+  @media screen and (max-width: 480px) {
+    .races-container {
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 10px;
+      padding: 15px;
+    }
+    .races-title {
+      font-size: 1.8rem;
+    }
+    .item {
+      padding: 12px;
+      min-height: 120px;
+    }
+    .item h3 {
+      font-size: 1.1rem;
+      margin-bottom: 5px;
+    }
+    .item p {
+      font-size: 0.8rem;
+    }
+  }
