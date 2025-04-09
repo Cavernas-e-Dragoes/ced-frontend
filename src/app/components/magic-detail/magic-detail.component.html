@@ -1,30 +1,71 @@
 <app-header></app-header>
 
-<section>
+<section class="background-section background-section-magias">
+  <div class="light-point light-1"></div>
+  <div class="light-point light-2"></div>
+  <div class="light-point light-3"></div>
+  <div class="light-point light-4"></div>
+  <div class="light-point light-5"></div>
+  <div class="light-point light-6"></div>
+  <div class="light-point light-7"></div>
+  <div class="light-point light-8"></div>
+
   <div class="magic-detail-section">
-    <div *ngIf="loading">Carregando...</div>
-    <div *ngIf="error">{{ error }}</div>
+    <div *ngIf="loading" class="loading-indicator">
+      <div class="magic-loading">Carregando...</div>
+    </div>
+    <div *ngIf="error" class="error-message">{{ error }}</div>
 
     <div class="detalhe-container" *ngIf="magicDetail">
-      <h2 class="detalhe-titulo">{{ magicDetail.name }}</h2>
-      <p class="detalhe-info"><strong>Nível:</strong> {{ magicDetail.level }}</p>
-      <p class="detalhe-info"><strong>Escola:</strong> {{ magicDetail.school.name }}</p>
-      <p class="detalhe-info"><strong>Descrição:</strong></p>
-      <ul class="desc-list">
-        <li *ngFor="let desc of magicDetail.desc">{{ desc }}</li>
-      </ul>
-      <p class="detalhe-info"><strong>Alcance:</strong> {{ magicDetail.range }}</p>
-      <p class="detalhe-info"><strong>Duração:</strong> {{ magicDetail.duration }}</p>
-      <p class="detalhe-info"><strong>Classe:</strong> {{ formattedClasses }}</p>
-      <p class="detalhe-info"><strong>Componentes:</strong> {{ magicDetail.components.join(', ') }}</p>
-      <p class="detalhe-info" *ngIf="magicDetail.concentration"><strong>Concentração:</strong> Sim</p>
-      <p class="detalhe-info" *ngIf="magicDetail.ritual"><strong>Ritual:</strong> Sim</p>
+      <div class="magic-header">
+        <h2 class="detalhe-titulo">{{ magicDetail.name }}</h2>
+        <div class="magic-level">
+          <span class="level-indicator">Nível {{ magicDetail.level }}</span>
+          <span class="school-indicator">{{ magicDetail.school.name }}</span>
+        </div>
+      </div>
+
+      <div class="magic-properties">
+        <div class="property">
+          <span class="property-label">Alcance:</span>
+          <span class="property-value">{{ magicDetail.range }}</span>
+        </div>
+        <div class="property">
+          <span class="property-label">Duração:</span>
+          <span class="property-value">{{ magicDetail.duration }}</span>
+        </div>
+        <div class="property">
+          <span class="property-label">Componentes:</span>
+          <span class="property-value">{{ magicDetail.components.join(', ') }}</span>
+        </div>
+        <div class="property" *ngIf="magicDetail.concentration">
+          <span class="property-label">Concentração:</span>
+          <span class="property-value">Sim</span>
+        </div>
+        <div class="property" *ngIf="magicDetail.ritual">
+          <span class="property-label">Ritual:</span>
+          <span class="property-value">Sim</span>
+        </div>
+        <div class="property">
+          <span class="property-label">Classes:</span>
+          <span class="property-value">{{ formattedClasses }}</span>
+        </div>
+      </div>
+
+      <div class="magic-description">
+        <h3>Descrição</h3>
+        <div class="description-content">
+          <p *ngFor="let desc of magicDetail.desc">{{ desc }}</p>
+        </div>
+      </div>
       
+      <div class="magic-footer">
+        <button class="back-button" (click)="goBack()">
+          <i class="fa fa-arrow-left"></i> Voltar para Magias
+        </button>
+      </div>
     </div>
   </div>
-
-
 </section>
-
 
 <app-footer></app-footer>

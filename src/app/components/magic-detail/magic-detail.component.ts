@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MagicService } from '../../services/magic.service';
 import { MagicDetail } from 'src/app/models/magic-detail';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-magic-detail',
@@ -16,7 +17,9 @@ export class MagicDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private magicService: MagicService
+    private magicService: MagicService,
+    private location: Location,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -44,5 +47,10 @@ export class MagicDetailComponent implements OnInit {
       this.error = 'Magia não encontrada.';
       this.loading = false;
     }
+  }
+
+  // Método para voltar à página anterior
+  goBack(): void {
+    this.router.navigate(['/magias']);
   }
 }

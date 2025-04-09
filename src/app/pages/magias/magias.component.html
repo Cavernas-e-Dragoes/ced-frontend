@@ -1,55 +1,70 @@
 <app-header></app-header>
-<section>
+<section class="background-section background-section-magias">
+    <div class="light-point light-1"></div>
+    <div class="light-point light-2"></div>
+    <div class="light-point light-3"></div>
+    <div class="light-point light-4"></div>
+    <div class="light-point light-5"></div>
+    <div class="light-point light-6"></div>
+    <div class="light-point light-7"></div>
+    <div class="light-point light-8"></div>
+    
     <form>
         <div class="filter-group">
             <label for="level">Nível:</label>
-            <div *ngFor="let level of levels" class="filter-item">
+            <div *ngFor="let level of levels" class="filter-item" (click)="toggleFilter('level', level)">
               <i class="fa fa-star" 
-                 [ngClass]="{ 'selected': filters.level.includes(level) }" 
-                 (click)="toggleFilter('level', level)"></i>
+                 [ngClass]="{ 'selected': filters.level.includes(level) }"></i>
               <label>{{ level }}</label>
             </div>
           </div>
 
         <div class="filter-group">
             <label for="school">Escola:</label>
-    <div *ngFor="let school of schools" class="filter-item">
+    <div *ngFor="let school of schools" class="filter-item" (click)="toggleFilter('school', school)">
       <i class="fa fa-bookmark" 
-         [ngClass]="{ 'selected': filters.school === school }" 
-         (click)="toggleFilter('school', school)"></i>
+         [ngClass]="{ 'selected': filters.school === school }"></i>
          <label>{{ school }}</label>
     </div>
         </div>
 
         <div class="filter-group">
             <label for="class">Classe:</label>
-            <div *ngFor="let class of classes" class="filter-item">
+            <div *ngFor="let class of classes" class="filter-item" (click)="toggleFilter('class', class)">
               <i class="fa fa-user" 
-                 [ngClass]="{ 'selected': filters.class === class }" 
-                 (click)="toggleFilter('class', class)"></i>
+                 [ngClass]="{ 'selected': filters.class === class }"></i>
                  <label>{{ class }}</label>
             </div>
         </div>
     </form>
 
-    <div *ngIf="loading">Carregando...</div>
-    <div *ngIf="error">{{ error }}</div>
-    <div *ngIf="!loading && !error">
+    <div *ngIf="loading" class="loading-indicator">
+        <div class="magic-loading">Carregando...</div>
+    </div>
+    <div *ngIf="error" class="error-message">{{ error }}</div>
+    <div *ngIf="!loading && !error" class="results-container">
+        <h2 class="results-title" *ngIf="magias.results.length > 0">Magias Disponíveis</h2>
         <div class="magics-container" *ngIf="magias.results.length > 0; else noResults">
             <div *ngFor="let magia of magias.results" class="item" (click)="goToDetail(magia.index)">
                 <h3>{{ magia.name }}</h3>
+                <div class="magic-glow"></div>
             </div>
         </div>
         <ng-template #noResults>
-            <p>Nenhuma magia encontrada com os filtros aplicados.</p>
+            <div class="no-results">
+                <i class="fa fa-search"></i>
+                <p>Nenhuma magia encontrada com os filtros aplicados.</p>
+            </div>
         </ng-template>
     
         <!-- Controles de paginação -->
-        <div class="pagination">
-            <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 0">Anterior</button>
+        <div class="pagination" *ngIf="magias.results.length > 0">
+            <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 0">
+                <i class="fa fa-chevron-left"></i> Anterior
+            </button>
             <span>Página {{ currentPage + 1 }} de {{ Math.ceil(magias.count / pageSize) }}</span>
             <button (click)="changePage(currentPage + 1)" [disabled]="currentPage >= Math.ceil(magias.count / pageSize) - 1">
-                Próxima
+                Próxima <i class="fa fa-chevron-right"></i>
             </button>
         </div>
     </div>
