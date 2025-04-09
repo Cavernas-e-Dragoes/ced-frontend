@@ -1,51 +1,89 @@
 <app-header></app-header>
 
-<section class="class-detail-section">
-  <div *ngIf="loading">Carregando...</div>
-  <div *ngIf="error">{{ error }}</div>
-  
-  <div *ngIf="!loading && !error">
-    <h1>{{ classDetail.name }}</h1>
-    <p><strong>Dado de Vida:</strong> d{{ classDetail.hitDie }}</p>
+<div class="background-section">
+  <div class="parallax-container">
+    <div class="light-point light-1"></div>
+    <div class="light-point light-2"></div>
+    <div class="light-point light-3"></div>
+    <div class="light-point light-4"></div>
+    <div class="light-point light-5"></div>
+    <div class="light-point light-6"></div>
+    <div class="light-point light-7"></div>
+    <div class="light-point light-8"></div>
 
-    <h2>Proficiencies</h2>
-    <ul>
-      <li *ngFor="let prof of classDetail.proficiencies">
-        {{ prof.name }}
-      </li>
-    </ul>
+    <div *ngIf="loading" class="loading-indicator">Carregando detalhes da classe...</div>
+    <div *ngIf="error" class="error-message">{{ error }}</div>
+    
+    <div class="class-detail-container" *ngIf="!loading && !error">
+      <div class="class-header">
+        <h1 class="detail-title">{{ classDetail.name }}</h1>
+        <div class="class-info">
+          <span class="hit-die">Dado de Vida: d{{ classDetail.hitDie }}</span>
+        </div>
+      </div>
 
-    <h2>Saving Throws</h2>
-    <ul>
-      <li *ngFor="let save of classDetail.savingThrows">
-        {{ save.name }}
-      </li>
-    </ul>
+      <div class="class-content">
+        <div class="content-section">
+          <h2 class="section-title">Proficiências</h2>
+          <ul class="detail-list">
+            <li *ngFor="let prof of classDetail.proficiencies">
+              {{ prof.name }}
+            </li>
+          </ul>
+        </div>
 
-    <h2>Starting Equipment</h2>
-    <ul>
-      <li *ngFor="let equipment of classDetail.startingEquipment">
-        {{ equipment.quantity }}x {{ equipment.equipment.name }}
-      </li>
-    </ul>
+        <div class="content-section">
+          <h2 class="section-title">Testes de Resistência</h2>
+          <ul class="detail-list">
+            <li *ngFor="let save of classDetail.savingThrows">
+              {{ save.name }}
+            </li>
+          </ul>
+        </div>
 
-    <h2>Starting Equipment Options</h2>
-    <div *ngFor="let option of classDetail.startingEquipmentOptions">
-      <p>{{ option.desc }}</p>
-      <ul>
-        <li *ngFor="let item of option.from.options">
-          <ng-container *ngIf="item.item">
-            {{ item.item.name }}
-          </ng-container>
-          <ng-container *ngIf="item.choice">
-            {{ item.choice.desc }}
-          </ng-container>
-        </li>
-      </ul>
+        <div class="content-section">
+          <h2 class="section-title">Equipamento Inicial</h2>
+          <ul class="detail-list">
+            <li *ngFor="let equipment of classDetail.startingEquipment">
+              {{ equipment.quantity }}x {{ equipment.equipment.name }}
+            </li>
+          </ul>
+        </div>
+
+        <div class="content-section">
+          <h2 class="section-title">Opções de Equipamento</h2>
+          <div *ngFor="let option of classDetail.startingEquipmentOptions">
+            <p class="option-desc">{{ option.desc }}</p>
+            <ul class="detail-list">
+              <li *ngFor="let item of option.from.options">
+                <ng-container *ngIf="item.item">
+                  {{ item.item.name }}
+                </ng-container>
+                <ng-container *ngIf="item.choice">
+                  {{ item.choice.desc }}
+                </ng-container>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="content-section" *ngIf="classDetail.subclasses && classDetail.subclasses.length > 0">
+          <h2 class="section-title">Subclasses</h2>
+          <ul class="detail-list">
+            <li *ngFor="let subclass of classDetail.subclasses">
+              {{ subclass.name }}
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="class-footer">
+        <button class="back-button" (click)="goBack()">
+          Voltar para Classes
+        </button>
+      </div>
     </div>
-
-    <!-- Adicione mais seções conforme necessário -->
   </div>
-</section>
+</div>
 
 <app-footer></app-footer>

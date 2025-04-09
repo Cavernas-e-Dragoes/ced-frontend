@@ -2,7 +2,7 @@
   position: relative;
   width: 100%;
   min-height: calc(100vh - 10vh);
-  background: linear-gradient(to bottom, #4b3b09, #2a2005);
+  background: linear-gradient(to bottom, #001407, #010503);
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -10,7 +10,54 @@
   padding: 100px 20px;
   margin-top: 5vh;
 }
-
+.light-1 {
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle at center, #b3ff00, #ccceaf) !important;
+  animation: pulse 3s infinite ease-in-out;
+}
+.light-2 {
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle at center, #b3ff00, #ccceaf) !important;
+  animation: pulse-slow 4s infinite ease-in-out;
+}
+.light-3 {
+  width: 50px;
+  height: 50px;
+  background: radial-gradient(circle at center, #b3ff00, #ccceaf) !important;
+  animation: pulse-fast 2.5s infinite ease-in-out;
+}
+.light-4 {
+  width: 40px;
+  height: 40px;
+  background: radial-gradient(circle at center, #b3ff00, #ccceaf) !important;
+  animation: pulse 3.2s infinite ease-in-out;
+}
+.light-5 {
+  width: 70px;
+  height: 70px;
+  background: radial-gradient(circle at center, #b3ff00, #ccceaf) !important;
+  animation: pulse-slow 3.8s infinite ease-in-out;
+}
+.light-6 {
+  width: 55px;
+  height: 55px;
+  background: radial-gradient(circle at center, #e7ff0e, #efff16) !important;
+  animation: pulse-fast 2.8s infinite ease-in-out;
+}
+.light-7 {
+  width: 45px;
+  height: 45px;
+  background: radial-gradient(circle at center, #b3ff00, #ccceaf) !important;
+  animation: pulse 3.5s infinite ease-in-out;
+}
+.light-8 {
+  width: 35px;
+  height: 35px;
+  background: radial-gradient(circle at center, #b3ff00, #ccceaf) !important;
+  animation: pulse-slow 4.2s infinite ease-in-out;
+}
 .race-container {
   position: relative;
   z-index: 1;
@@ -322,6 +369,11 @@
 }
 
 /* Estilos responsivos */
+@media (max-width: 1024px){
+  .race-detail-section{
+    margin-top: 0vh;
+  }
+}
 @media (max-width: 992px) {
   .race-container {
     width: 95%;

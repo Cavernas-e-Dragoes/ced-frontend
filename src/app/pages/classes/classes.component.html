@@ -10,20 +10,21 @@
       <div class="light-point light-7"></div>
       <div class="light-point light-8"></div>
 
-      
-          <div *ngIf="loading">Carregando classes...</div>
-          <div *ngIf="error">{{ error }}</div>
+      <div *ngIf="loading" class="loading-indicator">Carregando classes...</div>
+      <div *ngIf="error" class="error-message">{{ error }}</div>
 
-          <div class="classes-container" *ngIf="!loading && !error">
-              <div 
-                  *ngFor="let class of classes.results" 
-                  class="item" 
-                  (click)="goToDetail(class.index)"
-              >
-                  <h3>{{ class.name }}</h3>
-                  <p>{{ class.index }}</p>
-              </div>
+      <div class="classes-container" *ngIf="!loading && !error">
+          <h1 class="classes-title">Classes de D&D</h1>
+          <div 
+              *ngFor="let class of classes.results" 
+              class="item" 
+              (click)="goToDetail(class.index)"
+          >
+              <h3>{{ class.name }}</h3>
+              <p>{{ class.index }}</p>
+              <div class="item-glow"></div>
           </div>
+      </div>
   </div>
 </div>
 

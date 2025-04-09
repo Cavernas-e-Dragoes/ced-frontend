@@ -75,11 +75,6 @@
     max-width: 1200px;
     padding: 30px;
     margin: 0 auto;
-    background: rgba(16, 43, 21, 0.7);
-    border-radius: 15px;
-    border: 1px solid rgba(142, 255, 120, 0.3);
-    box-shadow: 0 0 30px rgba(126, 255, 102, 0.2);
-    backdrop-filter: blur(5px);
   }
   .races-title {
     grid-column: 1 / -1;

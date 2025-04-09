@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ClassService } from '../../services/class.service';
 import { ClassDetail } from '../../models/class-detail';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-class-detail',
@@ -16,7 +17,9 @@ export class ClassDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private classService: ClassService
+    private classService: ClassService,
+    private location: Location,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -38,4 +41,7 @@ export class ClassDetailComponent implements OnInit {
     }
   }
 
+  goBack(): void {
+    this.router.navigate(['/classes']);
+  }
 }
