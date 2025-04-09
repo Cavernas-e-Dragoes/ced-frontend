@@ -1,15 +1,21 @@
 <app-header></app-header>
-<section>
+
 <div class="login-container column">
-  <div class="card-login column">
+  <!-- Efeitos de luz -->
+  <div class="light-point light-1"></div>
+  <div class="light-point light-2"></div>
+  <div class="light-point light-3"></div>
+  <div class="light-point light-4"></div>
+
+  <div class="card-login">
     <span>Bem-vindo, aventureiro!</span>
     <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="card-inside">
-      <input type="email" formControlName="email" placeholder="Digite seu e-mail" >
+      <input type="email" formControlName="email" placeholder="Digite seu e-mail">
       <input type="password" formControlName="password" placeholder="Digite sua senha">
       <button type="submit">Entrar</button>
     </form>
     <a routerLink="/register">Ainda não tem uma conta? Crie aqui!</a>
   </div>
 </div>
-</section>
+
 <app-footer></app-footer>

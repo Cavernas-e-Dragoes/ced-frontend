@@ -12,26 +12,25 @@
     </label>
 
     <ul class="row">
-        <li class="link link-menu" routerLink="/home">Home</li>
-        <li class="link link-menu" routerLink="/classes">Classes</li>
-        <li class="link link-menu" routerLink="/races">Raças</li>
-        <li class="link link-menu" routerLink="/magias">Magias</li>
-        <li class="link link-menu" routerLink="/equipamentos-categorias">Equipamentos</li>
+        <li class="link link-menu" [class.active]="isActive('/home')" routerLink="/home">Home</li>
+        <li class="link link-menu" [class.active]="isActive('/classes')" routerLink="/classes">Classes</li>
+        <li class="link link-menu" [class.active]="isActive('/races')" routerLink="/races">Raças</li>
+        <li class="link link-menu" [class.active]="isActive('/magias')" routerLink="/magias">Magias</li>
+        <li class="link link-menu" [class.active]="isActive('/equipamentos-categorias')" routerLink="/equipamentos-categorias">Equipamentos</li>
     
 
         <!-- Exibe "Entre" apenas se o usuário NÃO estiver autenticado -->
-        <li class="link button" *ngIf="!isAuthenticated" routerLink="/login">Entre</li>
-        <li class="link button-border" *ngIf="!isAuthenticated" routerLink="/register">Registrar</li>
+        <li class="link button" *ngIf="!isAuthenticated" [class.active]="isActive('/login')" routerLink="/login">Entre</li>
+        <li class="link button-border" *ngIf="!isAuthenticated" [class.active]="isActive('/register')" routerLink="/register">Registrar</li>
 
         <!-- Exibe o Saguão apenas se o usuário ESTIVER autenticado -->
-        <li class="link" *ngIf="isAuthenticated" routerLink="/saguao-do-aventureiro">
+        <li class="link" *ngIf="isAuthenticated" [class.active]="isActive('/saguao-do-aventureiro')" routerLink="/saguao-do-aventureiro">
             Saguão do Aventureiro
         </li>
 
         <!-- Exibe o nome do usuário e botão de logout -->
-        <li *ngIf="isAuthenticated" class="link" routerLink="/perfil">
+        <li *ngIf="isAuthenticated" class="link" [class.active]="isActive('/perfil')" routerLink="/perfil">
             <span>Bem-vindo, {{ userName }}!</span>
-
         </li>
     </ul>
 </nav>

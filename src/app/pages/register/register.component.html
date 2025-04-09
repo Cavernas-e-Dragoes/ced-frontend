@@ -1,17 +1,20 @@
 <app-header></app-header>
-<section>
   <div class="register-container column">
-    <div class="card-form column">
-    <p>Crie sua conta!</p>
-    <form class="column" [formGroup]="registerForm" (ngSubmit)="onRegister()">
-      <input type="text" formControlName="name" placeholder="Digite seu nome">
-      <input type="email" formControlName="email" placeholder="Digite um e-mail">
-      <input type="password" formControlName="password" placeholder="Digite sua senha">
-      <button type="submit">Cadastrar</button>
-    </form>
-    <a routerLink="/login">Já tem uma conta? Entre aqui!</a>
+    <!-- Efeitos de luz -->
+    <div class="light-point light-1"></div>
+    <div class="light-point light-2"></div>
+    <div class="light-point light-3"></div>
+    <div class="light-point light-4"></div>
+    
+    <div class="card-form">
+      <p>Crie sua conta!</p>
+      <form class="card-inside" [formGroup]="registerForm" (ngSubmit)="onRegister()">
+        <input type="text" formControlName="name" placeholder="Digite seu nome">
+        <input type="email" formControlName="email" placeholder="Digite um e-mail">
+        <input type="password" formControlName="password" placeholder="Digite sua senha">
+        <button type="submit">Cadastrar</button>
+      </form>
+      <a routerLink="/login">Já tem uma conta? Entre aqui!</a>
+    </div>
   </div>
-  </div>
-  
-</section>
 <app-footer></app-footer>

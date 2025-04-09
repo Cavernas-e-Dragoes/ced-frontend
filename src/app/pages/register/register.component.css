@@ -1,79 +1,274 @@
 .register-container{
-    background-size: cover;
     width: 100%;
-    background:rgb(53, 44, 44);
-    height: 100%;
-    background-position: 30%;
+    min-height: calc(100vh - var(--header-height));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom, #1a0f0f, #2a1a1a);
+    position: relative;
+    overflow: hidden;
 }
 
-.card-form{
-    display: flex;
-    justify-content: space-between;
-    border-radius: 20% 1%;
-    width: 370px;
-    background-color: var(--form-background-color);
-    padding: 50px 30px;
-    box-shadow: var(--form-box-shadow);
-    align-items: center;
+/* Pontos de luz (efeito de fogo/tochas) */
+.light-point {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(15px);
+    opacity: 0.8;
+    transition: transform 0.1s ease-out;
+    mix-blend-mode: screen;
 }
-.card-form:hover{
-    box-shadow: 0px 0px 15px 5px rgba(255, 114, 114, 0.144);
+
+.light-1 {
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle at center, #ff6b00, #ff4500);
+    top: 15%;
+    left: 10%;
+    animation: pulse 3s infinite ease-in-out;
 }
-.card-inside{
+
+.light-2 {
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle at center, #ffd700, #ffa500);
+    top: 35%;
+    right: 15%;
+    animation: pulse-slow 4s infinite ease-in-out;
+}
+
+.light-3 {
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle at center, #ff4500, #ff0000);
+    bottom: 25%;
+    left: 20%;
+    animation: pulse-fast 2s infinite ease-in-out;
+}
+
+.light-4 {
+    width: 30px;
+    height: 30px;
+    background: radial-gradient(circle at center, #ffa500, #ff8c00);
+    bottom: 15%;
+    right: 10%;
+    animation: pulse 3.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.2); opacity: 0.6; }
+    100% { transform: scale(1); opacity: 0.8; }
+}
+
+@keyframes pulse-slow {
+    0% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.15); opacity: 0.5; }
+    100% { transform: scale(1); opacity: 0.7; }
+}
+
+@keyframes pulse-fast {
+    0% { transform: scale(1); opacity: 0.9; }
+    50% { transform: scale(1.25); opacity: 0.7; }
+    100% { transform: scale(1); opacity: 0.9; }
+}
+
+.card-form {
+    position: relative;
+    width: 400px;
+    padding: 40px;
+    border-radius: 50px 0px 50px 0px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    border: 1px solid #d4b483;
+    text-align: center;
+    z-index: 1;
     display: flex;
     flex-direction: column;
-    width: 80%;
+    align-items: center;
+    overflow: hidden;
+    
+    /* Fundo estilo pergaminho */
+    background: 
+        linear-gradient(135deg, #f4e4bc 0%, #e6d5a7 50%, #d4b483 100%),
+        repeating-linear-gradient(
+            45deg,
+            rgba(212, 180, 131, 0.1) 0px,
+            rgba(212, 180, 131, 0.1) 1px,
+            transparent 1px,
+            transparent 10px
+        ),
+        repeating-linear-gradient(
+            -45deg,
+            rgba(212, 180, 131, 0.1) 0px,
+            rgba(212, 180, 131, 0.1) 1px,
+            transparent 1px,
+            transparent 10px
+        ),
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(212, 180, 131, 0.3) 0%,
+            transparent 50%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(212, 180, 131, 0.3) 0%,
+            transparent 50%
+        );
+        
+    /* Sombra mais pronunciada */
+    box-shadow: 
+        inset 0 0 50px rgba(0, 0, 0, 0.815),
+        0 0 20px rgb(0, 0, 0),
+        0 0 0 1px rgba(212, 180, 131, 0.2);
 }
-p{
+
+/* Efeito de borda envelhecida */
+.card-form::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 1px solid rgba(212, 180, 131, 0.3);
+    border-radius: 50px 0px 50px 0px;
+    pointer-events: none;
+}
+
+/* Efeito de sombra interna */
+.card-form::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+        circle at 50% 50%,
+        transparent 0%,
+        rgba(0, 0, 0, 0.1) 100%
+    );
+    pointer-events: none;
+}
+
+.card-form:hover {
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.1),
+        0 0 30px rgba(212, 180, 131, 0.5),
+        0 0 0 1px rgba(212, 180, 131, 0.2);
+    transform: translateY(-5px);
+}
+
+.card-inside {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+}
+
+p {
     text-align: center;
-    font-size: 1.5rem;
-    font-weight: 500;
-    color: rgb(255, 255, 255);
-    margin-bottom: 2rem;
+    font-size: 2.2em;
+    color: #2c1810;
+    margin-bottom: 20px;
+    font-family: 'Cinzel', serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    position: relative;
+    letter-spacing: 2px;
+    font-weight: 700;
 }
 
-input{
-    width: 280px;
-    padding: 1rem;
-    border-radius: 0.2rem;
-    margin-bottom: 1rem;
-    border: 0 !important;
-    background-color: rgb(255, 255, 255, 0.7);
+p::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #d4b483, transparent);
+}
+
+input {
+    width: 100%;
     height: 52px;
-}
-input:hover{
-    background-color: rgba(255, 255, 255, 0.884);
-}
-textarea:focus, input:focus, button:focus {
-    box-shadow: 0 0 0 0;
-    outline: 0;
+    padding-left: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    border: 1px solid #624119;
+    background-color: rgba(255, 255, 255, 0.7);
+    color: #3c2415;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    font-family: 'Crimson Text', serif;
 }
 
-button{
-    border-radius: 5px;
-    font-size: 17px;
+input::placeholder {
+    color: #624119;
+    opacity: 0.7;
+}
+
+input:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-color: #3a2208;
+}
+
+input:focus {
+    background-color: #ffffff;
+    border-color: #3a2208;
+    box-shadow: 0 0 10px rgba(212, 180, 131, 0.5);
+    outline: none;
+}
+
+button {
+    width: 100%;
     height: 52px;
-    width: 280px;
-}
-.card-inside span{
-
-    color: rgb(221, 200, 105);
-}
-a{
-    margin-top: 30px;
-    color: rgb(255, 255, 255);
-    font-size: 0.8rem;
-    text-align: center;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    background: #573510;
+    color: #f4e4bc;
+    border: 1px solid #3a2208;
+    margin-top: 0.5rem;
+    transition: all 0.3s ease;
     cursor: pointer;
 }
-a:hover{
-    text-shadow: 0px 0px 3px rgb(255, 0, 0);
+
+button:hover {
+    background: #3a2208;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
-@media screen and (max-width:680px){
-    .register-container{
-        background-position: 74%
+
+button:active {
+    transform: translateY(-1px);
+}
+
+a {
+    margin-top: 1.5rem;
+    color: #3c2415;
+    font-size: 0.95rem;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-family: 'Crimson Text', serif;
+}
+
+a:hover {
+    color: #2c1810;
+    text-shadow: 0px 0px 5px rgba(212, 180, 131, 0.5);
+}
+
+@media screen and (max-width:680px) {
+    .card-form {
+        width: 90%;
+        max-width: 380px;
+        padding: 30px 20px;
     }
-    .card-form{
-        width: 85vw;
+    
+    p {
+        font-size: 1.8em;
     }
 }
