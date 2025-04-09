@@ -1,22 +1,288 @@
-.cat-container {
-    display: grid;
-    grid-template-columns: repeat(6, 100px);
-    grid-gap: 20px;
-    height: 50vh;
+.background-section-equipamentos {
+  background: linear-gradient(to bottom, #0d0a00, #2a1f0b);
+  min-height: calc(100vh - 10vh);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.item {
-    width: 100px;
-    height: 100px;
-    background-color: #f4f4f4;
-    border: 1px solid #ddd;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    flex-direction: column;
-    cursor: pointer;
 
+/* Pontos de luz */
+.light-point {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(15px);
+  opacity: 0.8;
+  transition: transform 0.1s ease-out;
+  mix-blend-mode: screen;
 }
-.item:hover{
-    box-shadow: var(--glow-box-shadow)
+
+.light-1 {
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle at center, #ffcc00, #ff8800);
+  top: 15%;
+  left: 10%;
+  animation: pulse 3s infinite ease-in-out;
+}
+
+.light-2 {
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle at center, #ffb700, #ff6a00);
+  top: 35%;
+  right: 15%;
+  animation: pulse-slow 4s infinite ease-in-out;
+}
+
+.light-3 {
+  width: 40px;
+  height: 40px;
+  background: radial-gradient(circle at center, #ffbd00, #ff4800);
+  bottom: 25%;
+  left: 20%;
+  animation: pulse-fast 2s infinite ease-in-out;
+}
+
+.light-4 {
+  width: 30px;
+  height: 30px;
+  background: radial-gradient(circle at center, #ffd000, #ff7300);
+  top: 55%;
+  right: 25%;
+  animation: pulse 3.5s infinite ease-in-out;
+}
+
+.light-5 {
+  width: 50px;
+  height: 50px;
+  background: radial-gradient(circle at center, #ffae00, #ff5500);
+  bottom: 15%;
+  right: 10%;
+  animation: pulse-slow 4.5s infinite ease-in-out;
+}
+
+.light-6 {
+  width: 35px;
+  height: 35px;
+  background: radial-gradient(circle at center, #ff9500, #ff6200);
+  top: 25%;
+  left: 30%;
+  animation: pulse-fast 2.5s infinite ease-in-out;
+}
+
+.light-7 {
+  width: 45px;
+  height: 45px;
+  background: radial-gradient(circle at center, #ffc100, #ff5e00);
+  top: 45%;
+  left: 40%;
+  animation: pulse 3.2s infinite ease-in-out;
+}
+
+.light-8 {
+  width: 25px;
+  height: 25px;
+  background: radial-gradient(circle at center, #ffaa00, #ff4000);
+  bottom: 35%;
+  right: 35%;
+  animation: pulse-slow 4.2s infinite ease-in-out;
+}
+
+/* Animações para os pontos de luz */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+}
+
+@keyframes pulse-slow {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+}
+
+@keyframes pulse-fast {
+  0% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.25);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+}
+
+/* Container principal */
+.equipamentos-container {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  max-width: 1000px;
+  margin: 50px auto;
+  padding: 30px;
+  background: rgba(43, 32, 10, 0.7);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 177, 25, 0.4);
+  box-shadow: 0 0 30px rgba(255, 187, 0, 0.2);
+  backdrop-filter: blur(5px);
+}
+
+.equipamentos-titulo {
+  font-size: 2.5rem;
+  color: #fff;
+  text-shadow: 0 0 15px rgba(255, 177, 25, 0.7);
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 2px;
+  position: relative;
+}
+
+.equipamentos-titulo::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(to right, rgba(255, 177, 25, 0.1), rgba(255, 177, 25, 0.7), rgba(255, 177, 25, 0.1));
+  border-radius: 3px;
+}
+
+/* Grade de categorias */
+.cat-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 25px;
+  width: 100%;
+  margin: 20px 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.item {
+  width: 100%;
+  aspect-ratio: 1;
+  background: rgba(58, 43, 15, 0.8);
+  border: 1px solid rgba(255, 177, 25, 0.5);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  padding: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(to right, #ffcc00, #ff8800, #ffcc00);
+  opacity: 0.7;
+}
+
+.item:hover {
+  transform: translateY(-5px) scale(1.05);
+  background: rgba(73, 54, 20, 0.9);
+  box-shadow: 0 10px 25px rgba(255, 177, 25, 0.25), 0 0 20px rgba(255, 177, 25, 0.2);
+  border-color: rgba(255, 177, 25, 0.7);
+}
+
+.item:hover::before {
+  opacity: 1;
+  background: linear-gradient(to right, #ffcc00, #ffffff, #ffcc00);
+  box-shadow: 0 0 15px rgba(255, 177, 25, 0.5);
+}
+
+.item h3 {
+  color: #fff;
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-shadow: 0 0 10px rgba(255, 177, 25, 0.7);
+  position: relative;
+  z-index: 2;
+  letter-spacing: 1px;
+}
+
+.item-glow {
+  position: absolute;
+  width: 150%;
+  height: 30px;
+  background: rgba(255, 177, 25, 0.2);
+  top: 50%;
+  left: -25%;
+  transform: translateY(-50%) rotate(-45deg);
+  transition: all 0.5s ease;
+  opacity: 0;
+  filter: blur(10px);
+}
+
+.item:hover .item-glow {
+  opacity: 1;
+  transform: translateY(-50%) rotate(-45deg) translateX(10px);
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .cat-container {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 15px;
+  }
+  
+  .equipamentos-titulo {
+    font-size: 1.8rem;
+  }
+  
+  .item h3 {
+    font-size: 1rem;
+  }
+  
+  .equipamentos-container {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cat-container {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+  }
 }

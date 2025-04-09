@@ -23,6 +23,8 @@ export class FerramentasComponent implements OnInit {
   equipamentos: Equip[] = [];  // Lista de equipamentos
   itemDetalhes: Equip | null = null;  // Detalhes do item a serem exibidos no popup
   exibirPopup = false;  // Controla a exibição do popup
+  subcategoriaAtiva: string = ''; // Controla qual subcategoria está ativa
+  carregando: boolean = false; // Controla o estado de carregamento
 
   constructor(private equipsService: EquipsService) {}
 
@@ -32,35 +34,56 @@ export class FerramentasComponent implements OnInit {
 
   // Carrega equipamentos de uma subcategoria
   carregarEquipamentos(subcategoria: string): void {
-    this.equipsService.getEquipamentosPorSubcategoria(subcategoria).subscribe((resposta: EquipCategoriaResposta) => {
-      this.equipamentos = resposta.equipment.map(equip => ({
-        index: equip.index,
-        name: equip.name,
-        equipmentCategory: equip.equipmentCategory,
-        gearCategory: equip.gearCategory,
-        cost: equip.cost,
-        weight: equip.weight,
-        desc: equip.desc,
-        url: equip.url
-      }));
+    this.carregando = true;
+    this.subcategoriaAtiva = subcategoria;
+    this.equipamentos = []; // Limpa a lista antes de carregar novos
+    
+    this.equipsService.getEquipamentosPorSubcategoria(subcategoria).subscribe({
+      next: (resposta: EquipCategoriaResposta) => {
+        this.equipamentos = resposta.equipment.map(equip => ({
+          index: equip.index,
+          name: equip.name,
+          equipmentCategory: equip.equipmentCategory,
+          gearCategory: equip.gearCategory,
+          cost: equip.cost,
+          weight: equip.weight,
+          desc: equip.desc,
+          url: equip.url
+        }));
+        this.carregando = false;
+      },
+      error: (error) => {
+        console.error('Erro ao carregar equipamentos:', error);
+        this.carregando = false;
+      }
     });
   }
 
   // Carrega os detalhes do item
   carregarDetalhesItem(url: string | undefined): void {
     if (url) {
+      this.carregando = true;
       // Garantir que a URL tem o formato correto antes de tentar pegar o item
       const itemId = url.split('/').pop() || '';
       if (itemId) {
-        this.equipsService.getEquipamentoDetalhes(itemId).subscribe((item: Equip) => {
-          this.itemDetalhes = item;
-          this.exibirPopup = true;
+        this.equipsService.getEquipamentoDetalhes(itemId).subscribe({
+          next: (item: Equip) => {
+            this.itemDetalhes = item;
+            this.exibirPopup = true;
+            this.carregando = false;
+          },
+          error: (error) => {
+            console.error('Erro ao carregar detalhes do item:', error);
+            this.carregando = false;
+          }
         });
       } else {
         console.error('ID do item inválido');
+        this.carregando = false;
       }
     } else {
       console.error('URL inválida');
+      this.carregando = false;
     }
   }
 
@@ -68,5 +91,27 @@ export class FerramentasComponent implements OnInit {
   fecharPopup(): void {
     this.exibirPopup = false;  // Fecha o popup
     this.itemDetalhes = null;  // Limpa os detalhes
+  }
+
+  // Verifica se o equipamento tem categoria de ferramenta
+  hasToolCategory(item: any): boolean {
+    return item && (item.tool_category || item.gear_category || item.equipment_category);
+  }
+
+  // Obtém o nome da categoria da ferramenta
+  getToolCategoryName(item: any): string {
+    if (!this.hasToolCategory(item)) {
+      return 'Ferramenta';
+    }
+    
+    if (item.tool_category) {
+      return item.tool_category;
+    } else if (item.gear_category) {
+      return item.gear_category;
+    } else if (item.equipment_category) {
+      return item.equipment_category.name;
+    }
+    
+    return 'Ferramenta';
   }
 }

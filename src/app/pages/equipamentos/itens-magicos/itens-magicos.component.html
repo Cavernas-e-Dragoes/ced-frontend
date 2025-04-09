@@ -1,40 +1,133 @@
 <app-header></app-header>
 
-<section class="column">
-    <h1>Itens Mágicos</h1>
-    <div class="cat-container">
-       <!-- Botões de Subcategorias -->
-       <div class="subcategorias">
-        <button *ngFor="let subcategoria of subcategorias" (click)="carregarEquipamentos(subcategoria.endpoint)">
-          {{ subcategoria.nome }}
-        </button>
+<section class="background-section background-section-equipamentos">
+  <div class="light-point light-1"></div>
+  <div class="light-point light-2"></div>
+  <div class="light-point light-3"></div>
+  <div class="light-point light-4"></div>
+  <div class="light-point light-5"></div>
+  <div class="light-point light-6"></div>
+  <div class="light-point light-7"></div>
+  <div class="light-point light-8"></div>
+
+  <div class="equipamentos-container">
+    <div class="header-with-nav">
+      <button class="voltar-btn" routerLink="/equipamentos-categorias">
+        <i class="fa fa-arrow-left"></i> Voltar
+      </button>
+      <h1 class="equipamentos-titulo">Itens Mágicos</h1>
+    </div>
+    
+    <div class="filter-options">
+      <!-- Botões de Subcategorias -->
+      <div class="subcategorias">
+        <h2>Escolha uma categoria <small>(clique novamente para desmarcar)</small></h2>
+        <div class="subcategorias-grid">
+          <button *ngFor="let subcategoria of subcategorias" 
+                  (click)="carregarEquipamentos(subcategoria.endpoint)"
+                  class="subcategoria-btn"
+                  [class.active]="subcategoriaAtiva === subcategoria.endpoint">
+            {{ subcategoria.nome }}
+          </button>
+        </div>
       </div>
       
-      <div class="equipamentos">
-        <button *ngFor="let equipamento of equipamentos" 
-        (click)="carregarDetalhesItem(equipamento.url)">
-  {{ equipamento.name }}
-</button>
-      </div>
-      
-      <!-- Popup -->
-      <div *ngIf="exibirPopup" class="popup">
-        <div class="popup-content">
-          <h3>{{ itemDetalhes?.name }}</h3>
-          <p *ngIf="itemDetalhes">
-            <strong>Custo:</strong> 
-            {{ itemDetalhes.cost.quantity }} {{ itemDetalhes.cost.unit }}
-          </p>
-          <p><strong>Peso:</strong> {{ itemDetalhes?.weight }} kg</p>
-          <p><strong>Descrição:</strong></p>
-          <ul>
-            <li *ngFor="let desc of itemDetalhes?.desc">{{ desc }}</li>
-          </ul>
-          <button (click)="fecharPopup()">Fechar</button>
+      <!-- Campo de busca manual -->
+      <div class="search-container">
+        <h2>Buscar item por nome</h2>
+        <div class="search-box">
+          <i class="fa fa-search search-icon"></i>
+          <input 
+            type="text" 
+            [(ngModel)]="termoBusca" 
+            (input)="buscarItemsPorNome()"
+            placeholder="Digite o nome do item mágico..." 
+            class="search-input"
+          >
+          <button *ngIf="termoBusca" (click)="limparBusca()" class="clear-search">
+            <i class="fa fa-times"></i>
+          </button>
         </div>
       </div>
     </div>
+    
+    <!-- Lista de equipamentos -->
+    <div class="equipamentos-lista" *ngIf="equipamentosFiltrados.length > 0">
+      <h2>Itens disponíveis</h2>
+      <div class="equipamentos-grid">
+        <div *ngFor="let equipamento of equipamentosFiltrados" 
+             class="equipamento-item"
+             (click)="carregarDetalhesItem(equipamento.url)">
+          <h3>{{ equipamento.name }}</h3>
+          <div class="item-glow"></div>
+        </div>
+      </div>
+    </div>
+    
+    <div *ngIf="equipamentos.length > 0 && equipamentosFiltrados.length === 0" class="no-items">
+      <i class="fa fa-search"></i>
+      <p>Nenhum item encontrado com o termo "{{ termoBusca }}"</p>
+    </div>
+    
+    <div *ngIf="equipamentos.length === 0 && !carregando && subcategoriaAtiva" class="no-items">
+      <i class="fa fa-exclamation-triangle"></i>
+      <p>Nenhum item disponível nesta categoria</p>
+    </div>
+    
+    <div *ngIf="equipamentos.length === 0 && !carregando && !subcategoriaAtiva && !termoBusca.trim()" class="no-items">
+      <i class="fa fa-search"></i>
+      <p>Selecione uma categoria ou use a busca acima para encontrar itens mágicos</p>
+    </div>
+    
+    <div *ngIf="termoBusca.trim().length > 0 && termoBusca.trim().length < 2 && !carregando && !subcategoriaAtiva" class="no-items">
+      <i class="fa fa-info-circle"></i>
+      <p>Digite pelo menos 2 caracteres para buscar em todas as categorias</p>
+    </div>
+    
+    <div *ngIf="termoBusca.trim().length >= 2 && equipamentos.length === 0 && !carregando && !subcategoriaAtiva" class="no-items">
+      <i class="fa fa-search"></i>
+      <p>Nenhum item mágico encontrado com o termo "{{ termoBusca }}"</p>
+    </div>
+    
+    <div *ngIf="carregando" class="loading-indicator">
+      <div class="magic-loading">Carregando...</div>
+    </div>
+  </div>
 
+  <!-- Popup -->
+  <div *ngIf="exibirPopup && itemDetalhes" class="popup">
+    <div class="popup-content">
+      <button class="close-btn" (click)="fecharPopup()">×</button>
+      <h3 class="popup-title">{{ itemDetalhes.name }}</h3>
+      <div class="popup-info">
+        <div class="info-item" *ngIf="itemDetalhes.rarity">
+          <span class="info-label">Raridade:</span> 
+          <span class="info-value">{{ itemDetalhes.rarity }}</span>
+        </div>
+        <div class="info-item" *ngIf="itemDetalhes.cost">
+          <span class="info-label">Custo:</span> 
+          <span class="info-value">{{ itemDetalhes.cost.quantity }} {{ itemDetalhes.cost.unit }}</span>
+        </div>
+        <div class="info-item" *ngIf="itemDetalhes.weight">
+          <span class="info-label">Peso:</span>
+          <span class="info-value">{{ itemDetalhes.weight }} kg</span>
+        </div>
+        <ng-container *ngIf="hasMagicProperties(itemDetalhes)">
+          <div class="info-item">
+            <span class="info-label">Propriedades mágicas:</span>
+            <span class="info-value">{{ getMagicPropertiesDescription(itemDetalhes) }}</span>
+          </div>
+        </ng-container>
+      </div>
+      
+      <div class="popup-description" *ngIf="itemDetalhes.desc && itemDetalhes.desc.length > 0">
+        <h4>Descrição:</h4>
+        <p *ngFor="let desc of itemDetalhes.desc">{{ desc }}</p>
+      </div>
+      
+      <button class="action-btn" (click)="fecharPopup()">Fechar</button>
+    </div>
+  </div>
 </section>
 
 <app-footer></app-footer>

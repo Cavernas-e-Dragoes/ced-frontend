@@ -1,40 +1,96 @@
 <app-header></app-header>
 
-<section class="column">
-    <h1>Equipamentos de Defesa</h1>
-    <div class="cat-container">
-       <!-- Botões de Subcategorias -->
-       <div class="subcategorias">
-        <button *ngFor="let subcategoria of subcategorias" (click)="carregarEquipamentos(subcategoria.endpoint)">
+<section class="background-section background-section-equipamentos">
+  <div class="light-point light-1"></div>
+  <div class="light-point light-2"></div>
+  <div class="light-point light-3"></div>
+  <div class="light-point light-4"></div>
+  <div class="light-point light-5"></div>
+  <div class="light-point light-6"></div>
+  <div class="light-point light-7"></div>
+  <div class="light-point light-8"></div>
+
+  <div class="equipamentos-container">
+    <div class="header-with-nav">
+      <button class="voltar-btn" routerLink="/equipamentos-categorias">
+        <i class="fa fa-arrow-left"></i> Voltar
+      </button>
+      <h1 class="equipamentos-titulo">Equipamentos de Defesa</h1>
+    </div>
+    
+    <!-- Botões de Subcategorias -->
+    <div class="subcategorias">
+      <h2>Escolha uma categoria</h2>
+      <div class="subcategorias-grid">
+        <button *ngFor="let subcategoria of subcategorias" 
+                (click)="carregarEquipamentos(subcategoria.endpoint)"
+                class="subcategoria-btn"
+                [class.active]="subcategoriaAtiva === subcategoria.endpoint">
           {{ subcategoria.nome }}
         </button>
       </div>
-      
-      <div class="equipamentos">
-        <button *ngFor="let equipamento of equipamentos" 
-        (click)="carregarDetalhesItem(equipamento.url)">
-  {{ equipamento.name }}
-</button>
-      </div>
-      
-      <!-- Popup -->
-      <div *ngIf="exibirPopup" class="popup">
-        <div class="popup-content">
-          <h3>{{ itemDetalhes?.name }}</h3>
-          <p *ngIf="itemDetalhes">
-            <strong>Custo:</strong> 
-            {{ itemDetalhes.cost.quantity }} {{ itemDetalhes.cost.unit }}
-          </p>
-          <p><strong>Peso:</strong> {{ itemDetalhes?.weight }} kg</p>
-          <p><strong>Descrição:</strong></p>
-          <ul>
-            <li *ngFor="let desc of itemDetalhes?.desc">{{ desc }}</li>
-          </ul>
-          <button (click)="fecharPopup()">Fechar</button>
+    </div>
+    
+    <!-- Lista de equipamentos -->
+    <div class="equipamentos-lista" *ngIf="equipamentos.length > 0">
+      <h2>Itens disponíveis</h2>
+      <div class="equipamentos-grid">
+        <div *ngFor="let equipamento of equipamentos" 
+             class="equipamento-item"
+             (click)="carregarDetalhesItem(equipamento.url)">
+          <h3>{{ equipamento.name }}</h3>
+          <div class="item-glow"></div>
         </div>
       </div>
     </div>
+    
+    <div *ngIf="equipamentos.length === 0 && !carregando" class="no-items">
+      <i class="fa fa-search"></i>
+      <p>Selecione uma categoria para ver os itens disponíveis</p>
+    </div>
+    
+    <div *ngIf="carregando" class="loading-indicator">
+      <div class="magic-loading">Carregando...</div>
+    </div>
+  </div>
 
+  <!-- Popup -->
+  <div *ngIf="exibirPopup && itemDetalhes" class="popup">
+    <div class="popup-content">
+      <button class="close-btn" (click)="fecharPopup()">×</button>
+      <h3 class="popup-title">{{ itemDetalhes.name }}</h3>
+      <div class="popup-info">
+        <div class="info-item" *ngIf="itemDetalhes.cost">
+          <span class="info-label">Custo:</span> 
+          <span class="info-value">{{ itemDetalhes.cost.quantity }} {{ itemDetalhes.cost.unit }}</span>
+        </div>
+        <div class="info-item" *ngIf="itemDetalhes.weight">
+          <span class="info-label">Peso:</span>
+          <span class="info-value">{{ itemDetalhes.weight }} kg</span>
+        </div>
+        <!-- Usamos a notação segura para propriedades que podem não estar no modelo -->
+        <ng-container *ngIf="hasArmorClass(itemDetalhes)">
+          <div class="info-item">
+            <span class="info-label">Classe de Armadura:</span>
+            <span class="info-value">{{ getArmorClassDescription(itemDetalhes) }}</span>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="hasProperties(itemDetalhes)">
+          <div class="info-item">
+            <span class="info-label">Propriedades:</span>
+            <span class="info-value">{{ getPropertiesDescription(itemDetalhes) }}</span>
+          </div>
+        </ng-container>
+      </div>
+      
+      <div class="popup-description" *ngIf="itemDetalhes.desc && itemDetalhes.desc.length > 0">
+        <h4>Descrição:</h4>
+        <p *ngFor="let desc of itemDetalhes.desc">{{ desc }}</p>
+      </div>
+      
+      <button class="action-btn" (click)="fecharPopup()">Fechar</button>
+    </div>
+  </div>
 </section>
 
 <app-footer></app-footer>
