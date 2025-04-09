@@ -1,4 +1,4 @@
-<nav class="row">
+<nav class="row" [ngClass]="{'scrolled': isScrolled}">
     <div class="logo-content row-always">
         <img id="d20" src="../../../assets/images/d20y.png" alt="Logo" class="logo">
         <img id="logo" src="../../../assets/images/logoy.png" alt="">
@@ -17,7 +17,7 @@
         <li class="link link-menu" routerLink="/races">Raças</li>
         <li class="link link-menu" routerLink="/magias">Magias</li>
         <li class="link link-menu" routerLink="/equipamentos-categorias">Equipamentos</li>
-        <li class="link link-menu" routerLink="/rules">Regras</li>
+    
 
         <!-- Exibe "Entre" apenas se o usuário NÃO estiver autenticado -->
         <li class="link button" *ngIf="!isAuthenticated" routerLink="/login">Entre</li>

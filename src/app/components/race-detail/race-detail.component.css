@@ -1,14 +1,14 @@
 .race-detail-section {
   position: relative;
   width: 100%;
-  min-height: calc(100vh - 10vh);
+  min-height: calc(100vh - var(--header-height));
   background: linear-gradient(to bottom, #001407, #010503);
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 100px 20px;
-  margin-top: 5vh;
+  padding: calc(var(--header-height) + 30px) 20px 40px;
+  
 }
 .light-1 {
   width: 80px;
@@ -211,7 +211,7 @@
 
 .btn-voltar {
   position: fixed;
-  top: 100px;
+  top: calc(var(--header-height) + 10px);
   left: 40px;
   padding: 10px 20px;
   background: #624119;
@@ -371,7 +371,8 @@
 /* Estilos responsivos */
 @media (max-width: 1024px){
   .race-detail-section{
-    margin-top: 0vh;
+    margin-top: 0;
+    padding-top: calc(var(--header-height) + 50px);
   }
 }
 @media (max-width: 992px) {
@@ -385,7 +386,7 @@
   }
   
   .btn-voltar {
-    top: 80px;
+    top: calc(var(--header-height) + 15px);
     left: 20px;
   }
   
@@ -396,6 +397,10 @@
 }
 
 @media (max-width: 768px) {
+  .race-detail-section {
+    padding-top: calc(var(--header-height) + 60px);
+  }
+  
   .race-container {
     padding: 25px 20px;
   }
@@ -410,9 +415,9 @@
   }
   
   .btn-voltar {
-    position: absolute;
-    top: 20px;
-    left: 20px;
+    position: fixed;
+    top: calc(var(--header-height) + 15px);
+    left: 15px;
     padding: 8px 15px;
     font-size: 0.9rem;
   }
@@ -428,6 +433,10 @@
 }
 
 @media (max-width: 480px) {
+  .race-detail-section {
+    padding-top: calc(var(--header-height) + 70px);
+  }
+  
   .race-container {
     padding: 20px 15px;
     border-width: 5px;
@@ -446,6 +455,8 @@
   }
   
   .btn-voltar {
+    top: calc(var(--header-height) + 15px);
+    left: 10px;
     padding: 6px 12px;
     font-size: 0.8rem;
   }

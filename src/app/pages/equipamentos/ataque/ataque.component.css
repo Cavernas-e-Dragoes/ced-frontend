@@ -77,6 +77,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 200px 0 50px 0;
 }
 
 /* Pontos de luz */
@@ -591,6 +592,12 @@
 }
 
 /* Estilos responsivos */
+@media (max-width: 990px) {
+  .voltar-btn{
+    left: -5% !important;
+    top: -148% !important;
+  }
+  }
 @media (max-width: 768px) {
   .equipamentos-container {
     padding: 20px;
@@ -641,6 +648,12 @@
   
   .equipamentos-titulo {
     margin-bottom: 10px;
+  }
+}
+@media (max-width: 523px){
+  .voltar-btn{
+    left: -6% !important;
+    top: -109% !important;
   }
 }
 

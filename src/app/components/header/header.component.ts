@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -10,12 +10,17 @@ export class HeaderComponent implements OnInit{
 
   isAuthenticated = false;
   userName = '';
-
+  isScrolled = false;
 
   constructor(private authService: AuthService) {}
 
   ngOnInit() {
     this.updateAuthStatus();
+  }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    this.isScrolled = window.scrollY > 50;
   }
 
   updateAuthStatus() {

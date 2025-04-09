@@ -17,10 +17,24 @@
     --container-padding: 20px;
     --pallet-yellow: #ffe77f;
     --pallet-red: rgb(34, 0, 0);
+    --header-height: 90px;
 }
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background-color: #1a0f0f;
+}
+
+/* Ajuste para o conteúdo principal */
+main {
+    padding-top: var(--header-height);
+    min-height: calc(100vh - var(--header-height));
+}
+
 section{
-    margin-top: 5vh;
-    min-height: 95vh;
+    margin-top: 0;
+    min-height: calc(100vh - var(--header-height));
     display: flex;
     align-items: center;
     justify-content: center;
@@ -37,7 +51,6 @@ section{
       #2d2d2d;
     background-size: 10px 10px;
     overflow: hidden;
-
 }
 .column{
     display: flex;
@@ -89,7 +102,7 @@ button:active{
         --container-padding: 15px;
     }
     .background-section{
-       margin-top: -5vh !important;
+       margin-top: 0 !important;
     }
 }
 
@@ -124,7 +137,6 @@ button:active{
         display: flex !important;
     }
     h1, h2, p{
-        
         text-align: center;
     }
     
@@ -133,7 +145,7 @@ button:active{
         max-width: 300px;
     }
     section {
-       margin-top: 0vh;
+       margin-top: 0;
     }
 }
 
@@ -143,7 +155,7 @@ button:active{
     }
     
     section {
-        margin-top: 0vh;
+        margin-top: 0;
     }
     
     h1 {
@@ -162,14 +174,13 @@ button:active{
 .background-section {
     position: relative;
     width: 100%;
-    min-height: calc(100vh - 10vh);
+    min-height: calc(100vh - var(--header-height));
     overflow: hidden;
     background: linear-gradient(to bottom, #1a0f0f, #2a1a1a);
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px;
-    margin-top: 5vh;
+    padding: var(--container-padding);
 }
 
 .parallax-container {

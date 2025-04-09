@@ -382,6 +382,9 @@
 
 /* Estilos responsivos */
 @media (max-width: 768px) {
+  .background-section-magias{
+    padding: 80px 10px 30px;
+  }
   .magic-detail-section {
     padding: 10px;
     margin: 30px auto;
