@@ -24,7 +24,7 @@
         <li class="link button-border" *ngIf="!isAuthenticated" [class.active]="isActive('/register')" routerLink="/register">Registrar</li>
 
         <!-- Exibe o Saguão apenas se o usuário ESTIVER autenticado -->
-        <li class="link" *ngIf="isAuthenticated" [class.active]="isActive('/saguao-do-aventureiro')" routerLink="/saguao-do-aventureiro">
+        <li class="link link-menu" *ngIf="isAuthenticated" [class.active]="isActive('/saguao-do-aventureiro')" routerLink="/saguao-do-aventureiro">
             Saguão
         </li>
 

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { trigger, transition, style, animate, keyframes, state } from '@angular/animations';
+import { trigger, transition, style, animate, keyframes, state, query, animateChild, group } from '@angular/animations';
 import { Character } from '../../models/character';
 import { CharacterService } from '../../services/character.service';
 import { Router } from '@angular/router';
@@ -24,7 +24,7 @@ interface ClassWithImage extends Class {
   styleUrls: ['./criar-personagem.component.css'],
   animations: [
     trigger('virarPagina', [
-      // Estados explícitos simplificados
+      // Estados explícitos
       state('frente', style({
         transform: 'rotateY(0deg)',
         opacity: 1
@@ -34,32 +34,112 @@ interface ClassWithImage extends Class {
         opacity: 1
       })),
       
-      // Transição padrão para simplificar
-      transition(':enter', [
-        style({ opacity: 0 }),
-        animate('300ms ease-in', style({ opacity: 1 }))
+      // Transição para avançar (página vira da direita para esquerda, como abrindo um livro)
+      transition('void => frente', [
+        style({ 
+          transform: 'rotateY(90deg)',
+          opacity: 0.3,
+          transformOrigin: 'left center',
+          boxShadow: '10px 0 20px rgba(0, 0, 0, 0.2)'
+        }),
+        animate('500ms cubic-bezier(0.3, 0, 0.3, 1)', keyframes([
+          style({ 
+            transform: 'rotateY(90deg)', 
+            opacity: 0.3, 
+            offset: 0,
+            transformOrigin: 'left center',
+            boxShadow: '10px 0 20px rgba(0, 0, 0, 0.3)'
+          }),
+          style({ 
+            transform: 'rotateY(75deg)', 
+            opacity: 0.5, 
+            offset: 0.2,
+            transformOrigin: 'left center',
+            boxShadow: '8px 0 18px rgba(0, 0, 0, 0.3)'
+          }),
+          style({ 
+            transform: 'rotateY(45deg)', 
+            opacity: 0.7, 
+            offset: 0.5,
+            transformOrigin: 'left center',
+            boxShadow: '5px 0 15px rgba(0, 0, 0, 0.2)'
+          }),
+          style({ 
+            transform: 'rotateY(20deg)', 
+            opacity: 0.9, 
+            offset: 0.8,
+            transformOrigin: 'left center',
+            boxShadow: '2px 0 10px rgba(0, 0, 0, 0.1)'
+          }),
+          style({ 
+            transform: 'rotateY(0deg)', 
+            opacity: 1, 
+            offset: 1,
+            transformOrigin: 'left center',
+            boxShadow: '0 0 0 rgba(0, 0, 0, 0)'
+          })
+        ]))
       ]),
       
-      // Transições básicas
-      transition('* => frente', [
-        style({ opacity: 0 }),
-        animate('500ms ease', style({ opacity: 1 }))
-      ]),
-      
-      transition('* => tras', [
-        style({ opacity: 0 }),
-        animate('500ms ease', style({ opacity: 1 }))
+      // Transição para voltar (página vira da esquerda para direita)
+      transition('void => tras', [
+        style({ 
+          transform: 'rotateY(-90deg)',
+          opacity: 0.3,
+          transformOrigin: 'left center',
+          boxShadow: '-10px 0 20px rgba(0, 0, 0, 0.2)'
+        }),
+        animate('500ms cubic-bezier(0.3, 0, 0.3, 1)', keyframes([
+          style({ 
+            transform: 'rotateY(-90deg)', 
+            opacity: 0.3, 
+            offset: 0,
+            transformOrigin: 'left center',
+            boxShadow: '-10px 0 20px rgba(0, 0, 0, 0.3)'
+          }),
+          style({ 
+            transform: 'rotateY(-75deg)', 
+            opacity: 0.5, 
+            offset: 0.2,
+            transformOrigin: 'left center',
+            boxShadow: '-8px 0 18px rgba(0, 0, 0, 0.3)'
+          }),
+          style({ 
+            transform: 'rotateY(-45deg)', 
+            opacity: 0.7, 
+            offset: 0.5,
+            transformOrigin: 'left center',
+            boxShadow: '-5px 0 15px rgba(0, 0, 0, 0.2)'
+          }),
+          style({ 
+            transform: 'rotateY(-20deg)', 
+            opacity: 0.9, 
+            offset: 0.8,
+            transformOrigin: 'left center',
+            boxShadow: '-2px 0 10px rgba(0, 0, 0, 0.1)'
+          }),
+          style({ 
+            transform: 'rotateY(0deg)', 
+            opacity: 1, 
+            offset: 1,
+            transformOrigin: 'left center',
+            boxShadow: '0 0 0 rgba(0, 0, 0, 0)'
+          })
+        ]))
       ])
     ])
   ]
 })
 export class CriarPersonagemComponent implements OnInit {
   etapa: number = 1;
+  etapaAnterior: number = 0;
   metodoAtributos: 'rolagem' | 'manual' | null = null;
   isLoading: boolean = false;
   isError: boolean = false;
   errorMessage: string = '';
-  direcao: 'frente' | 'tras' = 'frente'; // Controla a direção da animação
+  direcao: 'frente' | 'tras' = 'frente';
+  animacaoEmProgresso: boolean = false;
+  paginasPreCarregadas: boolean = false;
 
   racas: RaceWithImage[] = [];
   classes: ClassWithImage[] = [];
@@ -87,72 +167,127 @@ export class CriarPersonagemComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // Garantir que a primeira página seja exibida corretamente
     this.etapa = 1;
     this.direcao = 'frente';
     
-    // Carregar dados necessários
     this.carregarRacas();
     this.carregarClasses();
-    
-    // Debug - remover em produção
-    console.log('CriarPersonagemComponent inicializado');
-    console.log('Estado inicial:', { etapa: this.etapa, direcao: this.direcao });
   }
 
-  // Funções para controlar a direção da animação
+  // Impedir múltiplos cliques durante a animação
+  @HostListener('click', ['$event'])
+  bloquearCliqueDuranteAnimacao(event: MouseEvent) {
+    if (this.animacaoEmProgresso) {
+      event.stopPropagation();
+      event.preventDefault();
+    }
+  }
+
   getAnimationState() {
     return this.direcao;
   }
 
+  // Método para navegar para uma etapa específica
+  navegarParaEtapa(novaEtapa: number) {
+    if (this.animacaoEmProgresso || novaEtapa === this.etapa) return;
+    
+    // Verificações antes de avançar
+    if (novaEtapa === 3 && !this.personagem.class.index) {
+      alert('Selecione uma classe antes de definir os atributos.');
+      return;
+    }
+    
+    if (novaEtapa === 4 && Object.values(this.personagem.attributes).some(val => val === 0)) {
+      alert('Defina todos os atributos antes de continuar.');
+      return;
+    }
+    
+    if (novaEtapa === 5 && !this.personagem.name) {
+      alert('Preencha as informações do personagem antes de continuar.');
+      return;
+    }
+    
+    this.animacaoEmProgresso = true;
+    
+    // Define a direção da animação
+    if (novaEtapa > this.etapa) {
+      this.direcao = 'frente';
+    } else {
+      this.direcao = 'tras';
+    }
+    
+    // Atualiza a etapa
+    this.etapaAnterior = this.etapa;
+    this.etapa = novaEtapa;
+    
+    // Permite que a animação termine
+    setTimeout(() => {
+      this.animacaoEmProgresso = false;
+    }, 500);
+  }
+
   selecionarRaca(raca: Race) {
-    console.log('Raça selecionada:', raca.name);
+    if (this.animacaoEmProgresso) return;
+    
     this.personagem.race = {
       index: raca.index,
       name: raca.name,
       url: raca.url
     };
-    this.direcao = 'frente';
-    this.etapa = 2;
+    
+    // Usar o novo método de navegação
+    this.navegarParaEtapa(2);
   }
 
   selecionarClasse(classe: Class) {
-    console.log('Classe selecionada:', classe.name);
+    if (this.animacaoEmProgresso) return;
+    
     this.personagem.class = {
       index: classe.index,
       name: classe.name,
       url: classe.url
     };
-    this.direcao = 'frente';
-    this.etapa = 3;
+    
+    // Usar o novo método de navegação
+    this.navegarParaEtapa(3);
   }
 
   avancarEtapa() {
+    if (this.animacaoEmProgresso) return;
+    
     if (this.etapa === 3 && Object.values(this.personagem.attributes).some(val => val === 0)) {
       alert("Defina os atributos antes de continuar!");
       return;
     }
-
-    this.direcao = 'frente';
-    console.log('Avançando para etapa:', this.etapa + 1);
     
+    // Usar o novo método de navegação
     if (this.etapa === 4) {
-      this.etapa = 5; // Adiciona etapa para nome e background
-      return;
+      this.navegarParaEtapa(5);
+    } else {
+      this.navegarParaEtapa(this.etapa + 1);
     }
-
-    this.etapa++;
   }
 
   voltarEtapa() {
-    if (this.etapa > 1) {
-      this.direcao = 'tras';
-      console.log('Voltando para etapa:', this.etapa - 1);
-      
-      if (this.etapa === 4) {
-        this.metodoAtributos = null;
+    if (this.animacaoEmProgresso || this.etapa <= 1) return;
+    
+    if (this.etapa === 4) {
+      this.metodoAtributos = null;
+    }
+    
+    // Usar o novo método de navegação
+    this.navegarParaEtapa(this.etapa - 1);
+  }
+
+  // Método para pré-carregar dados necessários para a próxima etapa
+  preCarregarProximaEtapa() {
+    if (this.etapa === 1) {
+      // Já estamos carregando as classes na inicialização
+    } else if (this.etapa === 2) {
+      // Pré-carregar tudo o que for necessário para a etapa de atributos
+      if (!this.paginasPreCarregadas) {
+        this.paginasPreCarregadas = true;
       }
-      this.etapa--;
     }
   }
 

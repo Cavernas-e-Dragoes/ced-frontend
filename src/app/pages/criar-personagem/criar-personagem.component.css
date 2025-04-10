@@ -1,13 +1,16 @@
 /** Estilo Base das Etapas **/
 .background-section {
-  background: linear-gradient(to bottom, #1a0f0f, #2a1a1a);
   position: relative;
-  min-height: calc(100vh - 10vh);
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #150c07, #1d1107);
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  padding: 120px 0;
   display: flex;
   justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  padding: 100px 0;
+  align-items: flex-start;
 }
 
 .parallax-container {
@@ -148,84 +151,10 @@
 
 .criacao-personagem {
   position: relative;
-  width: 90vw;
+  width: 100%;
   max-width: 1200px;
-  min-height: 80vh;
-  margin: 20px auto;
-  padding: 40px;
-  border-radius: 50px 0px 50px 0px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-  border: 1px solid #d4b483;
-  text-align: center;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow: hidden;
-  font-family: 'Cinzel', serif;
-  color: #2c1810;
-  
-  /* Fundo estilo pergaminho */
-  background: 
-    linear-gradient(135deg, #f4e4bc 0%, #e6d5a7 50%, #d4b483 100%),
-    repeating-linear-gradient(
-        45deg,
-        rgba(212, 180, 131, 0.1) 0px,
-        rgba(212, 180, 131, 0.1) 1px,
-        transparent 1px,
-        transparent 10px
-    ),
-    repeating-linear-gradient(
-        -45deg,
-        rgba(212, 180, 131, 0.1) 0px,
-        rgba(212, 180, 131, 0.1) 1px,
-        transparent 1px,
-        transparent 10px
-    ),
-    radial-gradient(
-        circle at 20% 20%,
-        rgba(212, 180, 131, 0.3) 0%,
-        transparent 50%
-    ),
-    radial-gradient(
-        circle at 80% 80%,
-        rgba(212, 180, 131, 0.3) 0%,
-        transparent 50%
-    );
-  
-  box-shadow: 
-    inset 0 0 50px rgba(0, 0, 0, 0.1),
-    0 0 20px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(212, 180, 131, 0.2);
-}
-
-/* Efeito de borda envelhecida */
-.criacao-personagem::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border: 1px solid rgba(212, 180, 131, 0.3);
-  border-radius: 50px 0px 50px 0px;
-  pointer-events: none;
-}
-
-/* Efeito de sombra interna */
-.criacao-personagem::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(
-      circle at 50% 50%,
-      transparent 0%,
-      rgba(0, 0, 0, 0.1) 100%
-  );
-  pointer-events: none;
+  margin: 0 auto;
+  z-index: 5;
 }
 
 h2 {
@@ -259,6 +188,8 @@ h2::after {
   align-items: center;
   padding: 20px;
   margin: 20px 0;
+  width: 90%;
+  max-width: 800px;
 }
 
 .opcao {
@@ -268,7 +199,7 @@ h2::after {
   border-radius: 15px;
   cursor: pointer;
   transition: all 0.3s ease;
-  width: 200px;
+  width: 170px;
   font-size: 16px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   position: relative;
@@ -277,6 +208,7 @@ h2::after {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin: 0;
 }
 
 .opcao:hover {
@@ -363,116 +295,231 @@ h2::after {
 }
 
 .livro {
-  perspective: 1500px;
-  width: 100%;
-  max-width: 1000px;
-  margin: auto;
   position: relative;
+  width: 100%;
+  max-width: 900px;
+  height: auto;
+  background: transparent;
+  perspective: 1500px;
+  perspective-origin: center;
+  margin: 0 auto;
+  margin-bottom: 80px;
+  z-index: 1;
+  border-radius: 10px;
   overflow: visible;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  transform-style: preserve-3d;
+  transform: rotateX(5deg);
+  transition: all 0.5s ease;
+}
+
+.livro::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 20px;
+  bottom: -20px;
+  left: 0;
+  background: transparent;
+  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3);
+  transform: rotateX(80deg);
+  transform-origin: top;
+  filter: blur(5px);
+  opacity: 0.6;
+  border-radius: 50%;
+  z-index: -1;
+  transition: all 0.3s ease;
+}
+
+.livro:hover::before {
+  opacity: 0.8;
+  filter: blur(7px);
+  box-shadow: 0 25px 25px rgba(0, 0, 0, 0.4);
+}
+
+.lombada {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 40px;
+  height: auto;
+  background: linear-gradient(to right, #3a2613, #8c6b4a);
+  border-radius: 8px 0 0 8px;
+  box-shadow: inset -5px 0 15px rgba(0, 0, 0, 0.3),
+              5px 5px 15px rgba(0, 0, 0, 0.2);
+  transform: translateX(-20px) rotateY(15deg);
+  transform-origin: right center;
+  z-index: 1;
+  transition: all 0.3s ease;
+  display: flex;
   align-items: center;
+  justify-content: center;
+}
+
+.lombada::before {
+  content: 'C&D'; /* Iniciais de Cavernas e Dragões */
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  color: #d4b483;
+  font-family: 'Cinzel', serif;
+  font-weight: bold;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  opacity: 0.8;
+  transform: rotate(180deg);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.livro:hover {
+  transform: rotateX(2deg) translateY(-5px);
+}
+
+.livro:hover .lombada {
+  transform: translateX(-25px) rotateY(20deg);
+}
+
+.paginas-container {
+  position: relative;
+  width: 100%;
+  height: auto;
+  min-height: 600px;
+  z-index: 2;
+  box-shadow: -10px 10px 30px rgba(0, 0, 0, 0.2);
+  border-radius: 15px 25px 25px 15px;
+  transition: height 0.3s ease;
+}
+
+.pagina-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  perspective: 2000px;
+  overflow: visible;
+  margin-bottom: 20px;
 }
 
 .pagina {
-  width: 100%;
-  height: auto;
-  min-height: 70vh;
   position: relative;
-  background: linear-gradient(135deg, #f4e4bc 0%, #e6d5a7 50%, #d4b483 100%);
-  border-radius: 20px;
-  border: 1px solid #d4b483;
-  box-shadow: 
-    0 4px 25px rgba(0, 0, 0, 0.2),
+  width: 100%;
+  min-height: 600px;
+  height: auto;
+  background: linear-gradient(135deg, #f9f3e0, #efe6cf);
+  border-radius: 15px 25px 25px 15px;
+  padding: 40px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.2),
     5px 5px 10px rgba(0, 0, 0, 0.1),
     inset 0 0 15px rgba(255, 255, 255, 0.5);
   transform-origin: left center;
+  transform-style: preserve-3d;
   backface-visibility: hidden;
-  padding: 30px;
+  overflow: visible;
   display: flex;
   flex-direction: column;
   align-items: center;
-  transform-style: preserve-3d;
-  transition: box-shadow 0.6s ease, opacity 0.3s ease;
-  opacity: 1;
+  will-change: transform, opacity;
+  transition: all 0.3s ease-in-out;
 }
 
+/* Adicionando decoração na borda do livro */
 .pagina::before {
-  content: "";
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -5px;
+  width: 8px;
+  height: 100%;
+  background: linear-gradient(to right, rgba(210, 175, 130, 0.8), rgba(210, 175, 130, 0.2));
+  border-radius: 4px 0 0 4px;
+  z-index: 1;
+}
+
+/* Textura da página */
+.pagina::after {
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: 
-    repeating-linear-gradient(
-        45deg,
-        rgba(212, 180, 131, 0.1) 0px,
-        rgba(212, 180, 131, 0.1) 1px,
-        transparent 1px,
-        transparent 10px
-    ),
-    repeating-linear-gradient(
-        -45deg,
-        rgba(212, 180, 131, 0.1) 0px,
-        rgba(212, 180, 131, 0.1) 1px,
-        transparent 1px,
-        transparent 10px
-    );
+  background-image: 
+    radial-gradient(circle at 50px 50px, rgba(210, 175, 130, 0.1) 10px, transparent 10px),
+    radial-gradient(circle at 150px 120px, rgba(210, 175, 130, 0.1) 8px, transparent 8px),
+    radial-gradient(circle at 250px 220px, rgba(210, 175, 130, 0.1) 12px, transparent 12px),
+    radial-gradient(circle at 170px 350px, rgba(210, 175, 130, 0.1) 7px, transparent 7px),
+    radial-gradient(circle at 90px 380px, rgba(210, 175, 130, 0.1) 10px, transparent 10px),
+    radial-gradient(circle at 320px 80px, rgba(210, 175, 130, 0.1) 9px, transparent 9px);
   pointer-events: none;
-  border-radius: 20px;
-  z-index: -1;
+  opacity: 0.8;
+  z-index: 0;
+  border-radius: 15px 25px 25px 15px;
 }
 
-.pagina::after {
-  content: "";
+/* Efeito de sombra na borda direita da página */
+.pagina-borda {
+  content: '';
   position: absolute;
   top: 0;
-  left: 0;
-  width: 10px;
+  right: 0;
+  width: 50px;
   height: 100%;
-  background: linear-gradient(to right, 
-    rgba(160, 120, 80, 0.5) 0%, 
-    rgba(120, 80, 40, 0.3) 40%, 
-    rgba(0, 0, 0, 0.1) 100%);
-  pointer-events: none;
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.05), transparent);
+  border-left: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 0 15px 15px 0;
   z-index: 2;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
+  pointer-events: none;
 }
 
-/* Sombra da página quando em repouso */
-.pagina {
-  box-shadow: 
-    0 0 15px rgba(0, 0, 0, 0.1),
-    5px 5px 15px rgba(0, 0, 0, 0.05),
-    inset 0 0 15px rgba(255, 255, 255, 0.5),
-    inset 3px 0 5px rgba(160, 120, 80, 0.2);
-}
-
-/* Estilo para simular a lombada do livro */
-.lombada {
+/* Detalhes adicionais na lombada */
+.lombada::after {
+  content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 15px;
-  height: 100%;
-  background: linear-gradient(to right, 
-    #784527 0%, 
-    #9a5a33 40%, 
-    #b46b3e 60%, 
-    #d4b483 100%);
-  border-radius: 5px 0 0 5px;
-  border-right: 1px solid rgba(0, 0, 0, 0.2);
-  box-shadow: 
-    inset -1px 0 3px rgba(0, 0, 0, 0.3),
-    2px 0 5px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  height: 90%;
+  background-image: 
+    linear-gradient(to bottom, 
+      transparent 10%, 
+      rgba(255, 255, 255, 0.1) 10.5%, 
+      transparent 11%,
+      transparent 20%, 
+      rgba(255, 255, 255, 0.1) 20.5%, 
+      transparent 21%,
+      transparent 30%, 
+      rgba(255, 255, 255, 0.1) 30.5%, 
+      transparent 31%,
+      transparent 70%, 
+      rgba(255, 255, 255, 0.1) 70.5%, 
+      transparent 71%,
+      transparent 80%, 
+      rgba(255, 255, 255, 0.1) 80.5%, 
+      transparent 81%,
+      transparent 90%, 
+      rgba(255, 255, 255, 0.1) 90.5%, 
+      transparent 91%
+    );
+  opacity: 0.6;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.etapa {
+  transition: transform 0.8s ease, opacity 0.5s ease;
+  transform: rotateY(0);
   z-index: 3;
-  transform: translateX(-10px);
+  opacity: 1;
+}
+
+.pagina.active {
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.3),
+    inset 0 0 30px rgba(222, 188, 121, 0.4);
+  z-index: 10;
 }
 
 /* Estilos para atributos */
-.attribute-container {
+.attribute-container, .info-form, .resumo {
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -481,9 +528,10 @@ h2::after {
   background: rgba(244, 228, 188, 0.8);
   border-radius: 15px;
   border: 1px solid #d4b483;
-  width: 100%;
+  width: 85%;
   max-width: 600px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  height: auto;
 }
 
 .atributo {
@@ -566,7 +614,8 @@ h2::after {
   background: rgba(244, 228, 188, 0.8);
   border-radius: 15px;
   border: 1px solid #d4b483;
-  width: 100%;
+  width: 85%;
+  max-width: 600px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
@@ -611,7 +660,8 @@ h2::after {
   background: rgba(244, 228, 188, 0.8);
   border-radius: 15px;
   border: 1px solid #d4b483;
-  width: 100%;
+  width: 85%;
+  max-width: 600px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
@@ -709,86 +759,98 @@ h2::after {
 }
 
 /* Responsividade */
-@media (max-width: 1200px) {
-  .criacao-personagem {
-    width: 95vw;
-    padding: 30px;
-  }
-  
-  .livro {
-    height: 75vh;
-  }
-  
-  .opcao {
-    width: 180px;
-  }
-}
-
 @media (max-width: 992px) {
-  .criacao-personagem {
-    width: 98vw;
+  .pagina {
+    width: 95%;
     padding: 25px;
   }
   
-  h2 {
-    font-size: 2rem;
+  .opcoes {
+    gap: 20px;
+    width: 95%;
   }
   
   .opcao {
-    width: 170px;
-    padding: 15px 10px;
+    width: 160px;
   }
-  
-  .opcao img,
-  .opcao-avatar {
-    width: 70px;
-    height: 70px;
-    font-size: 1.8em;
-  }
-  
-  .btn-voltar,
-  .btn-continuar,
-  .btn-finalizar {
-    padding: 10px 20px;
-    font-size: 1rem;
+
+  .background-section {
+    padding: 100px 0;
   }
 }
 
 @media (max-width: 768px) {
-  .criacao-personagem {
+  .pagina {
     width: 100%;
-    margin: 10px auto;
     padding: 20px;
-    border-radius: 30px 0px 30px 0px;
-  }
-  
-  .livro {
-    height: 70vh;
   }
   
   .opcoes {
     gap: 15px;
-    padding: 15px;
+    width: 100%;
   }
   
   .opcao {
     width: 150px;
-    font-size: 14px;
     padding: 15px 10px;
   }
   
-  .opcao img,
+  .opcao img, 
+  .opcao-avatar {
+    width: 70px;
+    height: 70px;
+  }
+
+  .background-section {
+    padding: 80px 0;
+  }
+
+  .lombada {
+    width: 30px;
+    transform: translateX(-15px) rotateY(15deg);
+  }
+  
+  .lombada::before {
+    font-size: 1rem;
+  }
+  
+  .livro:hover .lombada {
+    transform: translateX(-18px) rotateY(20deg);
+  }
+}
+
+@media (max-width: 480px) {
+  .opcoes {
+    gap: 10px;
+  }
+  
+  .opcao {
+    width: 130px;
+    padding: 12px 8px;
+  }
+  
+  .opcao img, 
   .opcao-avatar {
     width: 60px;
     height: 60px;
-    font-size: 1.6em;
-    margin-bottom: 10px;
+    font-size: 1.8em;
+  }
+
+  .lombada {
+    width: 25px;
+    transform: translateX(-12px) rotateY(15deg);
   }
   
-  .opcao p {
-    font-size: 0.9rem;
+  .lombada::before {
+    font-size: 0.8rem;
   }
   
+  .livro:hover .lombada {
+    transform: translateX(-15px) rotateY(20deg);
+  }
+}
+
+.mensagem-carregando {
   h2 {
     font-size: 1.8rem;
     margin-bottom: 20px;
@@ -829,30 +891,13 @@ h2::after {
 }
 
 @media (max-width: 480px) {
-  .criacao-personagem {
-    margin: 5px auto;
-    padding: 15px;
-    border-radius: 20px 0px 20px 0px;
-  }
-  
-  .livro {
-    height: 65vh;
-  }
-  
-  h2 {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-  }
-  
   .opcoes {
     gap: 10px;
-    padding: 10px;
   }
   
   .opcao {
-    width: 130px;
-    font-size: 12px;
-    padding: 12px 8px;
+    width: 120px;
+    margin: 5px;
   }
   
   .opcao img,
@@ -928,4 +973,64 @@ h2::after {
   max-width: 500px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   animation: pulse 2s infinite ease-in-out;
+}
+
+/* Adicionando navegação lateral para as páginas */
+.paginas-navegacao {
+  position: absolute;
+  right: -50px;
+  top: 30%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 10;
+}
+
+.pagina-nav {
+  width: 20px;
+  height: 60px;
+  background: linear-gradient(135deg, #f4e4bc 0%, #d4b483 100%);
+  border-radius: 0 5px 5px 0;
+  border: 1px solid #d4b483;
+  border-left: none;
+  cursor: pointer;
+  box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagina-nav:hover {
+  transform: translateX(-3px);
+  box-shadow: 4px 5px 12px rgba(0, 0, 0, 0.3);
+}
+
+.pagina-nav.active {
+  background: linear-gradient(135deg, #d4b483 0%, #8c6b4a 100%);
+  width: 25px;
+}
+
+.pagina-nav-numero {
+  color: #2c1810;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+/* Estilos adicionais para visualização de página virada */
+.pagina-tras {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  background: linear-gradient(135deg, #efe6cf, #f9f3e0);
+  border-radius: 15px 25px 25px 15px;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+  overflow: hidden;
 }

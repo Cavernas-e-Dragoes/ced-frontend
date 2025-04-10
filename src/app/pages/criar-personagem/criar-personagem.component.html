@@ -26,122 +26,186 @@
             <div class="livro">
                 <div class="lombada"></div>
                 
-                <!-- Escolha de Raça -->
-                <div *ngIf="etapa === 1" class="pagina etapa">
-                    <h2>Escolha sua Raça</h2>
-                    <div class="opcoes" *ngIf="racas && racas.length > 0">
-                        <div *ngFor="let raca of racas" (click)="selecionarRaca(raca)" class="opcao">
-                            <img [src]="raca.img" [alt]="raca.name" *ngIf="raca.img">
-                            <div class="opcao-avatar" *ngIf="!raca.img">{{ raca.name.charAt(0) }}</div>
-                            <p>{{ raca.name }}</p>
-                        </div>
+                <!-- Navegação lateral para as páginas -->
+                <div class="paginas-navegacao">
+                    <div class="pagina-nav" [class.active]="etapa === 1" (click)="navegarParaEtapa(1)">
+                        <span class="pagina-nav-numero">1</span>
                     </div>
-                    <div *ngIf="!racas || racas.length === 0" class="mensagem-carregando">
-                        Carregando raças disponíveis...
+                    <div class="pagina-nav" [class.active]="etapa === 2" (click)="navegarParaEtapa(2)">
+                        <span class="pagina-nav-numero">2</span>
                     </div>
-                </div>
-
-                <!-- Escolha de Classe -->
-                <div *ngIf="etapa === 2" class="pagina etapa">
-                    <button (click)="voltarEtapa()" class="btn-voltar">← Voltar</button>
-                    <h2>Escolha sua Classe</h2>
-                    <div class="opcoes" *ngIf="classes && classes.length > 0">
-                        <div *ngFor="let classe of classes" (click)="selecionarClasse(classe)" class="opcao">
-                            <img [src]="classe.img" [alt]="classe.name" *ngIf="classe.img">
-                            <div class="opcao-avatar" *ngIf="!classe.img">{{ classe.name.charAt(0) }}</div>
-                            <p>{{ classe.name }}</p>
-                        </div>
+                    <div class="pagina-nav" [class.active]="etapa === 3" (click)="navegarParaEtapa(3)">
+                        <span class="pagina-nav-numero">3</span>
                     </div>
-                    <div *ngIf="!classes || classes.length === 0" class="mensagem-carregando">
-                        Carregando classes disponíveis...
+                    <div class="pagina-nav" [class.active]="etapa === 4" (click)="navegarParaEtapa(4)">
+                        <span class="pagina-nav-numero">4</span>
+                    </div>
+                    <div class="pagina-nav" [class.active]="etapa === 5" (click)="navegarParaEtapa(5)">
+                        <span class="pagina-nav-numero">5</span>
                     </div>
                 </div>
 
-                <!-- Escolha de Atributos -->
-                <div *ngIf="etapa === 3" class="pagina etapa">
-                    <button (click)="voltarEtapa()" class="btn-voltar">← Voltar</button>
-                    <h2>Defina seus Atributos</h2>
-                    <div class="opcoes">
-                        <button (click)="rolarAtributos()" class="btn-method">Rolar Atributos 🎲</button>
-                        <button (click)="usarDistribuicaoPontos()" class="btn-method">Distribuir Manualmente</button>
+                <!-- Container de páginas -->
+                <div class="paginas-container">
+                    <!-- Escolha de Raça -->
+                    <div *ngIf="etapa === 1" class="pagina-wrapper">
+                        <div class="pagina etapa active" [@virarPagina]="getAnimationState()">
+                            <h2>Escolha sua Raça</h2>
+                            <div class="opcoes" *ngIf="racas && racas.length > 0">
+                                <div *ngFor="let raca of racas" (click)="selecionarRaca(raca)" class="opcao">
+                                    <img [src]="raca.img" [alt]="raca.name" *ngIf="raca.img">
+                                    <div class="opcao-avatar" *ngIf="!raca.img">{{ raca.name.charAt(0) }}</div>
+                                    <p>{{ raca.name }}</p>
+                                </div>
+                            </div>
+                            <div *ngIf="!racas || racas.length === 0" class="mensagem-carregando">
+                                Carregando raças disponíveis...
+                            </div>
+
+                            <!-- Conteúdo pré-carregado da próxima página (verso) -->
+                            <div class="pagina-tras">
+                                <h2>Escolha sua Classe</h2>
+                                <div class="opcoes">
+                                    <!-- Classes pré-carregadas -->
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <div *ngIf="metodoAtributos === 'rolagem'" class="attribute-container">
-                        <div *ngFor="let atributo of atributoNomes" class="atributo">
-                            <label>{{ nomesAtributosPortugues[atributo] }}</label>
-                            <span class="att-value">{{ personagem.attributes[atributo] }}</span>
-                            <span class="modifier">{{ characterService.calculateAttributeModifier(personagem.attributes[atributo]) >= 0 ? '+' : '' }}{{ characterService.calculateAttributeModifier(personagem.attributes[atributo]) }}</span>
+                    <!-- Escolha de Classe -->
+                    <div *ngIf="etapa === 2" class="pagina-wrapper">
+                        <div class="pagina etapa active" [@virarPagina]="getAnimationState()">
+                            <button (click)="voltarEtapa()" class="btn-voltar">← Voltar</button>
+                            <h2>Escolha sua Classe</h2>
+                            <div class="opcoes" *ngIf="classes && classes.length > 0">
+                                <div *ngFor="let classe of classes" (click)="selecionarClasse(classe)" class="opcao">
+                                    <img [src]="classe.img" [alt]="classe.name" *ngIf="classe.img">
+                                    <div class="opcao-avatar" *ngIf="!classe.img">{{ classe.name.charAt(0) }}</div>
+                                    <p>{{ classe.name }}</p>
+                                </div>
+                            </div>
+                            <div *ngIf="!classes || classes.length === 0" class="mensagem-carregando">
+                                Carregando classes disponíveis...
+                            </div>
+
+                            <!-- Conteúdo pré-carregado da próxima página (verso) -->
+                            <div class="pagina-tras">
+                                <h2>Defina seus Atributos</h2>
+                                <div class="opcoes">
+                                    <!-- Opções de atributos pré-carregadas -->
+                                </div>
+                            </div>
                         </div>
-                        <button (click)="rolarAtributos()" class="btn-roll-again">Rolar Novamente</button>
                     </div>
 
-                    <div *ngIf="metodoAtributos === 'manual'" class="attribute-container">
-                        <div *ngFor="let atributo of atributoNomes" class="atributo">
-                            <label>{{ nomesAtributosPortugues[atributo] }}:</label>
-                            <input type="number" [(ngModel)]="personagem.attributes[atributo]" min="3" max="18">
-                            <span class="modifier">{{ characterService.calculateAttributeModifier(personagem.attributes[atributo]) >= 0 ? '+' : '' }}{{ characterService.calculateAttributeModifier(personagem.attributes[atributo]) }}</span>
-                        </div>
-                    </div>
-                    <button (click)="avancarEtapa()" class="btn-continuar">Continuar →</button>
-                </div>
+                    <!-- Escolha de Atributos -->
+                    <div *ngIf="etapa === 3" class="pagina-wrapper">
+                        <div class="pagina etapa active" [@virarPagina]="getAnimationState()">
+                            <button (click)="voltarEtapa()" class="btn-voltar">← Voltar</button>
+                            <h2>Defina seus Atributos</h2>
+                            <div class="opcoes">
+                                <button (click)="escolherMetodoAtributos('rolagem')" class="btn-method">Rolar Atributos 🎲</button>
+                                <button (click)="escolherMetodoAtributos('manual')" class="btn-method">Distribuir Manualmente</button>
+                            </div>
 
-                <!-- Informações Adicionais -->
-                <div *ngIf="etapa === 4" class="pagina etapa">
-                    <button (click)="voltarEtapa()" class="btn-voltar">← Voltar</button>
-                    <h2>Informações do Personagem</h2>
-                    <div class="info-form">
-                        <div class="form-group">
-                            <label for="name">Nome do Personagem:</label>
-                            <input type="text" id="name" [(ngModel)]="personagem.name" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="background">Antecedente:</label>
-                            <input type="text" id="background" [(ngModel)]="personagem.background">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="alignment">Alinhamento:</label>
-                            <select id="alignment" [(ngModel)]="personagem.alignment">
-                                <option value="">Selecione...</option>
-                                <option value="Leal e Bom">Leal e Bom</option>
-                                <option value="Neutro e Bom">Neutro e Bom</option>
-                                <option value="Caótico e Bom">Caótico e Bom</option>
-                                <option value="Leal e Neutro">Leal e Neutro</option>
-                                <option value="Neutro">Neutro</option>
-                                <option value="Caótico e Neutro">Caótico e Neutro</option>
-                                <option value="Leal e Mau">Leal e Mau</option>
-                                <option value="Neutro e Mau">Neutro e Mau</option>
-                                <option value="Caótico e Mau">Caótico e Mau</option>
-                            </select>
-                        </div>
-                    </div>
-                    <button (click)="avancarEtapa()" class="btn-continuar">Continuar →</button>
-                </div>
+                            <div *ngIf="metodoAtributos === 'rolagem'" class="attribute-container">
+                                <div *ngFor="let atributo of atributoNomes" class="atributo">
+                                    <label>{{ nomesAtributosPortugues[atributo] }}</label>
+                                    <span class="att-value">{{ personagem.attributes[atributo] }}</span>
+                                    <span class="modifier">{{ characterService.calculateAttributeModifier(personagem.attributes[atributo]) >= 0 ? '+' : '' }}{{ characterService.calculateAttributeModifier(personagem.attributes[atributo]) }}</span>
+                                </div>
+                                <button (click)="rolarAtributos()" class="btn-roll-again">Rolar Novamente</button>
+                            </div>
 
-                <!-- Resumo do Personagem -->
-                <div *ngIf="etapa === 5" class="pagina etapa">
-                    <button (click)="voltarEtapa()" class="btn-voltar">← Voltar</button>
-                    <h2>Resumo do Personagem</h2>
-                    <div class="resumo">
-                        <p><strong>Nome:</strong> {{ personagem.name || 'Não definido' }}</p>
-                        <p><strong>Raça:</strong> {{ personagem.race.name }}</p>
-                        <p><strong>Classe:</strong> {{ personagem.class.name }}</p>
-                        <p><strong>Nível:</strong> {{ personagem.level }}</p>
-                        <p><strong>Antecedente:</strong> {{ personagem.background || 'Não definido' }}</p>
-                        <p><strong>Alinhamento:</strong> {{ personagem.alignment || 'Não definido' }}</p>
-                        <p><strong>Atributos:</strong></p>
-                        <ul class="attribute-list">
-                            <li *ngFor="let atributo of atributoNomes">
-                                {{ nomesAtributosPortugues[atributo] }}: {{ personagem.attributes[atributo] }} 
-                                <span class="modifier">{{ characterService.calculateAttributeModifier(personagem.attributes[atributo]) >= 0 ? '+' : '' }}{{ characterService.calculateAttributeModifier(personagem.attributes[atributo]) }}</span>
-                            </li>
-                        </ul>
-                        <p><strong>Classe de Armadura:</strong> {{ personagem.armorClass }}</p>
-                        <p><strong>Iniciativa:</strong> {{ personagem.initiative >= 0 ? '+' : '' }}{{ personagem.initiative }}</p>
-                        <p><strong>Pontos de Vida:</strong> {{ personagem.hitPoints.maximum }}</p>
+                            <div *ngIf="metodoAtributos === 'manual'" class="attribute-container">
+                                <div *ngFor="let atributo of atributoNomes" class="atributo">
+                                    <label>{{ nomesAtributosPortugues[atributo] }}:</label>
+                                    <input type="number" [(ngModel)]="personagem.attributes[atributo]" min="3" max="18">
+                                    <span class="modifier">{{ characterService.calculateAttributeModifier(personagem.attributes[atributo]) >= 0 ? '+' : '' }}{{ characterService.calculateAttributeModifier(personagem.attributes[atributo]) }}</span>
+                                </div>
+                            </div>
+                            <button (click)="avancarEtapa()" class="btn-continuar">Continuar →</button>
+
+                            <!-- Conteúdo pré-carregado da próxima página (verso) -->
+                            <div class="pagina-tras">
+                                <h2>Informações do Personagem</h2>
+                                <div class="info-form">
+                                    <!-- Formulário pré-carregado -->
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <button (click)="finalizarCriacao()" class="btn-finalizar">Finalizar Criação</button>
+
+                    <!-- Informações Adicionais -->
+                    <div *ngIf="etapa === 4" class="pagina-wrapper">
+                        <div class="pagina etapa active" [@virarPagina]="getAnimationState()">
+                            <button (click)="voltarEtapa()" class="btn-voltar">← Voltar</button>
+                            <h2>Informações do Personagem</h2>
+                            <div class="info-form">
+                                <div class="form-group">
+                                    <label for="name">Nome do Personagem:</label>
+                                    <input type="text" id="name" [(ngModel)]="personagem.name" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="background">Antecedente:</label>
+                                    <input type="text" id="background" [(ngModel)]="personagem.background">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="alignment">Alinhamento:</label>
+                                    <select id="alignment" [(ngModel)]="personagem.alignment">
+                                        <option value="">Selecione...</option>
+                                        <option value="Leal e Bom">Leal e Bom</option>
+                                        <option value="Neutro e Bom">Neutro e Bom</option>
+                                        <option value="Caótico e Bom">Caótico e Bom</option>
+                                        <option value="Leal e Neutro">Leal e Neutro</option>
+                                        <option value="Neutro">Neutro</option>
+                                        <option value="Caótico e Neutro">Caótico e Neutro</option>
+                                        <option value="Leal e Mau">Leal e Mau</option>
+                                        <option value="Neutro e Mau">Neutro e Mau</option>
+                                        <option value="Caótico e Mau">Caótico e Mau</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button (click)="avancarEtapa()" class="btn-continuar">Continuar →</button>
+
+                            <!-- Conteúdo pré-carregado da próxima página (verso) -->
+                            <div class="pagina-tras">
+                                <h2>Resumo do Personagem</h2>
+                                <div class="resumo">
+                                    <!-- Resumo pré-carregado -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Resumo do Personagem -->
+                    <div *ngIf="etapa === 5" class="pagina-wrapper">
+                        <div class="pagina etapa active" [@virarPagina]="getAnimationState()">
+                            <button (click)="voltarEtapa()" class="btn-voltar">← Voltar</button>
+                            <h2>Resumo do Personagem</h2>
+                            <div class="resumo">
+                                <p><strong>Nome:</strong> {{ personagem.name || 'Não definido' }}</p>
+                                <p><strong>Raça:</strong> {{ personagem.race.name }}</p>
+                                <p><strong>Classe:</strong> {{ personagem.class.name }}</p>
+                                <p><strong>Nível:</strong> {{ personagem.level }}</p>
+                                <p><strong>Antecedente:</strong> {{ personagem.background || 'Não definido' }}</p>
+                                <p><strong>Alinhamento:</strong> {{ personagem.alignment || 'Não definido' }}</p>
+                                <p><strong>Atributos:</strong></p>
+                                <ul class="attribute-list">
+                                    <li *ngFor="let atributo of atributoNomes">
+                                        {{ nomesAtributosPortugues[atributo] }}: {{ personagem.attributes[atributo] }} 
+                                        <span class="modifier">{{ characterService.calculateAttributeModifier(personagem.attributes[atributo]) >= 0 ? '+' : '' }}{{ characterService.calculateAttributeModifier(personagem.attributes[atributo]) }}</span>
+                                    </li>
+                                </ul>
+                                <p><strong>Classe de Armadura:</strong> {{ personagem.armorClass }}</p>
+                                <p><strong>Iniciativa:</strong> {{ personagem.initiative >= 0 ? '+' : '' }}{{ personagem.initiative }}</p>
+                                <p><strong>Pontos de Vida:</strong> {{ personagem.hitPoints.maximum }}</p>
+                            </div>
+                            <button (click)="finalizarCriacao()" class="btn-finalizar">Finalizar Criação</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
