@@ -1,7 +1,20 @@
 <app-header></app-header>
 
 <section>
+    <!-- Efeitos de luz -->
+    <div class="light-point light-1"></div>
+    <div class="light-point light-2"></div>
+    <div class="light-point light-3"></div>
+    <div class="light-point light-4"></div>
+    
+    <div class="welcome-container">
+        <div class="typewriter-container">
+            <div class="welcome-message typewriter-effect">{{saudacaoCompleta}}</div>
+        </div>
+    </div>
+    
     <h1 class="page-title">Saguão do Aventureiro</h1>
+    
     <p class="page-subtitle">Escolha uma opção para começar sua aventura</p>
     
     <div class="row">
@@ -13,7 +26,7 @@
             </div>
         </div>
 
-        <div routerLink="/criar-personagem" class="option-card">
+        <div routerLink="/criar-personagem" class="option-card card-2">
             <div class="column">
                 <i class="icon-new">+</i>
                 <h2>Novo Personagem</h2>

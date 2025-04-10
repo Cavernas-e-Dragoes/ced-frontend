@@ -1,22 +1,293 @@
 section {
+    width: 100%;
+    min-height: calc(100vh - var(--header-height));
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 40px 20px;
+    padding: 100px 20px;
     text-align: center;
+    background: linear-gradient(to bottom, #1a0f0f, #2a1a1a);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Pontos de luz (efeito de fogo/tochas) */
+.light-point {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(15px);
+    opacity: 0.8;
+    transition: transform 0.1s ease-out;
+    mix-blend-mode: screen;
+}
+
+.light-1 {
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle at center, #ff6b00, #ff4500);
+    top: 15%;
+    left: 10%;
+    animation: pulse 3s infinite ease-in-out;
+}
+
+.light-2 {
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle at center, #ffd700, #ffa500);
+    top: 35%;
+    right: 15%;
+    animation: pulse-slow 4s infinite ease-in-out;
+}
+
+.light-3 {
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle at center, #ff4500, #ff0000);
+    bottom: 25%;
+    left: 20%;
+    animation: pulse-fast 2s infinite ease-in-out;
+}
+
+.light-4 {
+    width: 30px;
+    height: 30px;
+    background: radial-gradient(circle at center, #ffa500, #ff8c00);
+    bottom: 15%;
+    right: 10%;
+    animation: pulse 3.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.2); opacity: 0.6; }
+    100% { transform: scale(1); opacity: 0.8; }
+}
+
+@keyframes pulse-slow {
+    0% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.15); opacity: 0.5; }
+    100% { transform: scale(1); opacity: 0.7; }
+}
+
+@keyframes pulse-fast {
+    0% { transform: scale(1); opacity: 0.9; }
+    50% { transform: scale(1.25); opacity: 0.7; }
+    100% { transform: scale(1); opacity: 0.9; }
 }
 
 .page-title {
-    color: rgb(68, 0, 0);
+    color: #f4e4bc;
     font-size: 2.5rem;
     margin-bottom: 10px;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-family: 'Cinzel', serif;
+    letter-spacing: 2px;
+    font-weight: 700;
+    position: relative;
+    z-index: 2;
+}
+
+.page-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #d4b483, transparent);
+}
+
+/* Efeito de fade-in com sequência de cores */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        filter: blur(10px);
+        transform: scale(0.95);
+        text-shadow: 0 0 20px rgba(255, 215, 0, 0.9), 0 0 40px rgba(255, 69, 0, 0.7);
+        color: transparent;
+    }
+    20% {
+        opacity: 0.2;
+        filter: blur(8px);
+        transform: scale(0.97);
+        text-shadow: 0 0 15px rgba(255, 215, 0, 0.8), 0 0 30px rgba(255, 69, 0, 0.6);
+        color: rgba(244, 228, 188, 0.3);
+    }
+    50% {
+        opacity: 0.6;
+        filter: blur(4px);
+        transform: scale(0.99);
+        text-shadow: 0 0 10px rgba(255, 215, 0, 0.7), 0 0 20px rgba(255, 69, 0, 0.5);
+        color: rgba(244, 228, 188, 0.7);
+    }
+    80% {
+        opacity: 0.9;
+        filter: blur(2px);
+        transform: scale(1.01);
+        text-shadow: 0 0 5px rgba(255, 215, 0, 0.6), 0 0 10px rgba(255, 69, 0, 0.4);
+        color: rgba(244, 228, 188, 0.9);
+    }
+    100% {
+        opacity: 1;
+        filter: blur(0);
+        transform: scale(1);
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.616);
+        color: #f4e4bc;
+    }
+}
+
+/* Versão simplificada do efeito de digitação para frases longas */
+.typewriter-effect {
+    opacity: 0;
+    animation: 
+        fadeIn 1.8s ease-out forwards,
+        text-glow 3s ease-in-out infinite 1.8s;
+    max-width: 100%;
+    width: 100%;
+    text-align: center;
+    border: none;
+}
+
+.welcome-message {
+    color: #f4e4bc;
+    font-size: 2.2rem;
+    margin: 5px 0 30px;
+    font-family: 'Crimson Text', serif;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.616);
+    font-style: italic;
+    position: relative;
+    z-index: 2;
+    font-weight: 100;
+    white-space: normal; /* Permitir quebra de linha */
+    display: block;
+    position: relative;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+    text-align: center;
+    line-height: 1.4;
+    padding: 0 10px;
+}
+
+/* Adiciona brilho pulsante após completar a digitação */
+@keyframes text-glow {
+    0%, 100% {
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.616);
+    }
+    50% {
+        text-shadow: 0 0 15px rgba(255, 215, 0, 0.5), 3px 3px 6px rgba(0, 0, 0, 0.616);
+    }
+}
+
+/* Efeito de pergaminho para a frase */
+.welcome-container {
+    position: relative;
+    padding: 25px 30px;
+    margin-top: 80px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    background: rgba(26, 15, 15, 0.3);
+    width: 95%;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    overflow: visible;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: none;
+}
+
+/* Adiciona um fundo mágico que pulsa */
+.welcome-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, 
+                rgba(26, 15, 15, 0.1) 0%, 
+                rgba(70, 40, 40, 0.2) 40%, 
+                rgba(26, 15, 15, 0.1) 100%);
+    border-radius: 10px;
+    z-index: -1;
+    animation: fundo-magico 6s ease-in-out infinite alternate;
+    opacity: 0.8;
+    mix-blend-mode: overlay;
+}
+
+/* Adiciona partículas mágicas flutuantes */
+.welcome-container::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 10% 10%, rgba(255, 215, 0, 0.3) 2px, transparent 2px),
+        radial-gradient(circle at 20% 80%, rgba(255, 69, 0, 0.3) 1px, transparent 1px),
+        radial-gradient(circle at 80% 40%, rgba(138, 43, 226, 0.3) 3px, transparent 3px),
+        radial-gradient(circle at 40% 30%, rgba(0, 229, 255, 0.3) 2px, transparent 2px),
+        radial-gradient(circle at 70% 90%, rgba(255, 215, 0, 0.3) 1px, transparent 1px);
+    background-size: 200px 200px;
+    background-repeat: repeat;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    filter: blur(1px);
+    opacity: 0;
+    animation: particulas-magicas 10s ease-in-out infinite;
+    mix-blend-mode: screen;
+    pointer-events: none;
+}
+
+@keyframes fundo-magico {
+    0% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.05);
+    }
+    100% {
+        opacity: 0.7;
+        transform: scale(1);
+    }
+}
+
+@keyframes particulas-magicas {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    20% {
+        opacity: 0.4;
+    }
+    70% {
+        opacity: 0.2;
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
 }
 
 .page-subtitle {
-    color: rgb(68, 0, 0);
+    color: #d4b483;
     font-size: 1.2rem;
     margin-bottom: 30px;
-    opacity: 0.8;
+    opacity: 0.9;
+    font-family: 'Crimson Text', serif;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    z-index: 2;
+    position: relative;
 }
 
 .row {
@@ -29,29 +300,57 @@ section {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
+    z-index: 2;
+    position: relative;
 }
-
+.card-2 {
+    border-radius: 0px 25px 0px 25px !important;
+}
 .option-card {
     flex: 1;
     min-width: 280px;
     max-width: 400px;
     height: 280px;
     padding: 25px;
-    border: 2px solid rgb(68, 0, 0);
-    border-radius: 15px;
-    background-color: rgb(255, 201, 53);
-    color: rgb(68, 0, 0);
+    border-radius: 25px 0px 25px 0px;
+    border: 1px solid #d4b483;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: flex;
     justify-content: center;
+    position: relative;
+    z-index: 1;
+    
+    /* Fundo estilo pergaminho */
+    background: 
+        linear-gradient(135deg, #f4e4bc 0%, #e6d5a7 50%, #d4b483 100%),
+        repeating-linear-gradient(
+            45deg,
+            rgba(212, 180, 131, 0.1) 0px,
+            rgba(212, 180, 131, 0.1) 1px,
+            transparent 1px,
+            transparent 10px
+        ),
+        repeating-linear-gradient(
+            -45deg,
+            rgba(212, 180, 131, 0.1) 0px,
+            rgba(212, 180, 131, 0.1) 1px,
+            transparent 1px,
+            transparent 10px
+        );
+    
+    box-shadow: 
+        inset 0 0 50px rgba(0, 0, 0, 0.1),
+        0 0 20px rgba(0, 0, 0, 0.6),
+        0 0 0 1px rgba(212, 180, 131, 0.2);
 }
 
 .option-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0px 10px 20px rgba(68, 0, 0, 0.25);
-    background-color: rgb(255, 215, 70);
+    box-shadow: 
+        inset 0 0 50px rgba(0, 0, 0, 0.1),
+        0 0 30px rgba(212, 180, 131, 0.5),
+        0 0 0 1px rgba(212, 180, 131, 0.2);
 }
 
 .column {
@@ -65,7 +364,7 @@ section {
 .icon-list, .icon-new {
     font-size: 3.5rem;
     margin-bottom: 15px;
-    color: rgb(68, 0, 0);
+    color: #3c2415;
 }
 
 .icon-new {
@@ -77,12 +376,26 @@ section {
     font-size: 1.8rem;
     margin-bottom: 15px;
     font-weight: bold;
+    color: #2c1810;
+    font-family: 'Cinzel', serif;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .option-card p {
     font-size: 1.1rem;
     text-align: center;
     line-height: 1.4;
+    color: #3c2415;
+    font-family: 'Crimson Text', serif;
+}
+
+/* Contêiner para centralizar o efeito de digitação */
+.typewriter-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 150px;
 }
 
 /* Responsividade */
@@ -95,5 +408,145 @@ section {
     .option-card {
         width: 100%;
         max-width: 350px;
+        margin-bottom: 20px;
+        height: 250px; /* Altura reduzida para mobile */
+    }
+    
+    .welcome-message {
+        font-size: 1.5rem;
+        line-height: 1.4;
+        padding: 0 5px;
+        margin-bottom: 20px;
+        min-height: 120px;
+    }
+    
+    .welcome-container {
+        padding: 15px 10px;
+        width: 95%;
+        margin-top: 50px; /* Aumentando ainda mais a margem superior em dispositivos móveis */
+    }
+
+    section {
+        padding-top: 80px; /* Aumentando o padding superior em dispositivos móveis */
+        justify-content: flex-start; /* Muda o alinhamento para começar do topo */
+    }
+    
+    .page-title {
+        font-size: 2rem;
+        margin-top: 20px;
+    }
+    
+    .page-subtitle {
+        font-size: 1rem;
+        margin-bottom: 20px;
+    }
+    
+    .icon-list, .icon-new {
+        font-size: 2.8rem;
+    }
+    
+    .icon-new {
+        font-size: 3.2rem;
+    }
+    
+    .option-card h2 {
+        font-size: 1.5rem;
+    }
+    
+    .option-card p {
+        font-size: 1rem;
+    }
+    
+    /* Reduzir a intensidade das partículas para melhor desempenho */
+    .welcome-container::after {
+        opacity: 0.3;
+        background-size: 300px 300px; /* Menor densidade de partículas */
+    }
+    
+    .typewriter-container {
+        min-height: 200px;
+    }
+    
+    .typewriter-effect {
+        letter-spacing: 0.1em;
+    }
+}
+
+/* Para telas muito pequenas */
+@media (max-width: 480px) {
+    .welcome-container {
+        margin-top: 50px;
+        padding: 10px;
+    }
+    
+    section {
+        padding-top: 140px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    
+    .welcome-message {
+        font-size: 1.3rem;
+        min-height: 150px;
+        padding: 0;
+    }
+    
+    .page-title {
+        font-size: 1.8rem;
+    }
+    
+    .option-card {
+        padding: 15px;
+        height: 230px;
+    }
+    
+    /* Ajusta o tamanho das animações e efeitos para telas pequenas */
+    .light-point {
+        filter: blur(10px);
+        opacity: 0.6;
+    }
+    
+    .light-1, .light-2, .light-3, .light-4 {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+/* Para telas ainda menores */
+@media (max-width: 360px) {
+    .welcome-message {
+        font-size: 1.1rem;
+        min-height: 170px;
+    }
+    
+    .page-title {
+        font-size: 1.6rem;
+    }
+    
+    .page-subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .option-card {
+        height: 220px;
+        padding: 12px;
+    }
+    
+    .option-card h2 {
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+    }
+    
+    .option-card p {
+        font-size: 0.9rem;
+    }
+    
+    .icon-list, .icon-new {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+    }
+    
+    .icon-new {
+        font-size: 2.8rem;
     }
 }

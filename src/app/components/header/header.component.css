@@ -84,6 +84,26 @@ li{
     color: white;
 }
 
+/* Estilo do ícone de perfil */
+.profile-icon {
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.profile-icon i {
+    color: #ffe77f;
+}
+
+.profile-icon:hover i {
+    color: white;
+    transform: scale(1.1);
+}
+
+.profile-icon.active i {
+    color: white;
+}
+
 #check{
 	display: none;
 }
@@ -171,7 +191,7 @@ li{
 		margin-bottom: 50px;
 		margin-left: -30px;
 		opacity: 0;
-        background: rgb(26, 0, 0); 
+        background: rgba(26, 0, 0, 0.9); 
 	}
 	.logo-content{
 		margin: 0 auto;

@@ -25,12 +25,12 @@
 
         <!-- Exibe o Saguão apenas se o usuário ESTIVER autenticado -->
         <li class="link" *ngIf="isAuthenticated" [class.active]="isActive('/saguao-do-aventureiro')" routerLink="/saguao-do-aventureiro">
-            Saguão do Aventureiro
+            Saguão
         </li>
 
-        <!-- Exibe o nome do usuário e botão de logout -->
-        <li *ngIf="isAuthenticated" class="link" [class.active]="isActive('/perfil')" routerLink="/perfil">
-            <span>Bem-vindo, {{ userName }}!</span>
+        <!-- Substitui o nome do usuário por um ícone de perfil -->
+        <li *ngIf="isAuthenticated" class="link profile-icon" [class.active]="isActive('/perfil')" routerLink="/perfil">
+            <i class="fa fa-user-circle"></i>
         </li>
     </ul>
 </nav>
