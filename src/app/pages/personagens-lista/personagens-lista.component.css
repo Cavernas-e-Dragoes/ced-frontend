@@ -1,43 +1,234 @@
-.personagens-container {
+.background-section {
+  background: linear-gradient(to bottom, #180a00, #2d0e00);
+  position: relative;
+  min-height: calc(100vh - 10vh);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  padding: 100px 0;
+}
+
+.parallax-container {
+  position: relative;
   width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Pontos de luz */
+.light-point {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(15px);
+  opacity: 0.8;
+  transition: transform 0.1s ease-out;
+}
+
+.light-1 {
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle at center, #ff7700, #9b2500);
+  animation: pulse 3s infinite ease-in-out;
+  top: 15%;
+  left: 20%;
+}
+
+.light-2 {
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle at center, #ff7700, #9b2500);
+  animation: pulse-slow 4s infinite ease-in-out;
+  top: 65%;
+  right: 25%;
+}
+
+.light-3 {
+  width: 50px;
+  height: 50px;
+  background: radial-gradient(circle at center, #ff0000, #c8a165);
+  animation: pulse-fast 2.5s infinite ease-in-out;
+  bottom: 15%;
+  left: 10%;
+}
+
+.light-4 {
+  width: 40px;
+  height: 40px;
+  background: radial-gradient(circle at center, #ffc900, #ff7700);
+  animation: pulse 3.2s infinite ease-in-out;
+  top: 40%;
+  left: 5%;
+}
+
+.light-5 {
+  width: 70px;
+  height: 70px;
+  background: radial-gradient(circle at center, #ff7700, #9b2500);
+  animation: pulse-slow 3.8s infinite ease-in-out;
+  top: 20%;
+  right: 10%;
+}
+
+.light-6 {
+  width: 55px;
+  height: 55px;
+  background: radial-gradient(circle at center, #ff7700, #9b2500);
+  animation: pulse-fast 2.8s infinite ease-in-out;
+  bottom: 25%;
+  right: 15%;
+}
+
+.light-7 {
+  width: 45px;
+  height: 45px;
+  background: radial-gradient(circle at center, #ff7700, #9b2500);
+  animation: pulse 3.5s infinite ease-in-out;
+  bottom: 45%;
+  left: 25%;
+}
+
+.light-8 {
+  width: 35px;
+  height: 35px;
+  background: radial-gradient(circle at center, #ff7700, #9b2500);
+  animation: pulse-slow 4.2s infinite ease-in-out;
+  top: 35%;
+  right: 30%;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+}
+
+@keyframes pulse-slow {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+}
+
+@keyframes pulse-fast {
+  0% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.25);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+}
+
+.personagens-container {
+  position: relative;
+  z-index: 1;
+  width: 90%;
   max-width: 1200px;
-  margin: 40px auto;
-  padding: 20px;
-  min-height: 70vh;
+  padding: 30px;
+  margin: 0 auto;
 }
 
 .personagens-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   padding-bottom: 15px;
   border-bottom: 2px solid #c8a165;
   gap: 20px;
+  position: relative;
 }
 
-.personagens-header h1 {
-  color: #5e3614;
-  font-size: 2.2rem;
-  font-family: 'Cinzel', serif;
+.personagens-header::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, rgba(200, 161, 101, 0.1), rgba(200, 161, 101, 0.8), rgba(200, 161, 101, 0.1));
+}
+
+.personagens-title {
+  font-size: 2.8rem;
+  color: #f9e5b8;
+  text-shadow: 0 0 15px rgba(255, 165, 0, 0.7), 0 0 30px rgba(156, 91, 0, 0.5);
   margin: 0;
+  font-weight: 900;
+  letter-spacing: 2px;
+  position: relative;
+  font-family: 'Cinzel', serif;
+  text-transform: uppercase;
 }
 
 .btn-criar {
-  background-color: #5e3614;
+  background: rgba(61, 28, 0, 0.8);
   color: #f9f3e0;
-  padding: 10px 20px;
+  padding: 12px 24px;
   border: none;
   border-radius: 5px;
   font-size: 1rem;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   white-space: nowrap;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  position: relative;
+  overflow: hidden;
+  font-family: 'Cinzel', serif;
+  font-weight: bold;
+  border: 1px solid rgba(255, 165, 0, 0.3);
+}
+
+.btn-criar::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -100%;
+  width: 100px;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.1);
+  transform: rotate(30deg);
+  transition: all 0.6s ease;
 }
 
 .btn-criar:hover {
-  background-color: #7a5c3e;
-  transform: translateY(-2px);
+  background: rgba(81, 38, 0, 0.9);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.btn-criar:hover::before {
+  left: 150%;
+}
+
+.btn-criar i {
+  margin-right: 8px;
+  font-size: 1.1rem;
 }
 
 /* Loading e Erros */
@@ -59,14 +250,15 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #f8d7da;
-  color: #721c24;
+  background-color: rgba(122, 0, 0, 0.9);
+  color: #f9f3e0;
   border: 1px solid #f5c6cb;
   border-radius: 5px;
   padding: 20px;
   z-index: 1001;
   text-align: center;
   max-width: 80%;
+  box-shadow: 0 0 20px rgba(255, 119, 0, 0.4);
 }
 
 .error-message button {
@@ -77,21 +269,50 @@
   border-radius: 4px;
   margin-top: 10px;
   cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.error-message button:hover {
+  background-color: #a71d2a;
+  transform: translateY(-2px);
 }
 
 /* Mensagem de sem personagens */
 .sem-personagens {
   text-align: center;
   padding: 50px 20px;
-  background-color: #f9f3e0;
+  background: rgba(41, 20, 0, 0.7);
   border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15), 0 0 15px rgba(255, 119, 0, 0.2);
+  border: 1px solid rgba(200, 161, 101, 0.4);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(5px);
+}
+
+.sem-personagens::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23d4c4a3' fill-opacity='0.2' fill-rule='evenodd'/%3E%3C/svg%3E");
+  opacity: 0.3;
+  z-index: 0;
 }
 
 .sem-personagens p {
-  font-size: 1.2rem;
-  color: #5e3614;
+  font-size: 1.3rem;
+  color: #f9e5b8;
   margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+}
+
+.sem-personagens .btn-criar {
+  margin-top: 10px;
 }
 
 /* Grid de personagens */
@@ -99,139 +320,377 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 25px;
+  width: 100%;
 }
 
 .personagem-card {
-  background-color: #f9f3e0;
+  position: relative;
+  background: rgba(36, 16, 0, 0.85);
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: 1px solid rgba(200, 161, 101, 0.3);
+  color: #fff;
+  text-align: center;
+  min-height: 200px;
+}
+
+.personagem-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(to right, rgba(255, 119, 0, 0.6), rgba(255, 204, 136, 0.6), rgba(255, 119, 0, 0.6));
+  opacity: 0.7;
+  z-index: 2;
 }
 
 .personagem-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-8px) scale(1.02);
+  background: rgba(51, 23, 0, 0.85);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25), 0 0 20px rgba(255, 165, 0, 0.2);
+  border-color: rgba(255, 165, 0, 0.4);
+}
+
+.personagem-card:hover::before {
+  opacity: 1;
+  background: linear-gradient(to right, rgba(255, 119, 0, 0.8), rgba(255, 204, 136, 0.8), rgba(255, 119, 0, 0.8));
+  box-shadow: 0 0 15px rgba(255, 165, 0, 0.5);
 }
 
 .personagem-header {
-  background-color: #7a5c3e;
+  background: rgba(0, 0, 0, 0.2);
   color: #f9f3e0;
   padding: 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+  z-index: 1;
+  border-bottom: 1px solid rgba(255, 165, 0, 0.3);
 }
 
 .personagem-header h2 {
   margin: 0;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
+  color: #ffebcc;
+  text-shadow: 0 0 10px rgba(156, 91, 0, 0.7);
+  position: relative;
+  z-index: 1;
+  font-weight: 800;
   font-family: 'Cinzel', serif;
 }
 
 .level {
-  background-color: #5e3614;
+  background-color: rgba(36, 16, 0, 0.8);
   padding: 5px 10px;
   border-radius: 20px;
   font-size: 0.9rem;
+  border: 1px solid rgba(255, 165, 0, 0.2);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  color: #ffebcc;
+}
+
+.level i {
+  color: #ffcc00;
+  margin-right: 4px;
 }
 
 .personagem-info {
-  padding: 15px;
+  padding: 20px 15px;
+  position: relative;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .personagem-info p {
-  margin: 10px 0;
+  margin: 12px 0;
   font-size: 1.1rem;
+  color: #f9e5b8;
+  padding: 8px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.12);
+  border-left: 2px solid rgba(255, 165, 0, 0.4);
+  text-align: left;
+}
+
+.personagem-info p strong {
+  color: #ffcc88;
+  margin-right: 5px;
+  font-weight: 600;
+}
+
+.personagem-info p i {
+  color: #ffcc00;
+  margin-right: 5px;
 }
 
 .personagem-actions {
   display: flex;
   justify-content: space-between;
   padding: 15px;
-  background-color: #e9dfc9;
-  border-top: 1px solid #d4c4a3;
+  background: rgba(0, 0, 0, 0.25);
+  border-top: 1px solid rgba(255, 165, 0, 0.3);
   gap: 10px;
+  position: relative;
+  z-index: 1;
 }
 
 .btn-ver, .btn-editar, .btn-excluir {
-  padding: 8px 12px;
+  padding: 10px 15px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-size: 0.9rem;
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   flex: 1;
+  font-family: 'Cinzel', serif;
+  font-weight: bold;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  background: rgba(30, 15, 0, 0.7);
+  color: #f9f3e0;
+  border: 1px solid rgba(255, 165, 0, 0.2);
 }
 
-.btn-ver {
-  background-color: #5e3614;
-  color: #f9f3e0;
+.btn-ver i, .btn-editar i, .btn-excluir i {
+  margin-right: 5px;
 }
 
-.btn-editar {
-  background-color: #7a5c3e;
-  color: #f9f3e0;
-}
-
-.btn-excluir {
-  background-color: #a13d3d;
-  color: #f9f3e0;
+.btn-ver::before, .btn-editar::before, .btn-excluir::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -100%;
+  width: 60px;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.1);
+  transform: rotate(30deg);
+  transition: all 0.6s ease;
 }
 
 .btn-ver:hover, .btn-editar:hover, .btn-excluir:hover {
-  opacity: 0.9;
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.25);
+}
+
+.btn-ver:hover {
+  background: rgba(45, 22, 0, 0.8);
+}
+
+.btn-editar:hover {
+  background: rgba(50, 25, 0, 0.8);
+}
+
+.btn-excluir {
+  background: rgba(66, 18, 18, 0.7);
+}
+
+.btn-excluir:hover {
+  background: rgba(86, 24, 24, 0.8);
+}
+
+.btn-ver:hover::before, .btn-editar:hover::before, .btn-excluir:hover::before {
+  left: 150%;
+}
+
+.card-glow {
+  position: absolute;
+  width: 150%;
+  height: 30px;
+  background: rgba(255, 165, 0, 0.2);
+  top: 50%;
+  left: -25%;
+  transform: translateY(-50%) rotate(-45deg);
+  transition: all 0.5s ease;
+  opacity: 0;
+  filter: blur(10px);
+  z-index: 0;
+}
+
+.personagem-card:hover .card-glow {
+  opacity: 1;
+  transform: translateY(-50%) rotate(-45deg) translateX(10px);
+}
+
+/* Estilos para o modo saguão */
+.saguao-lista {
+  width: 90%;
+  max-width: 800px;
+  padding: 25px;
+  background: rgba(36, 16, 0, 0.8);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 165, 0, 0.4);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2), 0 0 15px rgba(255, 165, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(5px);
+  margin: 0 auto;
+}
+
+.saguao-lista::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, rgba(255, 119, 0, 0.4), rgba(255, 204, 136, 0.4), rgba(255, 119, 0, 0.4));
+  opacity: 0.7;
+}
+
+.saguao-lista h2 {
+  color: #f9e5b8;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  text-align: center;
+  font-family: 'Cinzel', serif;
+  position: relative;
+  z-index: 1;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(255, 165, 0, 0.3);
+  text-shadow: 0 0 10px rgba(156, 91, 0, 0.5);
+}
+
+.saguao-lista h2 i {
+  color: #ffcc00;
+  margin-right: 10px;
+}
+
+.personagens-saguao-lista {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.personagens-saguao-lista li {
+  background: rgba(36, 16, 0, 0.6);
+  color: #f9e5b8;
+  margin: 12px 0;
+  padding: 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 165, 0, 0.2);
+  font-size: 1.1rem;
+  font-family: 'Cinzel', serif;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.personagens-saguao-lista li::before {
+  content: "";
+}
+
+.personagens-saguao-lista li:hover {
+  transform: translateX(5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  border-color: rgba(255, 165, 0, 0.4);
+  background: rgba(51, 23, 0, 0.6);
+}
+
+.personagens-saguao-lista li strong {
+  color: #ffcc88;
+  font-weight: 600;
+}
+
+.sem-personagens-saguao {
+  text-align: center;
+  padding: 25px;
+  color: #f9e5b8;
+  position: relative;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  margin: 20px 0;
+  border: 1px solid rgba(255, 165, 0, 0.2);
+}
+
+.sem-personagens-saguao p {
+  font-size: 1.1rem;
+  margin: 0;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+}
+
+.sem-personagens-saguao p i {
+  color: #ffcc00;
+  margin-right: 8px;
 }
 
 /* Responsividade */
 @media (max-width: 1200px) {
   .personagens-container {
-    padding: 15px;
+    width: 95%;
+    padding: 20px;
   }
   
   .personagens-grid {
     gap: 20px;
   }
+  
+  .personagens-title {
+    font-size: 2.5rem;
+  }
 }
 
 @media (max-width: 992px) {
   .personagens-container {
-    padding: 12px;
+    padding: 15px;
   }
   
-  .personagens-header h1 {
-    font-size: 2rem;
+  .personagens-title {
+    font-size: 2.2rem;
   }
   
   .personagens-grid {
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 15px;
   }
+  
+  .personagem-card {
+    min-height: 180px;
+  }
 }
 
 @media (max-width: 768px) {
+  .background-section {
+    padding: 80px 0;
+  }
+  
   .personagens-container {
+    width: 90%;
     margin: 20px auto;
-    padding: 10px;
+    padding: 15px 10px;
   }
   
   .personagens-header {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
     gap: 15px;
+    margin-bottom: 30px;
   }
   
-  .personagens-header h1 {
-    font-size: 1.8rem;
+  .personagens-title {
+    font-size: 2rem;
+    margin-bottom: 15px;
   }
   
   .btn-criar {
     width: 100%;
+    max-width: 300px;
   }
   
   .personagens-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
   
   .personagem-actions {
@@ -241,26 +700,46 @@
   
   .btn-ver, .btn-editar, .btn-excluir {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
   }
   
   .personagem-header h2 {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
   }
   
   .personagem-info p {
+    font-size: 1rem;
+  }
+  
+  /* Luzes com menos intensidade para melhor desempenho em mobile */
+  .light-point {
+    opacity: 0.6;
+    filter: blur(20px);
+  }
+  
+  .saguao-lista {
+    width: 95%;
+    padding: 20px 15px;
+  }
+  
+  .saguao-lista h2 {
+    font-size: 1.6rem;
+  }
+  
+  .personagens-saguao-lista li {
+    padding: 12px;
     font-size: 1rem;
   }
 }
 
 @media (max-width: 480px) {
   .personagens-container {
-    margin: 10px auto;
-    padding: 8px;
+    width: 95%;
+    padding: 10px;
   }
   
-  .personagens-header h1 {
-    font-size: 1.6rem;
+  .personagens-title {
+    font-size: 1.8rem;
   }
   
   .sem-personagens {
@@ -272,75 +751,108 @@
   }
   
   .personagem-card {
-    margin: 0 5px;
-  }
-}
-
-/* Estilos para o modo saguão */
-.saguao-lista {
-  width: 100%;
-  padding: 10px;
-}
-
-.saguao-lista h2 {
-  color: rgb(68, 0, 0);
-  margin-bottom: 15px;
-  font-size: 1.5rem;
-  text-align: center;
-}
-
-.personagens-saguao-lista {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-.personagens-saguao-lista li {
-  background-color: rgb(255, 201, 53);
-  color: rgb(68, 0, 0);
-  margin: 10px 0;
-  padding: 10px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border: 1px solid rgb(68, 0, 0);
-  font-size: 1rem;
-}
-
-.personagens-saguao-lista li:hover {
-  transform: scale(1.05);
-  box-shadow: 0px 0px 10px 5px rgba(255, 240, 152, 0.452);
-}
-
-.sem-personagens-saguao {
-  text-align: center;
-  padding: 10px;
-  color: rgb(68, 0, 0);
-}
-
-/* Ajustes responsivos para o modo saguão */
-@media (max-width: 768px) {
-  .saguao-lista {
-    padding: 5px;
+    margin: 0;
   }
   
-  .saguao-lista h2 {
+  .personagem-header h2 {
     font-size: 1.3rem;
   }
   
+  .level {
+    font-size: 0.8rem;
+    padding: 4px 8px;
+  }
+  
+  .personagem-info p {
+    font-size: 0.95rem;
+    padding: 6px;
+  }
+  
+  .saguao-lista {
+    padding: 15px 10px;
+  }
+  
+  .saguao-lista h2 {
+    font-size: 1.4rem;
+  }
+  
   .personagens-saguao-lista li {
+    padding: 10px;
     font-size: 0.9rem;
-    padding: 8px;
+  }
+}
+
+/* Estilos para o card de novo personagem */
+.novo-personagem-card {
+  background: rgba(36, 16, 0, 0.5);
+  border: 2px dashed rgba(200, 161, 101, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-height: 250px;
+}
+
+.novo-personagem-card:hover {
+  background: rgba(51, 23, 0, 0.6);
+  border-color: rgba(255, 165, 0, 0.8);
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25), 0 0 20px rgba(255, 165, 0, 0.3);
+}
+
+.novo-personagem-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.novo-personagem-content i {
+  font-size: 3rem;
+  color: rgba(255, 165, 0, 0.7);
+  margin-bottom: 15px;
+  transition: all 0.3s ease;
+}
+
+.novo-personagem-content h2 {
+  color: #ffebcc;
+  font-size: 1.5rem;
+  margin: 0;
+  font-family: 'Cinzel', serif;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.novo-personagem-card:hover .novo-personagem-content i {
+  color: rgba(255, 165, 0, 1);
+  transform: scale(1.2);
+}
+
+@media (max-width: 768px) {
+  .novo-personagem-card {
+    min-height: 200px;
+  }
+  
+  .novo-personagem-content i {
+    font-size: 2.5rem;
+  }
+  
+  .novo-personagem-content h2 {
+    font-size: 1.3rem;
   }
 }
 
 @media (max-width: 480px) {
-  .saguao-lista h2 {
-    font-size: 1.2rem;
+  .novo-personagem-card {
+    min-height: 180px;
   }
   
-  .personagens-saguao-lista li {
-    font-size: 0.85rem;
-    padding: 6px;
+  .novo-personagem-content i {
+    font-size: 2rem;
+  }
+  
+  .novo-personagem-content h2 {
+    font-size: 1.2rem;
   }
 } 

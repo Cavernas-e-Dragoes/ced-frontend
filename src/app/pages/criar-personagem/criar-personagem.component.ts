@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { trigger, transition, style, animate, keyframes } from '@angular/animations';
+import { trigger, transition, style, animate, keyframes, state } from '@angular/animations';
 import { Character } from '../../models/character';
 import { CharacterService } from '../../services/character.service';
 import { Router } from '@angular/router';
@@ -24,35 +24,42 @@ interface ClassWithImage extends Class {
   styleUrls: ['./criar-personagem.component.css'],
   animations: [
     trigger('virarPagina', [
+      // Estados explícitos simplificados
+      state('frente', style({
+        transform: 'rotateY(0deg)',
+        opacity: 1
+      })),
+      state('tras', style({
+        transform: 'rotateY(0deg)',
+        opacity: 1
+      })),
+      
+      // Transição padrão para simplificar
       transition(':enter', [
-        style({ transform: 'rotateY(90deg)', opacity: 0 }), // Começa fechada
-        animate(
-          '600ms ease-out',
-          keyframes([
-            style({ transform: 'rotateY(45deg)', opacity: 0.5, offset: 0.5 }),
-            style({ transform: 'rotateY(0deg)', opacity: 1, offset: 1 })
-          ])
-        )
+        style({ opacity: 0 }),
+        animate('300ms ease-in', style({ opacity: 1 }))
       ]),
-      transition(':leave', [
-        animate(
-          '600ms ease-in',
-          keyframes([
-            style({ transform: 'rotateY(0deg)', opacity: 1, offset: 0 }),
-            style({ transform: 'rotateY(-45deg)', opacity: 0.5, offset: 0.5 }),
-            style({ transform: 'rotateY(-90deg)', opacity: 0, offset: 1 })
-          ])
-        )
+      
+      // Transições básicas
+      transition('* => frente', [
+        style({ opacity: 0 }),
+        animate('500ms ease', style({ opacity: 1 }))
+      ]),
+      
+      transition('* => tras', [
+        style({ opacity: 0 }),
+        animate('500ms ease', style({ opacity: 1 }))
       ])
     ])
   ]
 })
-export class CriarPersonagemComponent {
+export class CriarPersonagemComponent implements OnInit {
   etapa: number = 1;
   metodoAtributos: 'rolagem' | 'manual' | null = null;
   isLoading: boolean = false;
   isError: boolean = false;
   errorMessage: string = '';
+  direcao: 'frente' | 'tras' = 'frente'; // Controla a direção da animação
 
   racas: RaceWithImage[] = [];
   classes: ClassWithImage[] = [];
@@ -80,8 +87,73 @@ export class CriarPersonagemComponent {
   ) { }
 
   ngOnInit() {
+    // Garantir que a primeira página seja exibida corretamente
+    this.etapa = 1;
+    this.direcao = 'frente';
+    
+    // Carregar dados necessários
     this.carregarRacas();
     this.carregarClasses();
+    
+    // Debug - remover em produção
+    console.log('CriarPersonagemComponent inicializado');
+    console.log('Estado inicial:', { etapa: this.etapa, direcao: this.direcao });
+  }
+
+  // Funções para controlar a direção da animação
+  getAnimationState() {
+    return this.direcao;
+  }
+
+  selecionarRaca(raca: Race) {
+    console.log('Raça selecionada:', raca.name);
+    this.personagem.race = {
+      index: raca.index,
+      name: raca.name,
+      url: raca.url
+    };
+    this.direcao = 'frente';
+    this.etapa = 2;
+  }
+
+  selecionarClasse(classe: Class) {
+    console.log('Classe selecionada:', classe.name);
+    this.personagem.class = {
+      index: classe.index,
+      name: classe.name,
+      url: classe.url
+    };
+    this.direcao = 'frente';
+    this.etapa = 3;
+  }
+
+  avancarEtapa() {
+    if (this.etapa === 3 && Object.values(this.personagem.attributes).some(val => val === 0)) {
+      alert("Defina os atributos antes de continuar!");
+      return;
+    }
+
+    this.direcao = 'frente';
+    console.log('Avançando para etapa:', this.etapa + 1);
+    
+    if (this.etapa === 4) {
+      this.etapa = 5; // Adiciona etapa para nome e background
+      return;
+    }
+
+    this.etapa++;
+  }
+
+  voltarEtapa() {
+    if (this.etapa > 1) {
+      this.direcao = 'tras';
+      console.log('Voltando para etapa:', this.etapa - 1);
+      
+      if (this.etapa === 4) {
+        this.metodoAtributos = null;
+      }
+      this.etapa--;
+    }
   }
 
   carregarRacas() {
@@ -89,6 +161,7 @@ export class CriarPersonagemComponent {
     this.raceService.getRaces().subscribe({
       next: (response: any) => {
         this.racas = response.results || [];
+        console.log('Raças carregadas:', this.racas.length);
         this.isLoading = false;
       },
       error: (error) => {
@@ -105,6 +178,7 @@ export class CriarPersonagemComponent {
     this.classService.getClasses().subscribe({
       next: (response: any) => {
         this.classes = response.results || [];
+        console.log('Classes carregadas:', this.classes.length);
         this.isLoading = false;
       },
       error: (error) => {
@@ -165,24 +239,6 @@ export class CriarPersonagemComponent {
     };
   }
 
-  selecionarRaca(raca: Race) {
-    this.personagem.race = {
-      index: raca.index,
-      name: raca.name,
-      url: raca.url
-    };
-    this.etapa = 2;
-  }
-
-  selecionarClasse(classe: Class) {
-    this.personagem.class = {
-      index: classe.index,
-      name: classe.name,
-      url: classe.url
-    };
-    this.etapa = 3;
-  }
-
   escolherMetodoAtributos(metodo: 'rolagem' | 'manual') {
     this.metodoAtributos = metodo;
     if (metodo === 'rolagem') {
@@ -205,29 +261,6 @@ export class CriarPersonagemComponent {
     let rolagens = Array.from({ length: 4 }, () => Math.floor(Math.random() * 6) + 1);
     // Retorna a soma dos 3 maiores valores
     return rolagens.sort((a, b) => b - a).slice(0, 3).reduce((a, b) => a + b, 0);
-  }
-
-  avancarEtapa() {
-    if (this.etapa === 3 && Object.values(this.personagem.attributes).some(val => val === 0)) {
-      alert("Defina os atributos antes de continuar!");
-      return;
-    }
-
-    if (this.etapa === 4) {
-      this.etapa = 5; // Adiciona etapa para nome e background
-      return;
-    }
-
-    this.etapa++;
-  }
-
-  voltarEtapa() {
-    if (this.etapa > 1) {
-      if (this.etapa === 4) {
-        this.metodoAtributos = null;
-      }
-      this.etapa--;
-    }
   }
 
   finalizarCriacao() {

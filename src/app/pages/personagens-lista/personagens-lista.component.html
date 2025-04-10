@@ -1,42 +1,71 @@
 <!-- Versão normal do componente (página separada) -->
 <div *ngIf="!isSaguaoMode">
   <app-header></app-header>
-  <section class="personagens-container">
-    <div class="personagens-header">
-      <h1>Meus Personagens</h1>
-      <button class="btn-criar" (click)="criarNovoPersonagem()">Criar Novo Personagem</button>
-    </div>
+  <section class="background-section">
+    <div class="parallax-container">
+      <div class="light-point light-1"></div>
+      <div class="light-point light-2"></div>
+      <div class="light-point light-3"></div>
+      <div class="light-point light-4"></div>
+      <div class="light-point light-5"></div>
+      <div class="light-point light-6"></div>
+      <div class="light-point light-7"></div>
+      <div class="light-point light-8"></div>
 
-    <!-- Loading spinner -->
-    <div *ngIf="isLoading" class="loading-overlay">
-      <app-loading></app-loading>
-    </div>
+      <!-- Loading spinner -->
+      <div *ngIf="isLoading" class="loading-overlay">
+        <app-loading></app-loading>
+      </div>
 
-    <!-- Mensagem de erro -->
-    <div *ngIf="isError" class="error-message">
-      <p>{{ errorMessage }}</p>
-      <button (click)="isError = false">Fechar</button>
-    </div>
+      <!-- Mensagem de erro -->
+      <div *ngIf="isError" class="error-message">
+        <p>{{ errorMessage }}</p>
+        <button (click)="isError = false">Fechar</button>
+      </div>
 
-    <div *ngIf="personagens.length === 0 && !isLoading" class="sem-personagens">
-      <p>Você ainda não possui personagens.</p>
-      <button class="btn-criar" (click)="criarNovoPersonagem()">Criar Seu Primeiro Personagem</button>
-    </div>
-
-    <div class="personagens-grid" *ngIf="personagens.length > 0">
-      <div class="personagem-card" *ngFor="let personagem of personagens">
-        <div class="personagem-header">
-          <h2>{{ personagem.name }}</h2>
-          <span class="level">Nível {{ personagem.level }}</span>
+      <div class="personagens-container">
+        <div class="personagens-header">
+          <h1 class="personagens-title">Meus Personagens</h1>
         </div>
-        <div class="personagem-info">
-          <p><strong>Raça:</strong> {{ personagem.race }}</p>
-          <p><strong>Classe:</strong> {{ personagem.class }}</p>
+
+        <!-- Mensagem quando não há personagens -->
+        <div *ngIf="personagens.length === 0 && !isLoading" class="sem-personagens">
+          <p>Você ainda não possui personagens.</p>
         </div>
-        <div class="personagem-actions">
-          <button class="btn-ver" (click)="verDetalhes(personagem.id)">Ver Detalhes</button>
-          <button class="btn-editar" (click)="editarPersonagem(personagem.id)">Editar</button>
-          <button class="btn-excluir" (click)="excluirPersonagem(personagem.id)">Excluir</button>
+
+        <!-- Grid de personagens e card de novo personagem -->
+        <div class="personagens-grid" *ngIf="!isLoading">
+          <!-- Card de novo personagem -->
+          <div class="personagem-card novo-personagem-card" (click)="criarNovoPersonagem()">
+            <div class="novo-personagem-content">
+              <i class="fa fa-plus-circle"></i>
+              <h2>Novo Personagem</h2>
+            </div>
+          </div>
+          
+          <!-- Cards de personagens existentes -->
+          <div class="personagem-card" *ngFor="let personagem of personagens">
+            <div class="personagem-header">
+              <h2>{{ personagem.name }}</h2>
+              <span class="level">Nível {{ personagem.level }}</span>
+            </div>
+            <div class="personagem-info">
+              <p><strong>Raça:</strong> {{ personagem.race }}</p>
+              <p><strong>Classe:</strong> {{ personagem.class }}</p>
+            </div>
+            <div class="personagem-actions">
+              <button class="btn-ver" (click)="verDetalhes(personagem.id)">
+                <i class="fa fa-eye"></i> Detalhes
+              </button>
+              <button class="btn-editar" (click)="editarPersonagem(personagem.id)">
+                <i class="fa fa-edit"></i> Editar
+              </button>
+              <button class="btn-excluir" (click)="excluirPersonagem(personagem.id)">
+                <i class="fa fa-trash"></i> Excluir
+              </button>
+            </div>
+            <div class="card-glow"></div>
+          </div>
         </div>
       </div>
     </div>

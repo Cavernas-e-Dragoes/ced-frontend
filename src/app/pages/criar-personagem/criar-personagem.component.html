@@ -1,128 +1,148 @@
 <app-header></app-header>
-<section>
-    <div class="criacao-personagem">
-        <!-- Loading spinner -->
-        <div *ngIf="isLoading" class="loading-overlay">
-            <app-loading></app-loading>
-        </div>
+<section class="background-section">
+    <div class="parallax-container">
+        <div class="light-point light-1"></div>
+        <div class="light-point light-2"></div>
+        <div class="light-point light-3"></div>
+        <div class="light-point light-4"></div>
+        <div class="light-point light-5"></div>
+        <div class="light-point light-6"></div>
+        <div class="light-point light-7"></div>
+        <div class="light-point light-8"></div>
 
-        <!-- Mensagem de erro -->
-        <div *ngIf="isError" class="error-message">
-            <p>{{ errorMessage }}</p>
-            <button (click)="isError = false">Fechar</button>
-        </div>
-
-        <!-- Livro para transição entre páginas -->
-        <div class="livro">
-            <!-- Escolha de Raça -->
-            <div *ngIf="etapa === 1" @virarPagina class="pagina etapa">
-                <h2>Escolha sua Raça</h2>
-                <div class="opcoes">
-                    <div *ngFor="let raca of racas" (click)="selecionarRaca(raca)" class="opcao">
-                        <img [src]="raca.img" [alt]="raca.name" *ngIf="raca.img">
-                        <div class="opcao-avatar" *ngIf="!raca.img">{{ raca.name.charAt(0) }}</div>
-                        <p>{{ raca.name }}</p>
-                    </div>
-                </div>
+        <div class="criacao-personagem">
+            <!-- Loading spinner -->
+            <div *ngIf="isLoading" class="loading-overlay">
+                <app-loading></app-loading>
             </div>
 
-            <!-- Escolha de Classe -->
-            <div *ngIf="etapa === 2" @virarPagina class="pagina etapa">
-                <button (click)="voltarEtapa()" class="btn-voltar">← Voltar</button>
-                <h2>Escolha sua Classe</h2>
-                <div class="opcoes">
-                    <div *ngFor="let classe of classes" (click)="selecionarClasse(classe)" class="opcao">
-                        <img [src]="classe.img" [alt]="classe.name" *ngIf="classe.img">
-                        <div class="opcao-avatar" *ngIf="!classe.img">{{ classe.name.charAt(0) }}</div>
-                        <p>{{ classe.name }}</p>
-                    </div>
-                </div>
+            <!-- Mensagem de erro -->
+            <div *ngIf="isError" class="error-message">
+                <p>{{ errorMessage }}</p>
+                <button (click)="isError = false">Fechar</button>
             </div>
 
-            <!-- Escolha de Atributos -->
-            <div *ngIf="etapa === 3" @virarPagina class="pagina etapa">
-                <button (click)="voltarEtapa()" class="btn-voltar">← Voltar</button>
-                <h2>Defina seus Atributos</h2>
-                <div class="opcoes">
-                    <button (click)="rolarAtributos()" class="btn-method">Rolar Atributos 🎲</button>
-                    <button (click)="usarDistribuicaoPontos()" class="btn-method">Distribuir Manualmente</button>
+            <!-- Livro para transição entre páginas -->
+            <div class="livro">
+                <div class="lombada"></div>
+                
+                <!-- Escolha de Raça -->
+                <div *ngIf="etapa === 1" class="pagina etapa">
+                    <h2>Escolha sua Raça</h2>
+                    <div class="opcoes" *ngIf="racas && racas.length > 0">
+                        <div *ngFor="let raca of racas" (click)="selecionarRaca(raca)" class="opcao">
+                            <img [src]="raca.img" [alt]="raca.name" *ngIf="raca.img">
+                            <div class="opcao-avatar" *ngIf="!raca.img">{{ raca.name.charAt(0) }}</div>
+                            <p>{{ raca.name }}</p>
+                        </div>
+                    </div>
+                    <div *ngIf="!racas || racas.length === 0" class="mensagem-carregando">
+                        Carregando raças disponíveis...
+                    </div>
                 </div>
 
-                <div *ngIf="metodoAtributos === 'rolagem'" class="attribute-container">
-                    <div *ngFor="let atributo of atributoNomes" class="atributo">
-                        <span>{{ nomesAtributosPortugues[atributo] }}: {{ personagem.attributes[atributo] }}</span>
-                        <span class="modifier">({{ characterService.calculateAttributeModifier(personagem.attributes[atributo]) >= 0 ? '+' : '' }}{{ characterService.calculateAttributeModifier(personagem.attributes[atributo]) }})</span>
+                <!-- Escolha de Classe -->
+                <div *ngIf="etapa === 2" class="pagina etapa">
+                    <button (click)="voltarEtapa()" class="btn-voltar">← Voltar</button>
+                    <h2>Escolha sua Classe</h2>
+                    <div class="opcoes" *ngIf="classes && classes.length > 0">
+                        <div *ngFor="let classe of classes" (click)="selecionarClasse(classe)" class="opcao">
+                            <img [src]="classe.img" [alt]="classe.name" *ngIf="classe.img">
+                            <div class="opcao-avatar" *ngIf="!classe.img">{{ classe.name.charAt(0) }}</div>
+                            <p>{{ classe.name }}</p>
+                        </div>
                     </div>
-                    <button (click)="rolarAtributos()" class="btn-roll-again">Rolar Novamente</button>
+                    <div *ngIf="!classes || classes.length === 0" class="mensagem-carregando">
+                        Carregando classes disponíveis...
+                    </div>
                 </div>
 
-                <div *ngIf="metodoAtributos === 'manual'" class="attribute-container">
-                    <div *ngFor="let atributo of atributoNomes" class="atributo">
-                        <label>{{ nomesAtributosPortugues[atributo] }}:</label>
-                        <input type="number" [(ngModel)]="personagem.attributes[atributo]" min="3" max="18">
-                        <span class="modifier">({{ characterService.calculateAttributeModifier(personagem.attributes[atributo]) >= 0 ? '+' : '' }}{{ characterService.calculateAttributeModifier(personagem.attributes[atributo]) }})</span>
+                <!-- Escolha de Atributos -->
+                <div *ngIf="etapa === 3" class="pagina etapa">
+                    <button (click)="voltarEtapa()" class="btn-voltar">← Voltar</button>
+                    <h2>Defina seus Atributos</h2>
+                    <div class="opcoes">
+                        <button (click)="rolarAtributos()" class="btn-method">Rolar Atributos 🎲</button>
+                        <button (click)="usarDistribuicaoPontos()" class="btn-method">Distribuir Manualmente</button>
                     </div>
-                </div>
-                <button (click)="avancarEtapa()" class="btn-continuar">Continuar →</button>
-            </div>
 
-            <!-- Informações Adicionais -->
-            <div *ngIf="etapa === 4" @virarPagina class="pagina etapa">
-                <button (click)="voltarEtapa()" class="btn-voltar">← Voltar</button>
-                <h2>Informações do Personagem</h2>
-                <div class="info-form">
-                    <div class="form-group">
-                        <label for="name">Nome do Personagem:</label>
-                        <input type="text" id="name" [(ngModel)]="personagem.name" required>
+                    <div *ngIf="metodoAtributos === 'rolagem'" class="attribute-container">
+                        <div *ngFor="let atributo of atributoNomes" class="atributo">
+                            <label>{{ nomesAtributosPortugues[atributo] }}</label>
+                            <span class="att-value">{{ personagem.attributes[atributo] }}</span>
+                            <span class="modifier">{{ characterService.calculateAttributeModifier(personagem.attributes[atributo]) >= 0 ? '+' : '' }}{{ characterService.calculateAttributeModifier(personagem.attributes[atributo]) }}</span>
+                        </div>
+                        <button (click)="rolarAtributos()" class="btn-roll-again">Rolar Novamente</button>
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="background">Antecedente:</label>
-                        <input type="text" id="background" [(ngModel)]="personagem.background">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="alignment">Alinhamento:</label>
-                        <select id="alignment" [(ngModel)]="personagem.alignment">
-                            <option value="">Selecione...</option>
-                            <option value="Leal e Bom">Leal e Bom</option>
-                            <option value="Neutro e Bom">Neutro e Bom</option>
-                            <option value="Caótico e Bom">Caótico e Bom</option>
-                            <option value="Leal e Neutro">Leal e Neutro</option>
-                            <option value="Neutro">Neutro</option>
-                            <option value="Caótico e Neutro">Caótico e Neutro</option>
-                            <option value="Leal e Mau">Leal e Mau</option>
-                            <option value="Neutro e Mau">Neutro e Mau</option>
-                            <option value="Caótico e Mau">Caótico e Mau</option>
-                        </select>
-                    </div>
-                </div>
-                <button (click)="avancarEtapa()" class="btn-continuar">Continuar →</button>
-            </div>
 
-            <!-- Resumo do Personagem -->
-            <div *ngIf="etapa === 5" @virarPagina class="pagina etapa">
-                <button (click)="voltarEtapa()" class="btn-voltar">← Voltar</button>
-                <h2>Resumo do Personagem</h2>
-                <div class="resumo">
-                    <p><strong>Nome:</strong> {{ personagem.name || 'Não definido' }}</p>
-                    <p><strong>Raça:</strong> {{ personagem.race.name }}</p>
-                    <p><strong>Classe:</strong> {{ personagem.class.name }}</p>
-                    <p><strong>Nível:</strong> {{ personagem.level }}</p>
-                    <p><strong>Antecedente:</strong> {{ personagem.background || 'Não definido' }}</p>
-                    <p><strong>Alinhamento:</strong> {{ personagem.alignment || 'Não definido' }}</p>
-                    <p><strong>Atributos:</strong></p>
-                    <ul class="attribute-list">
-                        <li *ngFor="let atributo of atributoNomes">
-                            {{ nomesAtributosPortugues[atributo] }}: {{ personagem.attributes[atributo] }} 
-                            <span class="modifier">({{ characterService.calculateAttributeModifier(personagem.attributes[atributo]) >= 0 ? '+' : '' }}{{ characterService.calculateAttributeModifier(personagem.attributes[atributo]) }})</span>
-                        </li>
-                    </ul>
-                    <p><strong>Classe de Armadura:</strong> {{ personagem.armorClass }}</p>
-                    <p><strong>Iniciativa:</strong> {{ personagem.initiative >= 0 ? '+' : '' }}{{ personagem.initiative }}</p>
-                    <p><strong>Pontos de Vida:</strong> {{ personagem.hitPoints.maximum }}</p>
+                    <div *ngIf="metodoAtributos === 'manual'" class="attribute-container">
+                        <div *ngFor="let atributo of atributoNomes" class="atributo">
+                            <label>{{ nomesAtributosPortugues[atributo] }}:</label>
+                            <input type="number" [(ngModel)]="personagem.attributes[atributo]" min="3" max="18">
+                            <span class="modifier">{{ characterService.calculateAttributeModifier(personagem.attributes[atributo]) >= 0 ? '+' : '' }}{{ characterService.calculateAttributeModifier(personagem.attributes[atributo]) }}</span>
+                        </div>
+                    </div>
+                    <button (click)="avancarEtapa()" class="btn-continuar">Continuar →</button>
                 </div>
-                <button (click)="finalizarCriacao()" class="btn-finalizar">Finalizar Criação</button>
+
+                <!-- Informações Adicionais -->
+                <div *ngIf="etapa === 4" class="pagina etapa">
+                    <button (click)="voltarEtapa()" class="btn-voltar">← Voltar</button>
+                    <h2>Informações do Personagem</h2>
+                    <div class="info-form">
+                        <div class="form-group">
+                            <label for="name">Nome do Personagem:</label>
+                            <input type="text" id="name" [(ngModel)]="personagem.name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="background">Antecedente:</label>
+                            <input type="text" id="background" [(ngModel)]="personagem.background">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="alignment">Alinhamento:</label>
+                            <select id="alignment" [(ngModel)]="personagem.alignment">
+                                <option value="">Selecione...</option>
+                                <option value="Leal e Bom">Leal e Bom</option>
+                                <option value="Neutro e Bom">Neutro e Bom</option>
+                                <option value="Caótico e Bom">Caótico e Bom</option>
+                                <option value="Leal e Neutro">Leal e Neutro</option>
+                                <option value="Neutro">Neutro</option>
+                                <option value="Caótico e Neutro">Caótico e Neutro</option>
+                                <option value="Leal e Mau">Leal e Mau</option>
+                                <option value="Neutro e Mau">Neutro e Mau</option>
+                                <option value="Caótico e Mau">Caótico e Mau</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button (click)="avancarEtapa()" class="btn-continuar">Continuar →</button>
+                </div>
+
+                <!-- Resumo do Personagem -->
+                <div *ngIf="etapa === 5" class="pagina etapa">
+                    <button (click)="voltarEtapa()" class="btn-voltar">← Voltar</button>
+                    <h2>Resumo do Personagem</h2>
+                    <div class="resumo">
+                        <p><strong>Nome:</strong> {{ personagem.name || 'Não definido' }}</p>
+                        <p><strong>Raça:</strong> {{ personagem.race.name }}</p>
+                        <p><strong>Classe:</strong> {{ personagem.class.name }}</p>
+                        <p><strong>Nível:</strong> {{ personagem.level }}</p>
+                        <p><strong>Antecedente:</strong> {{ personagem.background || 'Não definido' }}</p>
+                        <p><strong>Alinhamento:</strong> {{ personagem.alignment || 'Não definido' }}</p>
+                        <p><strong>Atributos:</strong></p>
+                        <ul class="attribute-list">
+                            <li *ngFor="let atributo of atributoNomes">
+                                {{ nomesAtributosPortugues[atributo] }}: {{ personagem.attributes[atributo] }} 
+                                <span class="modifier">{{ characterService.calculateAttributeModifier(personagem.attributes[atributo]) >= 0 ? '+' : '' }}{{ characterService.calculateAttributeModifier(personagem.attributes[atributo]) }}</span>
+                            </li>
+                        </ul>
+                        <p><strong>Classe de Armadura:</strong> {{ personagem.armorClass }}</p>
+                        <p><strong>Iniciativa:</strong> {{ personagem.initiative >= 0 ? '+' : '' }}{{ personagem.initiative }}</p>
+                        <p><strong>Pontos de Vida:</strong> {{ personagem.hitPoints.maximum }}</p>
+                    </div>
+                    <button (click)="finalizarCriacao()" class="btn-finalizar">Finalizar Criação</button>
+                </div>
             </div>
         </div>
     </div>

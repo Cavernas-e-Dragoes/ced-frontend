@@ -238,34 +238,74 @@ export class CharacterService {
       armors: [] as string[]
     };
     
+    // Mapas de tradução
+    const savingThrowMap: {[key: string]: string} = {
+      'strength': 'Força',
+      'dexterity': 'Destreza',
+      'constitution': 'Constituição',
+      'intelligence': 'Inteligência',
+      'wisdom': 'Sabedoria',
+      'charisma': 'Carisma'
+    };
+    
+    const skillMap: {[key: string]: string} = {
+      'acrobatics': 'Acrobacia',
+      'animal handling': 'Adestrar Animais',
+      'arcana': 'Arcanismo',
+      'athletics': 'Atletismo',
+      'deception': 'Enganação',
+      'history': 'História',
+      'insight': 'Intuição',
+      'intimidation': 'Intimidação',
+      'investigation': 'Investigação',
+      'medicine': 'Medicina',
+      'nature': 'Natureza',
+      'perception': 'Percepção',
+      'performance': 'Atuação',
+      'persuasion': 'Persuasão',
+      'religion': 'Religião',
+      'sleight of hand': 'Prestidigitação',
+      'stealth': 'Furtividade',
+      'survival': 'Sobrevivência'
+    };
+    
     // Processa saving throws
     if (apiChar.skills) {
-      if (apiChar.skills['stStrength']) proficiencies.savingThrows.push('strength');
-      if (apiChar.skills['stDexterity']) proficiencies.savingThrows.push('dexterity');
-      if (apiChar.skills['stConstitution']) proficiencies.savingThrows.push('constitution');
-      if (apiChar.skills['stIntelligence']) proficiencies.savingThrows.push('intelligence');
-      if (apiChar.skills['stWisdom']) proficiencies.savingThrows.push('wisdom');
-      if (apiChar.skills['stCharisma']) proficiencies.savingThrows.push('charisma');
+      // Primeiro coletamos em inglês
+      const savingThrowsEn: string[] = [];
+      if (apiChar.skills['stStrength']) savingThrowsEn.push('strength');
+      if (apiChar.skills['stDexterity']) savingThrowsEn.push('dexterity');
+      if (apiChar.skills['stConstitution']) savingThrowsEn.push('constitution');
+      if (apiChar.skills['stIntelligence']) savingThrowsEn.push('intelligence');
+      if (apiChar.skills['stWisdom']) savingThrowsEn.push('wisdom');
+      if (apiChar.skills['stCharisma']) savingThrowsEn.push('charisma');
       
-      // Processa perícias
-      if (apiChar.skills['acrobatics']) proficiencies.skills.push('acrobatics');
-      if (apiChar.skills['animalHandling']) proficiencies.skills.push('animal handling');
-      if (apiChar.skills['arcana']) proficiencies.skills.push('arcana');
-      if (apiChar.skills['athletics']) proficiencies.skills.push('athletics');
-      if (apiChar.skills['deception']) proficiencies.skills.push('deception');
-      if (apiChar.skills['history']) proficiencies.skills.push('history');
-      if (apiChar.skills['insight']) proficiencies.skills.push('insight');
-      if (apiChar.skills['intimidation']) proficiencies.skills.push('intimidation');
-      if (apiChar.skills['investigation']) proficiencies.skills.push('investigation');
-      if (apiChar.skills['medicine']) proficiencies.skills.push('medicine');
-      if (apiChar.skills['nature']) proficiencies.skills.push('nature');
-      if (apiChar.skills['perception']) proficiencies.skills.push('perception');
-      if (apiChar.skills['performance']) proficiencies.skills.push('performance');
-      if (apiChar.skills['persuasion']) proficiencies.skills.push('persuasion');
-      if (apiChar.skills['religion']) proficiencies.skills.push('religion');
-      if (apiChar.skills['sleightOfHand']) proficiencies.skills.push('sleight of hand');
-      if (apiChar.skills['stealth']) proficiencies.skills.push('stealth');
-      if (apiChar.skills['survival']) proficiencies.skills.push('survival');
+      // Depois traduzimos para português
+      proficiencies.savingThrows = savingThrowsEn.map(st => savingThrowMap[st] || st);
+      
+      // Processa perícias - mesmo processo
+      const skillsEn: string[] = [];
+      if (apiChar.skills['acrobatics']) skillsEn.push('acrobatics');
+      if (apiChar.skills['animalHandling']) skillsEn.push('animal handling');
+      if (apiChar.skills['arcana']) skillsEn.push('arcana');
+      if (apiChar.skills['athletics']) skillsEn.push('athletics');
+      if (apiChar.skills['deception']) skillsEn.push('deception');
+      if (apiChar.skills['history']) skillsEn.push('history');
+      if (apiChar.skills['insight']) skillsEn.push('insight');
+      if (apiChar.skills['intimidation']) skillsEn.push('intimidation');
+      if (apiChar.skills['investigation']) skillsEn.push('investigation');
+      if (apiChar.skills['medicine']) skillsEn.push('medicine');
+      if (apiChar.skills['nature']) skillsEn.push('nature');
+      if (apiChar.skills['perception']) skillsEn.push('perception');
+      if (apiChar.skills['performance']) skillsEn.push('performance');
+      if (apiChar.skills['persuasion']) skillsEn.push('persuasion');
+      if (apiChar.skills['religion']) skillsEn.push('religion');
+      if (apiChar.skills['sleightOfHand']) skillsEn.push('sleight of hand');
+      if (apiChar.skills['stealth']) skillsEn.push('stealth');
+      if (apiChar.skills['survival']) skillsEn.push('survival');
+      
+      // Traduzimos as perícias
+      proficiencies.skills = skillsEn.map(skill => skillMap[skill] || skill);
     }
     
     // Se houver outras proficiências na API, adicione aqui
