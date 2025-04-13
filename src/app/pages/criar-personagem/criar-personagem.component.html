@@ -27,20 +27,30 @@
                 <div class="lombada"></div>
                 
                 <!-- Navegação lateral para as páginas -->
-                <div class="paginas-navegacao">
+                <div class="paginas-navegacao" *ngIf="!isLoading">
                     <div class="pagina-nav" [class.active]="etapa === 1" (click)="navegarParaEtapa(1)">
+                        <div class="pagina-nav-shadow"></div>
+                        <div class="pagina-nav-texture"></div>
                         <span class="pagina-nav-numero">1</span>
                     </div>
                     <div class="pagina-nav" [class.active]="etapa === 2" (click)="navegarParaEtapa(2)">
+                        <div class="pagina-nav-shadow"></div>
+                        <div class="pagina-nav-texture"></div>
                         <span class="pagina-nav-numero">2</span>
                     </div>
                     <div class="pagina-nav" [class.active]="etapa === 3" (click)="navegarParaEtapa(3)">
+                        <div class="pagina-nav-shadow"></div>
+                        <div class="pagina-nav-texture"></div>
                         <span class="pagina-nav-numero">3</span>
                     </div>
                     <div class="pagina-nav" [class.active]="etapa === 4" (click)="navegarParaEtapa(4)">
+                        <div class="pagina-nav-shadow"></div>
+                        <div class="pagina-nav-texture"></div>
                         <span class="pagina-nav-numero">4</span>
                     </div>
                     <div class="pagina-nav" [class.active]="etapa === 5" (click)="navegarParaEtapa(5)">
+                        <div class="pagina-nav-shadow"></div>
+                        <div class="pagina-nav-texture"></div>
                         <span class="pagina-nav-numero">5</span>
                     </div>
                 </div>
